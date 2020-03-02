@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Avatar } from 'react-native-elements';
 
-export default ProfileUser= ({navigation})=>{
+export default function ProfileUser({navigation}) {
     return (
       <View style={{ backgroundColor:"#F5F8FB", marginTop:95}}/* style={styles.container} */>
           <Avatar backgroundColor="#F5F8FB" size="xlarge" rounded showEditButton icon={{ name: 'home' }} source={{uri:'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}/>
@@ -37,8 +37,6 @@ export default ProfileUser= ({navigation})=>{
       </View>
     )
   };
-  
-
   const styles = StyleSheet.create({
     title: {
       fontFamily:'catamaran-semibold',
@@ -53,3 +51,6 @@ export default ProfileUser= ({navigation})=>{
       lineHeight: 28,
     }
   });
+
+
+

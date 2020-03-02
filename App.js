@@ -1,32 +1,62 @@
 import React, {useState} from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator} from 'react-navigation-stack';
+
+import {createAppContainer } from 'react-navigation';
+import {createBottomTabNavigator} from 'react-navigation-tabs';
+import {createStackNavigator} from 'react-navigation-stack';
+
+import { Icon } from 'react-native-elements';
+
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
-import MesMariagesScreen from './screens/MesMariagesScreen'
 
+import MesMariagesScreen from './screens/MesMariagesScreen'
 import ProfileUser  from './screens/ProfileUser';
 
-const stackNavigator = createStackNavigator({
-  'Mon Profil': ProfileUser
-})
+
+
+const bottomNavigator = createBottomTabNavigator({
+  'Mon Profil': ProfileUser,
+  'Mes Mariages': MesMariagesScreen
+},
+{ defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ tintColor }) => {
+      var iconName, iconType;
+      if (navigation.state.routeName == 'Mes Mariages') {
+        iconName = 'heart';
+        iconType = 'evilicon';
+      } else if (navigation.state.routeName == 'Mon Profil') {
+        iconName = 'user';
+        iconType = 'antdesign';
+      }
+      return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
+    },
+  }),
+  tabBarOptions: {
+    activeTintColor: '#ffffff',
+    inactiveTintColor: '#1f6a39',
+    style: {
+    	backgroundColor: '#31AE89',
+    }
+  },
+}
+);
+
+
 async function getFonts(){
   await Font.loadAsync({
     'catamaran-semibold': require ('./assets/fonts/Catamaran-SemiBold.ttf'),
-    'catamaran-black': require ('./assets/fonts/Catamaran-Black.ttf'),
+    'catamaran-regular': require ('./assets/fonts/Catamaran-Regular.ttf'),
   })
 }
 
-const App = createAppContainer(stackNavigator)
+const App = createAppContainer(bottomNavigator);
 
 export default () => {
   const [fontLoaded, setFontLoaded]= useState(false)
   if (fontLoaded){
     return (
-      <App>
-        <MesMariagesScreen/>
-      </App>
-    )
+      <App/>
+          )
   } else {
     return (
       <AppLoading startAsync={getFonts} onFinish = {()=> setFontLoaded(true)}/>
