@@ -24,7 +24,7 @@ function MesMariagesScreen({navigation}) {
 				}}>
 				<Icon name='menu' type='material' color='black' />
 				<Text 
-					style={{fontFamily: 'Serif', paddingLeft: 20}}
+					style={{paddingLeft: 20}}
 				>
 					Mes Mariages
 				</Text>
