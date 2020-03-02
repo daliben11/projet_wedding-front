@@ -95,7 +95,7 @@ function MesMariagesScreen() {
 const styles = StyleSheet.create({
 	subtitleView: {
 		flexDirection: 'row',
-		alignItems: 'end',
+		alignItems: 'flex-end',
 		paddingLeft: 15,
 		paddingTop: 5
 	},
