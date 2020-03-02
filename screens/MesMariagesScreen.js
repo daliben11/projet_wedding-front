@@ -10,7 +10,7 @@ import { Icon, ListItem } from 'react-native-elements';
 
 
 
-function MesMariagesScreen() {
+function MesMariagesScreen({navigation}) {
 	
 	// nav haut
 	
@@ -22,7 +22,7 @@ function MesMariagesScreen() {
 					backgroundColor: '#FAEBE4', 
 					flexDirection: 'row', alignItems: 'center',
 				}}>
-				<Icon name='menu' type='material' color='grey' />
+				<Icon name='menu' type='material' color='black' />
 				<Text 
 					style={{fontFamily: 'Serif', paddingLeft: 20}}
 				>
@@ -123,32 +123,6 @@ function MesMariagesScreen() {
 				<Icon name='plus' type='feather' color='grey' />
 			</View>
 			
-			
-			<View 
-				style={{
-					width:'100%', height:60,
-					padding: '1em',
-					backgroundColor: '#31AE89', 
-					flexDirection: 'row', alignItems: 'center', justifyContent:'space-around'
-				}}>
-				
-				<View>
-					<Icon name='heart' type='evilicon' size='3em' />
-					<Text style={{fontSize: '0.8em'}}>
-						MES MARIAGES
-					</Text>
-				</View>
-				
-				<View>
-					<Icon name='user' type='antdesign' size='2em' />
-					<Text style={{fontSize: '0.8em'}}>
-						MON PROFILE
-					</Text>
-				</View>
-				
-			</View>
-			
-			
 				
 		</SafeAreaView>
 	
@@ -160,7 +134,7 @@ function MesMariagesScreen() {
 
 const styles = StyleSheet.create({
 	titleView: {
-		fontFamily: 'Sans Serif',
+		fontFamily:'catamaran-regular',
 		fontWeight:'bold', 
 		alignSelf:'center', 
 		paddingTop: 10
@@ -209,7 +183,30 @@ export default MesMariagesScreen;
 //)( MesMariagesScreen );
 
 
-
+//<View 
+//	style={{
+//		width:'100%', height:60,
+//		padding: '1em',
+//		backgroundColor: '#31AE89', 
+//		flexDirection: 'row', alignItems: 'center', justifyContent:'space-around'
+//	}}>
+//	
+//	<View>
+//		<Icon name='heart' type='evilicon' size='3em' />
+//		<Text style={{fontSize: '0.8em'}}>
+//			MES MARIAGES
+//		</Text>
+//	</View>
+//	
+//	<View>
+//		<Icon name='user' type='antdesign' size='2em' />
+//		<Text style={{fontSize: '0.8em'}}>
+//			MON PROFILE
+//		</Text>
+//	</View>
+//	
+//</View>
+			
 
 
 
