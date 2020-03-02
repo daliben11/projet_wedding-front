@@ -1,22 +1,35 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-
+import React, {useState} from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator} from 'react-navigation-stack';
+import * as Font from 'expo-font'
+import { AppLoading } from 'expo'
 import MesMariagesScreen from './screens/MesMariagesScreen'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-    	<MesMariagesScreen/>
-      
-    </View>
-  );
+import ProfileUser  from './screens/ProfileUser';
+
+const stackNavigator = createStackNavigator({
+  'Mon Profil': ProfileUser
+})
+async function getFonts(){
+  await Font.loadAsync({
+    'catamaran-semibold': require ('./assets/fonts/Catamaran-SemiBold.ttf'),
+    'catamaran-black': require ('./assets/fonts/Catamaran-Black.ttf'),
+  })
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = createAppContainer(stackNavigator)
+
+export default () => {
+  const [fontLoaded, setFontLoaded]= useState(false)
+  if (fontLoaded){
+    return (
+      <App>
+        <MesMariagesScreen/>
+      </App>
+    )
+  } else {
+    return (
+      <AppLoading startAsync={getFonts} onFinish = {()=> setFontLoaded(true)}/>
+    )
+  }
+}
