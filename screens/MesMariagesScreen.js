@@ -5,7 +5,7 @@ import {
 	View, ScrollView, SafeAreaView,
 	Text, StyleSheet  } from 'react-native';
 
-import { Icon, ListItem } from 'react-native-elements';
+import { Icon, Header, ListItem } from 'react-native-elements';
 
 
 
@@ -15,24 +15,20 @@ function MesMariagesScreen({navigation}) {
 	// nav haut
 	
 	return(
-		<SafeAreaView style={{marginTop: 30, width:'100%', flex:1}}>
-			<View 
-				style={{
-					width:'100%', height:60, padding: 20,
-					backgroundColor: '#FAEBE4', 
-					flexDirection: 'row', alignItems: 'center',
-				}}>
-				<Icon name='menu' type='material' color='black' />
-				<Text 
-					style={{paddingLeft: 20}}
-				>
-					Mes Mariages
-				</Text>
-			</View>
-				
+		<SafeAreaView style={{marginTop: 30, width:'100%', flex:1, backgroundColor: '#F5F8FB'}}>
+			
+			<Header
+				leftComponent={{ icon: 'menu', color: '#000' }}
+				centerComponent={{ text: 'Mes Mariages', style: { color: '#000'} }}
+				containerStyle={{
+					backgroundColor: '#FAEBE4',
+					justifyContent: 'center',
+					height: 84
+				}}
+			/>
+			
 				
 			<ScrollView >
-			
 			
 				<ListItem key={1}
 					rightAvatar={{ source: require('../assets/picture-1.jpg') }}
