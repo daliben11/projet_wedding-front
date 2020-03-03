@@ -8,7 +8,11 @@
     "eject": "expo eject"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@react-native-community/datetimepicker": "^2.2.2",
+=======
+    "@fortawesome/free-brands-svg-icons": "^5.12.1",
+>>>>>>> 718cc9c3de81cbc916d456eed8ce9314455a3eca
     "@react-native-community/masked-view": "^0.1.7",
     "expo": "^36.0.2",
     "link": "^0.1.5",
@@ -20,6 +24,8 @@
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.2.0",
+    "react-native-timeline-flatlist": "^0.6.5",
+    "react-native-timeline-listview": "^0.2.3",
     "react-native-vector-icons": "^6.6.0",
     "react-native-web": "^0.11.7",
     "react-navigation": "^4.2.2",

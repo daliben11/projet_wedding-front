@@ -11,7 +11,9 @@ import { AppLoading } from 'expo'
 
 import MesMariagesScreen from './screens/MesMariagesScreen'
 import ProfileUser  from './screens/ProfileUser';
-import Dashboard from './screens/Dashboard';
+import Guestprogramme from './screens/Guestprogramme';
+
+
 
 
 
@@ -22,7 +24,7 @@ export default () => {
 const bottomNavigator = createBottomTabNavigator({
   'Mon Profil': ProfileUser,
   'Mes Mariages': MesMariagesScreen,
-  'dashboard': Dashboard,
+  'Guestprogramme': Guestprogramme,
 },
 { defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ tintColor }) => {
