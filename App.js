@@ -11,12 +11,13 @@ import { AppLoading } from 'expo'
 
 import MesMariagesScreen from './screens/MesMariagesScreen'
 import ProfileUser  from './screens/ProfileUser';
-
+import Dashboard from './screens/Dashboard';
 
 
 const bottomNavigator = createBottomTabNavigator({
   'Mon Profil': ProfileUser,
-  'Mes Mariages': MesMariagesScreen
+  'Mes Mariages': MesMariagesScreen,
+  'dashboard': Dashboard,
 },
 { defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ tintColor }) => {
@@ -46,6 +47,7 @@ async function getFonts(){
   await Font.loadAsync({
     'catamaran-semibold': require ('./assets/fonts/Catamaran-SemiBold.ttf'),
     'catamaran-regular': require ('./assets/fonts/Catamaran-Regular.ttf'),
+    'greatvibes': require ('./assets/fonts/GreatVibes-Regular.ttf'),
   })
 }
 

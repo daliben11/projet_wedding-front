@@ -15,11 +15,11 @@ function MesMariagesScreen({navigation}) {
 	// nav haut
 	
 	return(
-		<SafeAreaView style={{marginTop: 30, width:'100%', flex:1, backgroundColor: '#F5F8FB'}}>
+		<SafeAreaView style={{flex:1, backgroundColor: '#F5F8FB'}}>
 			
 			<Header
 				leftComponent={{ icon: 'menu', color: '#000' }}
-				centerComponent={{ text: 'Mes Mariages', style: { color: '#000'} }}
+				centerComponent={{ text: 'Mes Mariages', style: { fontFamily:'greatvibes', color: '#000', fontSize:30} }} // ajout de la police greatvibes avec la bonne taille
 				containerStyle={{
 					backgroundColor: '#FAEBE4',
 					justifyContent: 'center',
