@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Avatar,Header } from 'react-native-elements';
 
-export default function ProfileUser({navigation}) {
+export default function Dashboard({navigation}) {
     return (
       
       <View style={{backgroundColor:"#F5F8FB",flex:1}} >
