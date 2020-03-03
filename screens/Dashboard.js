@@ -1,6 +1,9 @@
 import React,{useState} from 'react';
 import { StyleSheet, View, Text, ImageBackground, ScrollView } from 'react-native';
 import { Avatar,Header, ListItem, Icon}  from 'react-native-elements';
+import * as Progress from 'react-native-progress';
+// import IconAntDesign from 'react-native-vector-icons/AntDesign';
+
 
 export default function Dashboard({navigation}) {
     return (
@@ -8,89 +11,125 @@ export default function Dashboard({navigation}) {
       
         <View style={{flex:1, marginTop: 39}}> 
     
-    
-         <ImageBackground  source={require('../assets/coeurimg.jpg')} style={styles.container} >
-         <Icon  name='heartbeat' type='evilicon' color='grey' justifyContent='start'  size={62}/>
-           
-            <Text style={{color: 'white', FamilyFont: 'greatVibes',fontSize: 30, marginTop: 150, marginRight: 100}}>Janet & John</Text><Text style={{color: 'white', fontSize: 20}} >23/08/2020</Text></ImageBackground>
+     
+            <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1.3}}>
+              <Icon name='list' type='materialIcons' color='grey' size={40} flexDirection='row'/>
+              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginTop: 170}}> Janet  & John</Text>
+              <Text style={{color: 'white', fontFamily:'greatvibes', fontSize: 20, marginBottom: 20, marginRight: 95, marginLeft: 95}} >23/08/2020</Text>
+
+            </ImageBackground>
       
-            <View style={{flex: 0.3, backgroundColor: '#FAEBE4', justifyContent: 'center' }}>
-              <Text h4 style={{textAlign:'center',fontWeight: 'bold'}} > 200 jours 11 Heures 37 min 34 s</Text>
-            </View>
+                <View style={{flex: 0.3, backgroundColor: '#FAEBE4' }}>
+                  <Text h4 style={{ textAlign:'center',fontWeight: 'bold', fontFamily:'greatvibes'}} style={styles.container} > 200 jours 11 Heures 37 min 34 s</Text>
+                </View>
+
+
               <ScrollView  style={{flex:3, marginTop: 15}}>
+              
     
-                          <ListItem key={1}
-                                  title='Avancement des tâches (20 sur 100)'
-                                  subtitle={
-                                    <View style={styles.subtitleView}>
-                                        <Icon name='list-ul'type='evilicon' color='grey' />
-                                        <View style={styles.interSpace}/>
-                                    </View>
-                                    }
-                                  titleStyle={{paddingTop: 10, paddingLeft: 0}}
-                                  bottomDivider
-    
-                                  
-                                />
-                                <ListItem key={1}
+
+                        <ListItem key={1}
                         
-                        title='Choix des prestaraires (3 sur 10)'
+                        
+                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        title='Avancement des tâches (20 sur10)'
+                        titleStyle={styles.titleView}
                         subtitle={
-                          <View>
-                              <Icon name='clock' type='evilicon' color='grey' />
-                              <View style={styles.interSpace}/>
+                          <View style={styles.subtitleView}>
+                            <Progress.Bar progress={0.3} width={200} /> 
                           </View>
-                          }
-                        titleStyle={{paddingTop: 10, paddingLeft: 0}}
-                        bottomDivider
-    />
+                        }
+                       
+                         bottomDivider
+                        />
+   
+                        <ListItem key={2}
+                        
+                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        title='Choix des prestataires (3 sur10)'
+                        titleStyle={styles.titleView}
+                        subtitle={
+                          <View style={styles.subtitleView}>
+                            <Progress.Bar progress={0.3} width={200} /> 
+                          </View>
+                        }
+                       
+                         bottomDivider
+
+                        />
                     
-                        <ListItem 
-    
+
+                        <ListItem key={3}
+                        
+                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
                         title='Listes des invités (30 sur 150)'
+                        titleStyle={styles.titleView}
                         subtitle={
-                          <View>
-                              <Icon name='heartbeat' type='evilicon' color='grey' />
-                              <View style={styles.interSpace}/>
+                          <View style={styles.subtitleView}>
+                            <Progress.Bar progress={0.3} width={200} /> 
                           </View>
-                          }
-                        titleStyle={{paddingTop: 10, paddingLeft: 0}}
+                        }
+       
                         bottomDivider
                         />
                         
                         
-                         <ListItem 
+                         <ListItem key={4}
     
-                        title='Budget (1 000€ sur 30 000€)'
-                        subtitle={
-                          <View>
-                              <Icon name='clock' type='evilicon' color='grey' />
-                              <View style={styles.interSpace}/>
-                          </View>
+                          rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                          title='Budget(1000€ sur 30000€)'
+                          titleStyle={styles.titleView}
+                          subtitle={
+                            <View style={styles.subtitleView}>
+                              <Progress.Bar progress={0.3} width={200} /> 
+                            </View>
                           }
-                        titleStyle={{paddingTop: 10, paddingLeft: 0}}
-                        bottomDivider
-                        />
                         
-      
-      <Text style={{color: 'black'}}></Text>
-      
-    
-         <View style={{flex: 1}}/>
-          </ScrollView>
-         
-    
-        
+                          bottomDivider
+                        />
+
+               </ScrollView>
+                          
+                      
+                          
          </View>
-      );
-    }
+    );
+}
     const styles = StyleSheet.create({
-        container: {
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        },
-      });
+      container: {
+       
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily:'greatvibes',
+        fontSize: 21,
+        marginLeft: 20,
+        marginRight: 20,
+        marginTop: 10,
+        marginBottom: 10,
+        
+      },
+      titleView: {
+        fontFamily:'catamaran-regular',
+        fontWeight:'bold', 
+        alignSelf:'center', 
+        paddingTop: 10,
+        fontSize: 14,
+      },
+      subtitleView: {
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        paddingLeft: 15,
+        paddingTop: 5
+      },
+      ratingText: {
+        paddingLeft: 10,
+        paddingRight: 10,
+        color: 'grey'
+      },
+      interSpace:{
+        paddingLeft: 30,
+      }
+    });
 
 
 
