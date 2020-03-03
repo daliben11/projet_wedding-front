@@ -16,6 +16,11 @@ import Dashboard from './screens/Dashboard';
 
 
 
+
+export default () => {
+  const [fontLoaded, setFontLoaded]= useState(false)
+  
+
 const bottomNavigator = createBottomTabNavigator({
   'Mon Profil': ProfileUser,
   'Mes Mariages': MesMariagesScreen,
@@ -31,6 +36,7 @@ const bottomNavigator = createBottomTabNavigator({
         iconName = 'user';
         iconType = 'antdesign';
       }
+      
       return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
     },
   }),
@@ -55,8 +61,8 @@ async function getFonts(){
 
 const App = createAppContainer(bottomNavigator);
 
-export default () => {
-  const [fontLoaded, setFontLoaded]= useState(false)
+  
+  
   if (fontLoaded){
     return (
       <App/>
