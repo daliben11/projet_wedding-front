@@ -15,7 +15,7 @@ function MesMariagesScreen({navigation}) {
 	// nav haut
 	
 	return(
-		<SafeAreaView style={{marginTop: 30, width:'100%', flex:1, backgroundColor: '#F5F8FB'}}>
+		<SafeAreaView style={{width:'100%', flex:1, backgroundColor: '#F5F8FB'}}>
 			
 			<Header
 				leftComponent={{ icon: 'menu', color: '#000' }}
@@ -179,29 +179,6 @@ export default MesMariagesScreen;
 //)( MesMariagesScreen );
 
 
-//<View 
-//	style={{
-//		width:'100%', height:60,
-//		padding: '1em',
-//		backgroundColor: '#31AE89', 
-//		flexDirection: 'row', alignItems: 'center', justifyContent:'space-around'
-//	}}>
-//	
-//	<View>
-//		<Icon name='heart' type='evilicon' size='3em' />
-//		<Text style={{fontSize: '0.8em'}}>
-//			MES MARIAGES
-//		</Text>
-//	</View>
-//	
-//	<View>
-//		<Icon name='user' type='antdesign' size='2em' />
-//		<Text style={{fontSize: '0.8em'}}>
-//			MON PROFILE
-//		</Text>
-//	</View>
-//	
-//</View>
 			
 
 
