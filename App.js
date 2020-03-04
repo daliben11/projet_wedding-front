@@ -9,9 +9,9 @@ import { Icon } from 'react-native-elements';
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
-import connection from './screens/sign/connection';
-import signin from './screens/sign/signin';
-import signup from './screens/sign/signup';
+import connection from './screens/connexion/connection';
+import signin from './screens/connexion/signin';
+import signup from './screens/connexion/signup';
 
 import MesMariagesScreen from './screens/mesmariages/MesMariagesScreen'
 import ProfileUser  from './screens/profile/ProfileUser';
@@ -39,7 +39,8 @@ const store = createStore(combineReducers( { myWedding } ));
 // Profile et Espace Perso
 const profilBottom = createBottomTabNavigator({
 		'Mes Mariages': MesMariagesScreen,
-		'Mon Profil': ProfileUser
+		'Mon Profil': ProfileUser,
+		Home: 	connection, 
 	},
 	{ defaultNavigationOptions: ({ navigation }) => ({
 		  tabBarIcon: ({ tintColor }) => {

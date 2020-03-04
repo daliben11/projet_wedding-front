@@ -25,14 +25,16 @@ function Loginform( props ) {
                     <Text style={styles.buttonMotdepasse}>MOT DE PASSE OUBLIE</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonMeconnecter}>
+                <TouchableOpacity style={styles.buttonMeconnecter}
+                	onPress={ () => props.signin() }
+                >
                     <Text style={styles.buttonText}>ME CONNECTER</Text>
                 </TouchableOpacity>
 
                 <Button title="INSCRIVEZ-VOUS" 
                 type="clear"
                 titleStyle={{ color: 'grey', fontSize: 12, marginBottom: 40}}
-                onPress={()=>props.signinClick()}
+                
                 />
 
             </View>

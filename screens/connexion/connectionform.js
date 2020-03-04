@@ -19,16 +19,17 @@ function Connectionform( props ) {
             />
 
             <Button title="Inscrivez-vous avec votre email" 
-            type="outline"
-            style={styles.buttonLinks} 
-            titleStyle={{ color: 'black' }}
-            buttonStyle={{ borderColor: 'black', borderWidth: 1.5 }}
+		          type="outline"
+		          style={styles.buttonLinks} 
+		          titleStyle={{ color: 'black' }}
+		          buttonStyle={{ borderColor: 'black', borderWidth: 1.5 }}
+		          onPress={ () => props.toSignUp() }
             />
 
             <Button title="Me connecter" 
-            type="clear"
-            titleStyle={{ color: 'pink', fontSize: 30, marginTop: 20}}
-            onPress={ ()=>props.signin() }
+		          type="clear"
+		          titleStyle={{ color: 'pink', fontSize: 30, marginTop: 20}}
+		          onPress={ () => props.toSignIn() }
             />
         
         </View>
