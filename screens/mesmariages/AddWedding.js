@@ -72,7 +72,7 @@ function AddWedding ( props ) {
 				<Header
 					leftComponent={ 
 						<Icon name='close' type='antdesign' color='#000'
-							onPress={ () => setCreateNewWed(false) }
+							onPress={ () => props.showPage(false) }
 						/> 
 					}
 					centerComponent={{ 
@@ -88,8 +88,8 @@ function AddWedding ( props ) {
 									city: city, 
 									date: myWeddingDate
 								} );
-								setCreateNewWed(false)}
-							} 
+								props.showPage(false)
+							} } 
 						/>
 						}
 					containerStyle={{
@@ -122,7 +122,7 @@ function AddWedding ( props ) {
 				<Button
 					title={ `Je choisie ma date ${dateFormat(myWeddingDate)}` }
 					type="outline"
-					onPress={ ()=>setShow(true) }
+					onPress={ () => setShow(true) }
 				/>
 				
 				<Calendar/>

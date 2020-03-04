@@ -16,11 +16,15 @@ function MesMariagesScreen({navigation}) {
 
 	const [createNewWed, setCreateNewWed] = useState( false );
 	
-	
+	const changePage = (val) => {
+		console.log('create new wed  ', createNewWed );
+		setCreateNewWed( val );
+	}
+
 
 	if (createNewWed) {
 	
-		<AddWedding />
+		<AddWedding showPage={changePage} />
 
 		);
 	} else {
@@ -120,7 +124,7 @@ function MesMariagesScreen({navigation}) {
 						backgroundColor: '#fff', 
 						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
 					}}
-					onPress={ () => setCreateNewWed(true) }>
+					onPress={ () => setCreateNewWed( true ) }>
 					
 					<Text style={{paddingLeft: 20}}>
 						Ajouter mon mariage
