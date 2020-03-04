@@ -1,9 +1,11 @@
 import React,{useState} from 'react';
 import { View, ScrollView } from 'react-native';
 import { Avatar, Icon, Input,Header} from 'react-native-elements';
+import {connect} from 'react-redux';
 
 
-export default function ProfileModif(props) {
+
+function ProfileModif(onSubmitStatut) {
   const [modifier,setModifier]=useState(false)
   const [nom,setNom]=useState('')
   const [prenom,setPrenom]=useState('')
@@ -19,11 +21,11 @@ export default function ProfileModif(props) {
 
       <Header
             leftComponent={<Icon
-              onPress={() => {setModifier(false)}}
+              onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
               name='close'
             />}
             rightComponent={<Icon
-              onPress={() => {setModifier(false)}}
+              onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
               name='check'
             />}
             centerComponent={{ text:  `${props.nom} `, style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
@@ -107,3 +109,17 @@ export default function ProfileModif(props) {
 </View>
   )
 }
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSubmitStatut: function(modifier) { 
+      dispatch( {type: 'savePseudo', statut: modifier }) 
+    }
+  }
+}
+
+export default connect(
+    null, 
+    mapDispatchToProps
+)(ProfileModif);

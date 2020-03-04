@@ -3,8 +3,9 @@ import { StyleSheet, View, Text,TouchableOpacity,ScrollView } from 'react-native
 import { Avatar, Icon, Overlay, Input,Header} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import ProfileModif from './ProfileModif';
+import {connect} from 'react-redux';
 
-export default function ProfileUser({navigation}) {
+function ProfileUser({navigation}) {
   const [modifier,setModifier]=useState(false)
   const [nom,setNom]=useState('')
   const [prenom,setPrenom]=useState('')
@@ -100,5 +101,14 @@ if (modifier===false) {
 
   });
 
-
+  function mapStateToProps(state) {
+    console.log("TCL: mapStateToProps -> state", state)
+    
+        return { statut : state.modifier}
+      }
+      
+      export default connect(
+        mapStateToProps, 
+        null
+      )(ProfileUser);
 

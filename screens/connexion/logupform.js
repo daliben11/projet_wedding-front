@@ -1,30 +1,11 @@
 
 import React, { Component, useState } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text, Platform } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { Button } from 'react-native-elements';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import NumericInput from 'react-native-numeric-input';
 
 /* LOGUPFORM */
 function Logupform() {
-
-            const [date, setDate] = useState(new Date(1598051730000));
-            const [mode, setMode] = useState('date');
-            const [show, setShow] = useState(false);
-
-            const onChange = (event, selectedDate) => {
-            const currentDate = selectedDate || date;
-            setShow(Platform.OS === 'ios');
-            setDate(currentDate);
-            };
-
-            const showMode = currentMode => {
-            setShow(true);
-            setMode(currentMode);
-            };
-
-            const showDatepicker = () => {
-            showMode('date');
-            };
 
     return (
      
@@ -42,23 +23,45 @@ function Logupform() {
                 style={styles.input} 
                 />
 
-                <Button 
-                onPress={showDatepicker} 
-                titleStyle={{ color: 'rgba(102, 102, 102, 0.5)', fontSize: 10, paddingRight: 200 }}
-                buttonStyle={{ backgroundColor: 'white', marginBottom: 10, height: 40 }}
-                title="DATE DE NAISSANCE" 
+                <Button
+                title="DATE DE NAISSANCE JJ/MM/AN"
+                disabled
+                style={styles.jourmoisan} 
+                titleStyle={{ fontSize: 10 }}
                 />
-                {show && (
-                <DateTimePicker
-                testID="dateTimePicker"
-                timeZoneOffsetInMinutes={0}
-                value={date}
-                mode={mode}
-                is24Hour={true}
-                display="default"
-                onChange={onChange}
+
+                <View style={styles.date}>
+                <NumericInput 
+                type='up-down' 
+                textColor='grey' 
+                totalWidth={90}
+                totalHeight={40} 
+                minValue={1} 
+                maxValue={31}
+                rounded
+                onChange={value => console.log(value)} 
                 />
-                )}
+                <NumericInput 
+                type='up-down' 
+                textColor='grey' 
+                totalWidth={90}
+                totalHeight={40} 
+                minValue={1} 
+                maxValue={12}
+                rounded
+                onChange={value => console.log(value)} 
+                />
+                <NumericInput 
+                type='up-down' 
+                textColor='grey' 
+                totalWidth={90}
+                totalHeight={40} 
+                minValue={1950} 
+                maxValue={2004}
+                rounded
+                onChange={value => console.log(value)} 
+                />
+                </View>
 
                 <TextInput 
                 placeholder="EMAIL"
@@ -109,7 +112,17 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         fontWeight: '700'
+    },
+    date: {
+        flexDirection: "row",
+        marginBottom: 10,
+        marginTop: 10,
+        justifyContent: 'space-around'
+    },
+    jourmoisan: {
+        
+    
     }
 })
 
-export default Logupform
+export default Logupform 
