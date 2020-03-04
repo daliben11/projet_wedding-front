@@ -7,7 +7,7 @@ import {
 import { Icon, Header, ListItem, Overlay, Input, Button } from 'react-native-elements';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import HeaderNav from './HeaderNav';
 
 
 
@@ -133,8 +133,8 @@ function MesMariagesScreen({navigation}) {
 					backgroundColor:'#F5F8FB'
 				}}>
 
-				
-				<Header
+				<HeaderNav nom='Mon Mariage'/>			
+				{/* <Header
 					leftComponent={{ icon: 'menu', color: '#000' }}
 					centerComponent={{ 
 						text: 'Mes Mariages', 
@@ -145,7 +145,7 @@ function MesMariagesScreen({navigation}) {
 						justifyContent: 'center',
 						height: 84
 					}}
-				/>
+				/> */}
 				
 					
 				<ScrollView>
