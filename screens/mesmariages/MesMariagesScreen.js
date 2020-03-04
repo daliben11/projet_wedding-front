@@ -5,10 +5,9 @@ import {
 	Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
 
 import { Icon, Header, ListItem, Overlay, Input, Button } from 'react-native-elements';
-
 import DateTimePicker from '@react-native-community/datetimepicker';
-import HeaderNav from './HeaderNav';
 
+import HeaderNav from '../HeaderNav';
 import AddWedding from './AddWedding'
 
 
@@ -23,8 +22,8 @@ function MesMariagesScreen({navigation}) {
 
 
 	if (createNewWed) {
-	
-		<AddWedding showPage={changePage} />
+		return(
+			<AddWedding showPage={changePage} />
 
 		);
 	} else {
@@ -43,7 +42,7 @@ function MesMariagesScreen({navigation}) {
 				<ScrollView>
 				
 					<ListItem key={1}
-						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 						title='Mariage John & Janet'
 						titleStyle={styles.titleView}
 						subtitle={
@@ -58,11 +57,11 @@ function MesMariagesScreen({navigation}) {
 						    </View>
 						  </View>
 						}
-						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
 						bottomDivider
 					/>
 					<ListItem key={2}
-						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 						title='Mariage John & Janet'
 						titleStyle={styles.titleView}
 						subtitle={
@@ -77,11 +76,11 @@ function MesMariagesScreen({navigation}) {
 						    </View>
 						  </View>
 						}
-						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
 						bottomDivider
 					/>
 					<ListItem key={3}
-						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 						title='Mariage John & Janet'
 						titleStyle={styles.titleView}
 						subtitle={
@@ -96,7 +95,7 @@ function MesMariagesScreen({navigation}) {
 						    </View>
 						  </View>
 						}
-						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
 						bottomDivider
 					/>
 					

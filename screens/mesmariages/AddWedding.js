@@ -178,14 +178,11 @@ const styles = StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
   return {
-    myWeddingDate: function ( mydate ) { 
-       dispatch( { type: 'setWeddingDate', date: mydate } ) 
-    },
     setMyWedding: function ( val ) {
-    	 dispatch( {type: 'deleteUrl', wedding: val } )
+    	 dispatch( {type: 'setMyWedding', wedding: val } )
     }
   }
-//}
+}
 
 
 export default connect(
