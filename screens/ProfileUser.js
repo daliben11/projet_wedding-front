@@ -20,7 +20,7 @@ if (modifier===false) {
   return (
     
     <View style={{backgroundColor:"#F5F8FB",flex:1}} >
-      <HeaderNav /> 
+      <HeaderNav nom='Mon Profil'/> 
       {/* <Header
               leftComponent={{ icon: 'menu', color: '#000' }}
               centerComponent={{ text: 'Mon Profil', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}

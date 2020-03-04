@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ImageBackground, ScrollView } from 'react-nativ
 import { Avatar,Header, ListItem, Icon}  from 'react-native-elements';
 import * as Progress from 'react-native-progress';
 // import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import HeaderNav from './HeaderNav';
 
 
 export default function Dashboard({navigation}) {
@@ -10,8 +11,8 @@ export default function Dashboard({navigation}) {
       
       
         <View style={{flex:1}}> 
-        
-          <Header
+          <HeaderNav nom='Mon Mariage'/> {/* ajout du Header commun*/}
+          {/* <Header
                 leftComponent={{ icon: 'menu', color: '#000' }}
                 centerComponent={{ text: 'Mon recap ', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
                 containerStyle={{
@@ -19,7 +20,7 @@ export default function Dashboard({navigation}) {
                     height: 84,
                     
                 }}
-          />
+          /> */}
 
      
             <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1.3}}>
