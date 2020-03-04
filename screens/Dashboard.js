@@ -9,13 +9,23 @@ export default function Dashboard({navigation}) {
     return (
       
       
-        <View style={{flex:1, marginTop: 39}}> 
-    
+        <View style={{flex:1}}> 
+        
+          <Header
+                leftComponent={{ icon: 'menu', color: '#000' }}
+                centerComponent={{ text: 'Mon recap ', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
+                containerStyle={{
+                    backgroundColor: '#FAEBE4',
+                    height: 84,
+                    
+                }}
+          />
+
      
             <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1.3}}>
-              <Icon name='list' type='materialIcons' color='grey' size={40} flexDirection='row'/>
-              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginTop: 170}}> Janet  & John</Text>
-              <Text style={{color: 'white', fontFamily:'greatvibes', fontSize: 20, marginBottom: 20, marginRight: 95, marginLeft: 95}} >23/08/2020</Text>
+            
+              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 30,marginLeft: 110, marginTop: 190}}> Janet &John</Text>
+              <Text style={{color: 'white', fontFamily:'greatvibes', fontSize: 20, marginBottom: 20, marginRight: 95, marginLeft: 100}} >23/08/2020</Text>
 
             </ImageBackground>
       
