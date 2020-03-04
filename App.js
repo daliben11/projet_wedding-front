@@ -13,8 +13,13 @@ import MesMariagesScreen from './screens/MesMariagesScreen'
 import ProfileUser  from './screens/profile/ProfileUser';
 import connection from './screens/sign/connection';
 
+import myWedding from './reducers/mariage.reducer'; 
+
+import {Provider} from 'react-redux';
+import {createStore, combineReducers}  from 'redux';
 
 
+const store = createStore(combineReducers( { myWedding } ));
 
 
 export default () => {
@@ -65,7 +70,9 @@ const App = createAppContainer(bottomNavigator);
   
   if (fontLoaded){
     return (
-      <App/>
+      <Provider store={store}>
+      	<App/>
+      </Provider>
           )
   } else {
     return (
