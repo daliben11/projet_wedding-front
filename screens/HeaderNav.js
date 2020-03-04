@@ -1,16 +1,16 @@
 import React from 'react';
 import {Header} from 'react-native-elements';
 
-export default function HeaderNav(){
+export default function HeaderNav(props){
     return(
-        <Header
-            leftComponent={{ icon: 'menu', color: '#000' }}
-            centerComponent={{ text: 'Mon Profil ', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
-            containerStyle={{
-                backgroundColor: '#FAEBE4',
-                height: 84,    
-            }}
-        />
-
+            <Header
+                leftComponent={{ icon: 'menu', color: '#000' }}
+                centerComponent={{ text: `${props.nom} `, style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
+                containerStyle={{
+                    backgroundColor: '#FAEBE4',
+                    height: 84,
+                    
+                }}
+            />
     )
 }
