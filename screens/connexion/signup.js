@@ -12,7 +12,7 @@ function Signup() {
                     <View style={styles.logoContainer}>
                     <Image 
                     style={styles.logo}
-                    source={require('../assets/logo1.png')} 
+                    source={require('../../assets/logo1.png')} 
                     />
                     </View>
 
