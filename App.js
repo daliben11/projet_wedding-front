@@ -10,8 +10,8 @@ import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
 import MesMariagesScreen from './screens/MesMariagesScreen'
-import ProfileUser  from './screens/ProfileUser';
-import connection from './screens/connection';
+import ProfileUser  from './screens/profile/ProfileUser';
+import connection from './screens/sign/connection';
 
 import myWedding from './reducers/mariage.reducer'; 
 

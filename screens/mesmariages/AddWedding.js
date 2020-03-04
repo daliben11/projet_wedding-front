@@ -131,6 +131,131 @@ function AddWedding ( props ) {
 
 	);
 
+<<<<<<< HEAD:screens/MesMariagesScreen.js
+			<View style={{
+					flex:1,
+					backgroundColor:'#F5F8FB'
+				}}>
+
+				<HeaderNav nom='Mes Mariages'/>			
+				{/* <Header
+					leftComponent={{ icon: 'menu', color: '#000' }}
+					centerComponent={{ 
+						text: 'Mes Mariages', 
+						style: { fontFamily:'greatvibes', color: '#000', fontSize:30} 
+					}} // ajout de la police greatvibes avec la bonne taille
+					containerStyle={{
+						backgroundColor: '#FAEBE4',
+						justifyContent: 'center',
+						height: 84
+					}}
+				/> */}
+				
+					
+				<ScrollView>
+				
+					<ListItem key={1}
+						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						title='Mariage John & Janet'
+						titleStyle={styles.titleView}
+						subtitle={
+						  <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+						  	<View style={styles.subtitleView}>
+									<Icon name='clock' type='evilicon' color='grey' />
+									<Text style={styles.ratingText}>10/02/2020</Text>
+							  </View>
+							  <View style={styles.subtitleView}>
+								  <Icon name='location-on' type='materialIcons' color='grey' />
+								  <Text style={styles.ratingText}>Paris</Text>
+						    </View>
+						  </View>
+						}
+						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						bottomDivider
+					/>
+					<ListItem key={2}
+						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						title='Mariage John & Janet'
+						titleStyle={styles.titleView}
+						subtitle={
+						  <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+						  	<View style={styles.subtitleView}>
+									<Icon name='clock' type='evilicon' color='grey' />
+									<Text style={styles.ratingText}>10/02/2020</Text>
+							  </View>
+							  <View style={styles.subtitleView}>
+								  <Icon name='location-on' type='materialIcons' color='grey' />
+								  <Text style={styles.ratingText}>Paris</Text>
+						    </View>
+						  </View>
+						}
+						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						bottomDivider
+					/>
+					<ListItem key={3}
+						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						title='Mariage John & Janet'
+						titleStyle={styles.titleView}
+						subtitle={
+						  <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+						  	<View style={styles.subtitleView}>
+									<Icon name='clock' type='evilicon' color='grey' />
+									<Text style={styles.ratingText}>10/02/2020</Text>
+							  </View>
+							  <View style={styles.subtitleView}>
+								  <Icon name='location-on' type='materialIcons' color='grey' />
+								  <Text style={styles.ratingText}>Paris</Text>
+						    </View>
+						  </View>
+						}
+						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						bottomDivider
+					/>
+					
+					
+				</ScrollView>
+				
+				<View 
+					style={{
+						width:'100%', height:'auto',
+						padding: 5,
+						backgroundColor: '#FAEBE4', 
+						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
+					}}>
+					<Text style={{paddingLeft: 20}}>
+					Rejoindre un mariage
+					</Text>
+					<View style={styles.interSpace}/>
+					<Icon name='plus' type='feather' color='grey' />
+				</View>
+				
+				<TouchableOpacity 
+					style={{
+						width:'100%', height:'auto',
+						padding: 5,
+						backgroundColor: '#fff', 
+						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
+					}}
+					onPress={ () => setCreateNewWed(true) }>
+					
+					<Text style={{paddingLeft: 20}}>
+						Ajouter mon mariage
+					</Text>
+					<View style={styles.interSpace}/>
+					<Icon name='plus' type='feather' color='grey' />
+				</TouchableOpacity>
+				
+				
+				
+				
+				
+				
+			</View>
+	
+		);
+	}
+=======
+>>>>>>> master:screens/mesmariages/AddWedding.js
 
 }
 
