@@ -5,123 +5,25 @@ import {
 	Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
 
 import { Icon, Header, ListItem, Overlay, Input, Button } from 'react-native-elements';
-
 import DateTimePicker from '@react-native-community/datetimepicker';
-import HeaderNav from './HeaderNav';
 
-
+import HeaderNav from '../HeaderNav';
+import AddWedding from './AddWedding'
 
 
 function MesMariagesScreen({navigation}) {
 
 	const [createNewWed, setCreateNewWed] = useState( false );
-	const [myWeddingDate, setMyWeddingDate] = useState( Date.now() );
-  const [show, setShow] = useState(false);
-
-	const [brideName, setBrideName] = useState('');
-	const [groomName, setGroomName] = useState('');
-	const [city, setCity] = useState('');
-
- const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || myWeddingDate;
-    setMyWeddingDate( currentDate );
-    setShow(false);
-  };
- 
-  const showDatepicker = () => {
-    setShow(true);
-  };
 	
-	const dateFormat = (date) => {
-	
-			if ( typeof(date) != "date" ) {
-				date = new Date(date);
-			}
-
-			let day = String( date.getDate() ).padStart(2,'0'); 
-			let month = String( date.getMonth()+1 ).padStart(2,'0');
-		 	let year = String( date.getFullYear() );
-		 	
-		 	return `${day}/${month}/${year}`;
+	const changePage = (val) => {
+		console.log('create new wed  ', createNewWed );
+		setCreateNewWed( val );
 	}
 
-	const Calendar = () => {
-		if(show){
-			return(
-				<DateTimePicker
-					value={myWeddingDate}
-					mode="date"
-					display="default"
-					onChange={onChangeDate}
-				/>
-			);				
-		} else {
-			return(null); 
-		}
-	}
 
 	if (createNewWed) {
 		return(
-			
-			<View 
-				containerStyle={{
-					flex:1, alignItems:'center',
-					backgroundColor:'#F5F8FB'
-				}}
-			>	
-				
-				
-				<Header
-					leftComponent={ 
-						<Icon name='close' type='antdesign' color='#000'
-							onPress={ () => setCreateNewWed(false) }
-						/> 
-					}
-					centerComponent={{ 
-						text: 'Créer mon mariage', 
-						style: { fontFamily:'catamaran-regular', color: '#000', fontSize:20} 
-					}} // ajout de la police greatvibes avec la bonne taille
-					rightComponent={
-						<Icon name='check' type='antdesign' color='#000' 
-							onPress={ () => {setCreateNewWed(false)} } 
-						/>
-						}
-					containerStyle={{
-						justifyContent: 'center',
-						backgroundColor: '#FAEBE4',
-						height: 84
-					}}
-				/>
-				<Input
-					containerStyle={styles.input}
-					label='PRÉNOM DE LA MARIÉE'
-					placeholder='Janet'
-					onChangeText={ (val) => setBrideName(val) }
-				/>
-				<Input
-					containerStyle={styles.input}
-					label='PRÉNOM DU MARIÉ'
-					placeholder='John'
-					onChangeText={ (val) => setGroomName(val) }
-          placeholderTextColor="rgba(102, 102, 102, 0.5)"
-          style={styles.input} 
-				/>
-				<Input
-					containerStyle={styles.input}
-					label='VILLE'
-					placeholder='Lyon'
-					onChangeText={ (val) => setCity(val) }
-				/>
-				
-				<Button
-					title={ dateFormat(myWeddingDate) }
-					type="outline"
-					onPress={ ()=>setShow(true) }
-				/>
-				
-				<Calendar/>
-
-			</View>
+			<AddWedding showPage={changePage} />
 
 		);
 	} else {
@@ -134,24 +36,13 @@ function MesMariagesScreen({navigation}) {
 				}}>
 
 				<HeaderNav nom='Mon Mariage'/>			
-				{/* <Header
-					leftComponent={{ icon: 'menu', color: '#000' }}
-					centerComponent={{ 
-						text: 'Mes Mariages', 
-						style: { fontFamily:'greatvibes', color: '#000', fontSize:30} 
-					}} // ajout de la police greatvibes avec la bonne taille
-					containerStyle={{
-						backgroundColor: '#FAEBE4',
-						justifyContent: 'center',
-						height: 84
-					}}
-				/> */}
+				
 				
 					
 				<ScrollView>
 				
 					<ListItem key={1}
-						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 						title='Mariage John & Janet'
 						titleStyle={styles.titleView}
 						subtitle={
@@ -166,11 +57,11 @@ function MesMariagesScreen({navigation}) {
 						    </View>
 						  </View>
 						}
-						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
 						bottomDivider
 					/>
 					<ListItem key={2}
-						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 						title='Mariage John & Janet'
 						titleStyle={styles.titleView}
 						subtitle={
@@ -185,11 +76,11 @@ function MesMariagesScreen({navigation}) {
 						    </View>
 						  </View>
 						}
-						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
 						bottomDivider
 					/>
 					<ListItem key={3}
-						rightAvatar={{ source: require('../assets/picture-1.jpg') }}
+						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 						title='Mariage John & Janet'
 						titleStyle={styles.titleView}
 						subtitle={
@@ -204,7 +95,7 @@ function MesMariagesScreen({navigation}) {
 						    </View>
 						  </View>
 						}
-						leftAvatar={{ source: require('../assets/picture-2.jpg') }}
+						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
 						bottomDivider
 					/>
 					
@@ -232,7 +123,7 @@ function MesMariagesScreen({navigation}) {
 						backgroundColor: '#fff', 
 						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
 					}}
-					onPress={ () => setCreateNewWed(true) }>
+					onPress={ () => setCreateNewWed( true ) }>
 					
 					<Text style={{paddingLeft: 20}}>
 						Ajouter mon mariage
