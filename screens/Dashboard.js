@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, ImageBackground, ScrollView } from 'react-nativ
 import { Avatar,Header, ListItem, Icon}  from 'react-native-elements';
 import * as Progress from 'react-native-progress';
 // import IconAntDesign from 'react-native-vector-icons/AntDesign';
+import HeaderNav from './HeaderNav';
 
 
 export default function Dashboard({navigation}) {
@@ -10,43 +11,35 @@ export default function Dashboard({navigation}) {
       
       
         <View style={{flex:1}}> 
-        
-          <Header
-                leftComponent={{ icon: 'menu', color: '#000' }}
-                centerComponent={{ text: 'Mon recap ', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
-                containerStyle={{
-                    backgroundColor: '#FAEBE4',
-                    height: 84,
-                    
-                }}
-          />
+          <HeaderNav nom='Mon Mariage'/> 
+          
 
-     
-            <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1.3}}>
+            <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1}}>
+              
             
-              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 30,marginLeft: 110, marginTop: 190}}> Janet &John</Text>
-              <Text style={{color: 'white', fontFamily:'greatvibes', fontSize: 20, marginBottom: 20, marginRight: 95, marginLeft: 100}} >23/08/2020</Text>
+              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 75, marginTop: 140}}> Janet &John</Text>
+              <Text style={{color: 'white', fontFamily:'greatvibes',fontSize: 15,marginLeft: 80, marginTop: 5}} >23/08/2020</Text>
 
             </ImageBackground>
       
-                <View style={{flex: 0.3, backgroundColor: '#FAEBE4' }}>
+                <View style={{flex: 0.2, backgroundColor: '#FAEBE4' }}>
                   <Text h4 style={{ textAlign:'center',fontWeight: 'bold', fontFamily:'greatvibes'}} style={styles.container} > 200 jours 11 Heures 37 min 34 s</Text>
                 </View>
 
 
-              <ScrollView  style={{flex:3, marginTop: 15}}>
+              <View  style={{flex:1 , marginBottom: 10, marginBottom: 30}}>
               
     
 
                         <ListItem key={1}
                         
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='black'  size={45}/>}
+                        rightAvatar={ <Icon name='list' type='materialIcons' color='#31AE89'  size={35}/>}
                         title='Avancement des tâches (20 sur10)'
                         titleStyle={styles.titleView}
                         subtitle={
                           <View style={styles.subtitleView}>
-                            <Progress.Bar progress={0.3} width={200} /> 
+                            <Progress.Bar progress={0.1} width={200} color={'#31AE89'}  /> 
                           </View>
                         }
                        
@@ -55,12 +48,12 @@ export default function Dashboard({navigation}) {
    
                         <ListItem key={2}
                         
-                        rightAvatar={ <Icon name='playlist-add' type='materialIcons' color='black' size={45}/>}
+                        rightAvatar={ <Icon name='playlist-add' type='materialIcons' color='#31AE89' size={35}/>}
                         title='Choix des prestataires (3 sur10)'
                         titleStyle={styles.titleView}
                         subtitle={
                           <View style={styles.subtitleView}>
-                            <Progress.Bar progress={0.3} width={200} /> 
+                            <Progress.Bar progress={0.3} width={200} color={'#31AE89'}  /> 
                           </View>
                         }
                        
@@ -71,12 +64,12 @@ export default function Dashboard({navigation}) {
 
                         <ListItem key={3}
                         
-                        rightAvatar={ <Icon name='group-add' type='materialIcons' color='black'  size={45}/>}
+                        rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>}
                         title='Listes des invités (30 sur 150)'
                         titleStyle={styles.titleView}
                         subtitle={
                           <View style={styles.subtitleView}>
-                            <Progress.Bar progress={0.3} width={200} /> 
+                            <Progress.Bar progress={0.3} width={200} color={'#31AE89'} /> 
                           </View>
                         }
        
@@ -86,19 +79,19 @@ export default function Dashboard({navigation}) {
                         
                          <ListItem key={4}
     
-                          rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='black'  size={45}/>}
+                          rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='#31AE89'  size={35}/>}
                           title='Budget(1000€ sur 30000€)'
                           titleStyle={styles.titleView}
                           subtitle={
                             <View style={styles.subtitleView}>
-                              <Progress.Bar progress={0.3} width={200} /> 
+                              <Progress.Bar progress={0.3} width={200} color={'#31AE89'} /> 
                             </View>
                           }
                         
-                          bottomDivider
+                         
                         />
 
-               </ScrollView>
+               </View>
                           
                       
                           
