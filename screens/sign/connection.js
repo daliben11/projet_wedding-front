@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import ConnectionForm from './connectionform'
 
 /* CONNECTION */
-function Connection() {
+function Connection({navigation}) {
+
+	const handleSignIn =()=>{
+		navigation.navigate('SignIn');
+	}
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
-            <View style={styles.logoContainer}>
+            <TouchableOpacity style={styles.logoContainer}
+            	onPress={ ()=>{ navigation.navigate('Mes Mariages') } }>
                <Image 
-               style={styles.logo}
-               source={require('../../assets/logo1.png')} 
+		             style={styles.logo}
+		             source={require('../../assets/logo1.png')}
+		             
                />
-            </View>
+            </TouchableOpacity>
 
             <View>
-                <ConnectionForm />
+                <ConnectionForm signin={handleSignIn}/>
             </View>
             
         </KeyboardAvoidingView>

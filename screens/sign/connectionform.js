@@ -3,7 +3,7 @@ import { Button, SocialIcon } from 'react-native-elements';
 import { View, Image, StyleSheet } from 'react-native';
 
 /* CONNECTIONFORM */
-function Connectionform() {
+function Connectionform( props ) {
     return (
         <View style={styles.buttonContainer}>
 
@@ -28,6 +28,7 @@ function Connectionform() {
             <Button title="Me connecter" 
             type="clear"
             titleStyle={{ color: 'pink', fontSize: 30, marginTop: 20}}
+            onPress={ ()=>props.signin() }
             />
         
         </View>

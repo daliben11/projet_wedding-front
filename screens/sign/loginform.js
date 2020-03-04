@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-nativ
 import { Button } from 'react-native-elements';
 
 /* LOGINFORM */
-function Loginform() {
+function Loginform( props ) {
     return (
             <View style={styles.container}>
 
@@ -32,6 +32,7 @@ function Loginform() {
                 <Button title="INSCRIVEZ-VOUS" 
                 type="clear"
                 titleStyle={{ color: 'grey', fontSize: 12, marginBottom: 40}}
+                onPress={()=>props.signinClick()}
                 />
 
             </View>

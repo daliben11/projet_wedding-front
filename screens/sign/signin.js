@@ -3,7 +3,12 @@ import { StyleSheet, View, Image, KeyboardAvoidingView } from 'react-native';
 import LoginForm from './loginform'
 
 /* SIGN-IN */
-function Signin() {
+function Signin({navigation}) {
+
+	
+	const handleClick = () => {
+		navigation.navigate('Mes Mariages');
+	}
     return (
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
@@ -15,7 +20,7 @@ function Signin() {
             </View>
 
             <View>
-                <LoginForm />
+                <LoginForm signinClick={handleClick}/>
             </View>
             
         </KeyboardAvoidingView>
