@@ -15,6 +15,7 @@ export default function ProfileUser({navigation}) {
   const [codeP,setCodeP]=useState('')
   
 if (modifier===false) {
+  console.log("test1",codeP)
   
   return (
     
@@ -134,6 +135,7 @@ if (modifier===false) {
               label='Date de naissance'
               onChangeText={(val) => setBirthday(val)}
             />
+            
 
             <Input
               containerStyle={{marginTop:15}}
@@ -164,12 +166,14 @@ if (modifier===false) {
               containerStyle={{marginTop:15}}
               placeholder='Code Postal'
               label='Code Postal'
-              onChangeText={(val)=>setCodeP(val)}
+              onChangeText={(val)=>setCodeP(val) ,console.log(codeP)}
+              
             />
             <Input
               containerStyle={{marginTop:15}}
               placeholder='Mot de passe'
               label='Mot de passe'
+              secureTextEntry={true}
             />
             
 
