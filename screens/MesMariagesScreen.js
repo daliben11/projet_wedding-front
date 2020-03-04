@@ -133,7 +133,7 @@ function MesMariagesScreen({navigation}) {
 					backgroundColor:'#F5F8FB'
 				}}>
 
-				<HeaderNav nom='Mon Mariage'/>			
+				<HeaderNav nom='Mes Mariages'/>			
 				{/* <Header
 					leftComponent={{ icon: 'menu', color: '#000' }}
 					centerComponent={{ 
