@@ -9,7 +9,7 @@ import { Icon } from 'react-native-elements';
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
-import MesMariagesScreen from './screens/MesMariagesScreen'
+import MesMariagesScreen from './screens/mesmariages/MesMariagesScreen'
 import ProfileUser  from './screens/profile/ProfileUser';
 import connection from './screens/sign/connection';
 
