@@ -9,13 +9,23 @@ export default function Dashboard({navigation}) {
     return (
       
       
-        <View style={{flex:1, marginTop: 39}}> 
-    
+        <View style={{flex:1}}> 
+        
+          <Header
+                leftComponent={{ icon: 'menu', color: '#000' }}
+                centerComponent={{ text: 'Mon recap ', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
+                containerStyle={{
+                    backgroundColor: '#FAEBE4',
+                    height: 84,
+                    
+                }}
+          />
+
      
             <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1.3}}>
-              <Icon name='list' type='materialIcons' color='grey' size={40} flexDirection='row'/>
-              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginTop: 170}}> Janet  & John</Text>
-              <Text style={{color: 'white', fontFamily:'greatvibes', fontSize: 20, marginBottom: 20, marginRight: 95, marginLeft: 95}} >23/08/2020</Text>
+            
+              <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 30,marginLeft: 110, marginTop: 190}}> Janet &John</Text>
+              <Text style={{color: 'white', fontFamily:'greatvibes', fontSize: 20, marginBottom: 20, marginRight: 95, marginLeft: 100}} >23/08/2020</Text>
 
             </ImageBackground>
       
@@ -31,7 +41,7 @@ export default function Dashboard({navigation}) {
                         <ListItem key={1}
                         
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        rightAvatar={ <Icon name='list' type='materialIcons' color='black'  size={45}/>}
                         title='Avancement des tâches (20 sur10)'
                         titleStyle={styles.titleView}
                         subtitle={
@@ -45,7 +55,7 @@ export default function Dashboard({navigation}) {
    
                         <ListItem key={2}
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        rightAvatar={ <Icon name='playlist-add' type='materialIcons' color='black' size={45}/>}
                         title='Choix des prestataires (3 sur10)'
                         titleStyle={styles.titleView}
                         subtitle={
@@ -61,7 +71,7 @@ export default function Dashboard({navigation}) {
 
                         <ListItem key={3}
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        rightAvatar={ <Icon name='group-add' type='materialIcons' color='black'  size={45}/>}
                         title='Listes des invités (30 sur 150)'
                         titleStyle={styles.titleView}
                         subtitle={
@@ -76,7 +86,7 @@ export default function Dashboard({navigation}) {
                         
                          <ListItem key={4}
     
-                          rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                          rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='black'  size={45}/>}
                           title='Budget(1000€ sur 30000€)'
                           titleStyle={styles.titleView}
                           subtitle={
