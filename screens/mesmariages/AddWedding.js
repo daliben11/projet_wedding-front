@@ -1,43 +1,39 @@
-import React, { useState, useEffect } from 'react';
-//import { connect } from 'react-redux';
-import { 
-	View, ScrollView, SafeAreaView,
-	Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
-import { Icon, Header, ListItem, Overlay, Input, Button } from 'react-native-elements';
+import { 
+	View,
+	StyleSheet, TouchableOpacity  } from 'react-native';
+
+import { Icon, Header, Input, Button } from 'react-native-elements';
 
 import DateTimePicker from '@react-native-community/datetimepicker';
-import HeaderNav from './HeaderNav';
 
 
 
-
-function MesMariagesScreen({navigation}) {
-
-	const [createNewWed, setCreateNewWed] = useState( false );
-	const [myWeddingDate, setMyWeddingDate] = useState( Date.now() );
-  const [show, setShow] = useState(false);
+function AddWedding ( props ) {
 
 	const [brideName, setBrideName] = useState('');
 	const [groomName, setGroomName] = useState('');
 	const [city, setCity] = useState('');
+	const [myWeddingDate, setMyWeddingDate] = useState( Date.now() );
+	
+  const [show, setShow] = useState(false);
 
- const onChangeDate = (event, selectedDate) => {
+	  
+  
+	const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || myWeddingDate;
     setMyWeddingDate( currentDate );
     setShow(false);
   };
  
-  const showDatepicker = () => {
-    setShow(true);
-  };
 	
 	const dateFormat = (date) => {
 	
 			if ( typeof(date) != "date" ) {
 				date = new Date(date);
 			}
-
 			let day = String( date.getDate() ).padStart(2,'0'); 
 			let month = String( date.getMonth()+1 ).padStart(2,'0');
 		 	let year = String( date.getFullYear() );
@@ -45,24 +41,26 @@ function MesMariagesScreen({navigation}) {
 		 	return `${day}/${month}/${year}`;
 	}
 
+
 	const Calendar = () => {
+	
 		if(show){
 			return(
-				<DateTimePicker
-					value={myWeddingDate}
-					mode="date"
-					display="default"
-					onChange={onChangeDate}
-				/>
+					<DateTimePicker
+						value={myWeddingDate}
+						mode="date"
+						display="default"
+						onChange={onChangeDate}
+					/>
 			);				
 		} else {
 			return(null); 
 		}
 	}
 
-	if (createNewWed) {
-		return(
-			
+
+	return(
+		
 			<View 
 				containerStyle={{
 					flex:1, alignItems:'center',
@@ -83,7 +81,15 @@ function MesMariagesScreen({navigation}) {
 					}} // ajout de la police greatvibes avec la bonne taille
 					rightComponent={
 						<Icon name='check' type='antdesign' color='#000' 
-							onPress={ () => {setCreateNewWed(false)} } 
+							onPress={ () => {
+								props.setMyWedding( {
+									bride: brideName, 
+									groom: groomName, 
+									city: city, 
+									date: myWeddingDate
+								} );
+								setCreateNewWed(false)}
+							} 
 						/>
 						}
 					containerStyle={{
@@ -103,8 +109,8 @@ function MesMariagesScreen({navigation}) {
 					label='PRÉNOM DU MARIÉ'
 					placeholder='John'
 					onChangeText={ (val) => setGroomName(val) }
-          placeholderTextColor="rgba(102, 102, 102, 0.5)"
-          style={styles.input} 
+		      placeholderTextColor="rgba(102, 102, 102, 0.5)"
+		      style={styles.input} 
 				/>
 				<Input
 					containerStyle={styles.input}
@@ -114,7 +120,7 @@ function MesMariagesScreen({navigation}) {
 				/>
 				
 				<Button
-					title={ dateFormat(myWeddingDate) }
+					title={ `Je choisie ma date ${dateFormat(myWeddingDate)}` }
 					type="outline"
 					onPress={ ()=>setShow(true) }
 				/>
@@ -123,11 +129,9 @@ function MesMariagesScreen({navigation}) {
 
 			</View>
 
-		);
-	} else {
-	
-		return(
+	);
 
+<<<<<<< HEAD:screens/MesMariagesScreen.js
 			<View style={{
 					flex:1,
 					backgroundColor:'#F5F8FB'
@@ -250,6 +254,8 @@ function MesMariagesScreen({navigation}) {
 	
 		);
 	}
+=======
+>>>>>>> master:screens/mesmariages/AddWedding.js
 
 }
 
@@ -287,7 +293,7 @@ const styles = StyleSheet.create({
 });
 
 
-export default MesMariagesScreen; 
+
 
 //function mapStateToProps(state) {
 //  return { 
@@ -296,22 +302,22 @@ export default MesMariagesScreen;
 //  }
 //}
 
-//function mapDispatchToProps(dispatch) {
-//  return {
-////    setPhotoUrlList: function ( photo_url_list ) { 
-////       dispatch( { type: 'setLocalList', list: photo_url_list } ) 
-////    },
-////    deletePhotoUrl: function (i) {
-////    	 dispatch( {type: 'deleteUrl', index: i } )
-////    }
-//  }
-////}
+function mapDispatchToProps(dispatch) {
+  return {
+    myWeddingDate: function ( mydate ) { 
+       dispatch( { type: 'setWeddingDate', date: mydate } ) 
+    },
+    setMyWedding: function ( val ) {
+    	 dispatch( {type: 'deleteUrl', wedding: val } )
+    }
+  }
+//}
 
 
-//export default connect(
-//  null, 
-//  null
-//)( MesMariagesScreen );
+export default connect(
+  null, 
+  mapDispatchToProps
+)( AddWedding );
 
 
 			
