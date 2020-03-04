@@ -1,10 +1,11 @@
 import React,{useState} from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,ScrollView } from 'react-native';
 import { Avatar, Icon, ListItem, Input,Header} from 'react-native-elements';
-import HeaderNav from './HeaderNav';
+import HeaderNav from '../HeaderNav';
 import * as Progress from 'react-native-progress';
+import AddGuest from './AddGuest';
 
-export default function ProfileUser({navigation}) {
+export default function Guest({navigation}) {
   const [modifier,setModifier]=useState(false)
   const [nom,setNom]=useState('')
   const [prenom,setPrenom]=useState('')
@@ -16,7 +17,8 @@ export default function ProfileUser({navigation}) {
   const [codeP,setCodeP]=useState('')
   
 if (modifier===false) {
-  console.log("test1",codeP)
+  console.log("CAARRRLL")
+
   
   return (
     
@@ -114,13 +116,18 @@ if (modifier===false) {
                     </TouchableOpacity>
                   
                  </View>
-                 
 
-  </View>
 
+   </View>
+  )
+ } else {
+  return (
+    <AddGuest nom='Ajouté un invité'/>
   )
  }
-};
+
+
+ };
 
   const styles = StyleSheet.create({
    
