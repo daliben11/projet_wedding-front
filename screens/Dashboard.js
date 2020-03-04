@@ -31,7 +31,7 @@ export default function Dashboard({navigation}) {
                         <ListItem key={1}
                         
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        rightAvatar={ <Icon name='list' type='materialIcons' color='black'  size={45}/>}
                         title='Avancement des tâches (20 sur10)'
                         titleStyle={styles.titleView}
                         subtitle={
@@ -45,7 +45,7 @@ export default function Dashboard({navigation}) {
    
                         <ListItem key={2}
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        rightAvatar={ <Icon name='playlist-add' type='materialIcons' color='black' size={45}/>}
                         title='Choix des prestataires (3 sur10)'
                         titleStyle={styles.titleView}
                         subtitle={
@@ -61,7 +61,7 @@ export default function Dashboard({navigation}) {
 
                         <ListItem key={3}
                         
-                        rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                        rightAvatar={ <Icon name='group-add' type='materialIcons' color='black'  size={45}/>}
                         title='Listes des invités (30 sur 150)'
                         titleStyle={styles.titleView}
                         subtitle={
@@ -76,7 +76,7 @@ export default function Dashboard({navigation}) {
                         
                          <ListItem key={4}
     
-                          rightAvatar={ <Icon name='list' type='materialIcons' color='grey' size={45}/>}
+                          rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='black'  size={45}/>}
                           title='Budget(1000€ sur 30000€)'
                           titleStyle={styles.titleView}
                           subtitle={
