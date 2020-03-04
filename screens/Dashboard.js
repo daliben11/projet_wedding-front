@@ -11,16 +11,8 @@ export default function Dashboard({navigation}) {
       
       
         <View style={{flex:1}}> 
-          <HeaderNav nom='Mon Mariage'/> {/* ajout du Header commun*/}
-          {/* <Header
-                leftComponent={{ icon: 'menu', color: '#000' }}
-                centerComponent={{ text: 'Mon recap ', style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
-                containerStyle={{
-                    backgroundColor: '#FAEBE4',
-                    height: 84,
-                    
-                }}
-          /> */}
+          <HeaderNav nom='Mon Mariage'/> 
+          
 
             <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1}}>
               
