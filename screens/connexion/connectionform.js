@@ -3,7 +3,7 @@ import { Button, SocialIcon } from 'react-native-elements';
 import { View, Image, StyleSheet } from 'react-native';
 
 /* CONNECTIONFORM */
-function Connectionform() {
+function Connectionform( props ) {
     return (
         <View style={styles.buttonContainer}>
 
@@ -19,15 +19,17 @@ function Connectionform() {
             />
 
             <Button title="Inscrivez-vous avec votre email" 
-            type="outline"
-            style={styles.buttonLinks} 
-            titleStyle={{ color: 'black' }}
-            buttonStyle={{ borderColor: 'black', borderWidth: 1.5 }}
+		          type="outline"
+		          style={styles.buttonLinks} 
+		          titleStyle={{ color: 'black' }}
+		          buttonStyle={{ borderColor: 'black', borderWidth: 1.5 }}
+		          onPress={ () => props.toSignUp() }
             />
 
             <Button title="Me connecter" 
-            type="clear"
-            titleStyle={{ color: 'pink', fontSize: 30, marginTop: 20}}
+		          type="clear"
+		          titleStyle={{ color: 'pink', fontSize: 30, marginTop: 20}}
+		          onPress={ () => props.toSignIn() }
             />
         
         </View>

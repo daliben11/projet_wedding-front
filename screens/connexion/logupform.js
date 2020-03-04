@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 
 /* LOGUPFORM */
-function Logupform() {
+function Logupform( props ) {
 
     return (
      
@@ -31,59 +31,61 @@ function Logupform() {
                 />
 
                 <View style={styles.date}>
-                <NumericInput 
-                type='up-down' 
-                textColor='grey' 
-                totalWidth={90}
-                totalHeight={40} 
-                minValue={1} 
-                maxValue={31}
-                rounded
-                onChange={value => console.log(value)} 
-                />
-                <NumericInput 
-                type='up-down' 
-                textColor='grey' 
-                totalWidth={90}
-                totalHeight={40} 
-                minValue={1} 
-                maxValue={12}
-                rounded
-                onChange={value => console.log(value)} 
-                />
-                <NumericInput 
-                type='up-down' 
-                textColor='grey' 
-                totalWidth={90}
-                totalHeight={40} 
-                minValue={1950} 
-                maxValue={2004}
-                rounded
-                onChange={value => console.log(value)} 
-                />
+		              <NumericInput 
+		              type='up-down' 
+		              textColor='grey' 
+		              totalWidth={90}
+		              totalHeight={40} 
+		              minValue={1} 
+		              maxValue={31}
+		              rounded
+		              onChange={value => console.log(value)} 
+		              />
+		              <NumericInput 
+		              type='up-down' 
+		              textColor='grey' 
+		              totalWidth={90}
+		              totalHeight={40} 
+		              minValue={1} 
+		              maxValue={12}
+		              rounded
+		              onChange={value => console.log(value)} 
+		              />
+		              <NumericInput 
+		              type='up-down' 
+		              textColor='grey' 
+		              totalWidth={90}
+		              totalHeight={40} 
+		              minValue={1950} 
+		              maxValue={2004}
+		              rounded
+		              onChange={value => console.log(value)} 
+		              />
                 </View>
 
                 <TextInput 
-                placeholder="EMAIL"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                keyboardType="email-address"
-                style={styles.input} 
+		              placeholder="EMAIL"
+		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
+		              keyboardType="email-address"
+		              style={styles.input} 
                 />
 
                 <TextInput 
-                placeholder="MOT DE PASSE"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                secureTextEntry
-                style={styles.input} 
+		              placeholder="MOT DE PASSE"
+		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
+		              secureTextEntry
+		              style={styles.input} 
                 />
 
-                <TouchableOpacity style={styles.buttonInscription}>
+                <TouchableOpacity style={styles.buttonInscription}
+                	onPress={ () => props.signup() }
+                >
                     <Text style={styles.buttonText}>INSCRIPTION</Text>
                 </TouchableOpacity>
 
                 <Button title="VOUS AVEZ DEJA UN COMPTE" 
-                type="clear"
-                titleStyle={{ color: 'grey', fontSize: 12, marginTop: 10}}
+		              type="clear"
+		              titleStyle={{ color: 'grey', fontSize: 12, marginTop: 10}}
                 />
 
             </View>

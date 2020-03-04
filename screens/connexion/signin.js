@@ -3,21 +3,27 @@ import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView } from 'react
 import LoginForm from './loginform'
 
 /* SIGN-IN */
-function Signin() {
-    return (
+function Signin( props ) {
+
+	const handleSignIn = () => {
+		
+		props.navigation.navigate( 'Mes Mariages' );		
+	}
+  
+  return (
         <ScrollView>
 
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
                 <View style={styles.logoContainer}>
                 <Image 
-                style={styles.logo}
-                source={require('../../assets/logo1.png')} 
+		              style={styles.logo}
+		              source={require('../../assets/logo1.png')} 
                 />
                 </View>
 
                 <View>
-                    <LoginForm />
+                    <LoginForm signin={handleSignIn}/>
                 </View>
                 
             </KeyboardAvoidingView>

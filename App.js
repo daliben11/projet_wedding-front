@@ -9,9 +9,16 @@ import { Icon } from 'react-native-elements';
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
+import connection from './screens/connexion/connection';
+import signin from './screens/connexion/signin';
+import signup from './screens/connexion/signup';
+
 import MesMariagesScreen from './screens/mesmariages/MesMariagesScreen'
 import ProfileUser  from './screens/profile/ProfileUser';
+<<<<<<< HEAD
 import connection from './screens/connexion/connection';
+=======
+>>>>>>> master
 
 import myWedding from './reducers/mariage.reducer'; 
 
@@ -22,38 +29,66 @@ import {createStore, combineReducers}  from 'redux';
 const store = createStore(combineReducers( { myWedding } ));
 
 
+//// Vue du dashboard
+//const stackDashboard = createStackNavigator({ 
+//	'Mes Mariages': MesMariagesScreen,
+//	SignIn: signin,
+//	SignUp: signup,
+//	profilBottom: profilBottom
+//	},  
+//	{ headerMode: 'none' } 
+//);
+
+
+// Profile et Espace Perso
+const profilBottom = createBottomTabNavigator({
+		'Mes Mariages': MesMariagesScreen,
+		'Mon Profil': ProfileUser,
+		Home: 	connection, 
+	},
+	{ defaultNavigationOptions: ({ navigation }) => ({
+		  tabBarIcon: ({ tintColor }) => {
+		    var iconName, iconType;
+		    if (navigation.state.routeName == 'Mes Mariages') {
+		      iconName = 'heart';
+		      iconType = 'evilicon';
+		    } else if (navigation.state.routeName == 'Mon Profil') {
+		      iconName = 'user';
+		      iconType = 'antdesign';
+		    }
+		    
+		    return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
+		  },
+		}),
+		tabBarOptions: {
+		  activeTintColor: '#ffffff',
+		  inactiveTintColor: '#1f6a39',
+		  style: {
+		  	backgroundColor: '#31AE89',
+		  }
+		}
+	}
+);
+
+
+
+// Connexion screens
+const stackConnexion = createStackNavigator({ 
+	Home: 	connection, 
+	SignIn: signin,
+	SignUp: signup,
+	profilBottom: profilBottom
+	},  
+	{ headerMode: 'none' } 
+);
+
+
+
 export default () => {
   const [fontLoaded, setFontLoaded]= useState(false)
   
 
-const bottomNavigator = createBottomTabNavigator({
-  'Mon Profil': ProfileUser,
-  'Mes Mariages': MesMariagesScreen,
-  'connection': connection,
-},
-{ defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ tintColor }) => {
-      var iconName, iconType;
-      if (navigation.state.routeName == 'Mes Mariages') {
-        iconName = 'heart';
-        iconType = 'evilicon';
-      } else if (navigation.state.routeName == 'Mon Profil') {
-        iconName = 'user';
-        iconType = 'antdesign';
-      }
-      
-      return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
-    },
-  }),
-  tabBarOptions: {
-    activeTintColor: '#ffffff',
-    inactiveTintColor: '#1f6a39',
-    style: {
-    	backgroundColor: '#31AE89',
-    }
-  },
-}
-);
+
 
 
 async function getFonts(){
@@ -64,7 +99,7 @@ async function getFonts(){
   })
 }
 
-const App = createAppContainer(bottomNavigator);
+const App = createAppContainer(stackConnexion);
 
   
   

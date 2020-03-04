@@ -25,7 +25,6 @@ function AddWedding ( props ) {
 	const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || myWeddingDate;
     setMyWeddingDate( currentDate );
-    setShow(false);
   };
  
 	
@@ -109,7 +108,6 @@ function AddWedding ( props ) {
 					label='PRÉNOM DU MARIÉ'
 					placeholder='John'
 					onChangeText={ (val) => setGroomName(val) }
-		      placeholderTextColor="rgba(102, 102, 102, 0.5)"
 		      style={styles.input} 
 				/>
 				<Input
@@ -120,11 +118,14 @@ function AddWedding ( props ) {
 				/>
 				
 				<Button
+					buttonStyle={{backgroundColor: '#FAEBE4', borderColor:'grey', marginTop: 10}}
+					titleStyle={{color: '#000'}}
+					containerStyle={{width:'70%', alignSelf:'center'}}
 					title={ `Je choisie ma date ${dateFormat(myWeddingDate)}` }
 					type="outline"
-					onPress={ () => setShow(true) }
+					onPress={ () => setShow( !show ) }
 				/>
-				
+
 				<Calendar/>
 
 			</View>
@@ -156,13 +157,10 @@ const styles = StyleSheet.create({
 		paddingLeft: 30,
 	}, 
 	input: { 
-		alignSelf:'flex-start', 
-		width: '70%', 
+		alignSelf:'flex-start',
 		marginTop: 10,
 		height: 40,
-		backgroundColor: 'rgba(255,255,255,0.7)',
-		marginBottom: 20,
-		paddingHorizontal: 10
+		marginBottom: 20
 	}
 });
 

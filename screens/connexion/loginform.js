@@ -3,7 +3,7 @@ import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-nativ
 import { Button } from 'react-native-elements';
 
 /* LOGINFORM */
-function Loginform() {
+function Loginform( props ) {
     return (
             <View style={styles.container}>
 
@@ -25,13 +25,16 @@ function Loginform() {
                     <Text style={styles.buttonMotdepasse}>MOT DE PASSE OUBLIE</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonMeconnecter}>
+                <TouchableOpacity style={styles.buttonMeconnecter}
+                	onPress={ () => props.signin() }
+                >
                     <Text style={styles.buttonText}>ME CONNECTER</Text>
                 </TouchableOpacity>
 
                 <Button title="INSCRIVEZ-VOUS" 
                 type="clear"
                 titleStyle={{ color: 'grey', fontSize: 12, marginBottom: 40}}
+                
                 />
 
             </View>
