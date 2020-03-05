@@ -15,10 +15,7 @@ import signup from './screens/connexion/signup';
 
 import MesMariagesScreen from './screens/mesmariages/MesMariagesScreen'
 import ProfileUser  from './screens/profile/ProfileUser';
-<<<<<<< HEAD
-import connection from './screens/connexion/connection';
-=======
->>>>>>> master
+
 
 import myWedding from './reducers/mariage.reducer'; 
 
