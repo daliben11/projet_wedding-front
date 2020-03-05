@@ -11,7 +11,7 @@ import HeaderNav from '../HeaderNav';
 import AddWedding from './AddWedding'
 
 
-function MesMariagesScreen({navigation}) {
+function MesMariagesScreen( props ) {
 
 	const [createNewWed, setCreateNewWed] = useState( false );
 	
@@ -46,6 +46,7 @@ function MesMariagesScreen({navigation}) {
 					return(
 						
 						<ListItem key={ind}
+							onPress={ () => props.navigation.navigate('GuestPage') }
 							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 							title='Mariage John & Janet'
 							titleStyle={styles.titleView}

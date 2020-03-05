@@ -109,7 +109,8 @@ if (modifier===false) {
                       backgroundColor: '#FAEBE4', 
                       flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
                     }}>
-                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  onPress={() => {setModifier(true)}}>
+                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
+                    	onPress={() => {setModifier(true)}}>
                         <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Ajouter un invité</Text>
                         <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
                         {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
@@ -122,7 +123,7 @@ if (modifier===false) {
   )
  } else {
   return (
-    <AddGuest nom='Ajouté un invité'/>
+    <AddGuest nom='Ajouter un invité'/>
   )
  }
 

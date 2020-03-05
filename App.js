@@ -14,7 +14,12 @@ import signin from './screens/connexion/signin';
 import signup from './screens/connexion/signup';
 
 import MesMariagesScreen from './screens/mesmariages/MesMariagesScreen'
-import ProfileUser  from './screens/profile/ProfileUser';
+import GuestPage from './screens/mesmariages/Guestprogramme';
+
+import ProfileUser from './screens/profile/ProfileUser';
+
+import Dashboard from './screens/Dashboard';
+
 
 
 import myWedding from './reducers/mariage.reducer'; 
@@ -26,20 +31,19 @@ import {createStore, combineReducers}  from 'redux';
 const store = createStore(combineReducers( { myWedding } ));
 
 
-//// Vue du dashboard
-//const stackDashboard = createStackNavigator({ 
-//	'Mes Mariages': MesMariagesScreen,
-//	SignIn: signin,
-//	SignUp: signup,
-//	profilBottom: profilBottom
-//	},  
-//	{ headerMode: 'none' } 
-//);
+// Vue des mariages
+const stackMariage = createStackNavigator({ 
+	'Mes Mariages': MesMariagesScreen,
+	'GuestPage': GuestPage,
+	'Dashboard': Dashboard,
+	},  
+	{ headerMode: 'none' } 
+);
 
 
 // Profile et Espace Perso
 const profilBottom = createBottomTabNavigator({
-		'Mes Mariages': MesMariagesScreen,
+		'Mes Mariages': stackMariage,
 		'Mon Profil': ProfileUser,
 		Home: 	connection, 
 	},
@@ -71,9 +75,9 @@ const profilBottom = createBottomTabNavigator({
 
 // Connexion screens
 const stackConnexion = createStackNavigator({ 
-	Home: 	connection, 
-	SignIn: signin,
-	SignUp: signup,
+	'Home': 	connection, 
+	'SignIn': signin,
+	'SignUp': signup,
 	profilBottom: profilBottom
 	},  
 	{ headerMode: 'none' } 
