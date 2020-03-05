@@ -90,7 +90,34 @@ export default () => {
   const [fontLoaded, setFontLoaded]= useState(false)
   
 
-
+const bottomNavigator = createBottomTabNavigator({
+  'Mon Profil': ProfileUser,
+  'Mes Mariages': MesMariagesScreen,
+  'signup': signup,
+},
+{ defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ tintColor }) => {
+      var iconName, iconType;
+      if (navigation.state.routeName == 'Mes Mariages') {
+        iconName = 'heart';
+        iconType = 'evilicon';
+      } else if (navigation.state.routeName == 'Mon Profil') {
+        iconName = 'user';
+        iconType = 'antdesign';
+      }
+      
+      return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
+    },
+  }),
+  tabBarOptions: {
+    activeTintColor: '#ffffff',
+    inactiveTintColor: '#1f6a39',
+    style: {
+    	backgroundColor: '#31AE89',
+    }
+  },
+}
+);
 
 
 async function getFonts(){
