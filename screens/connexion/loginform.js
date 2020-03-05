@@ -69,7 +69,7 @@ function Loginform( props ) {
                 <Button title="INSCRIVEZ-VOUS" 
                 type="clear"
                 titleStyle={{ color: 'grey', fontSize: 12, marginBottom: 40}}
-                
+                onPress={()=>props.signup()}
                 />
 
             </View>

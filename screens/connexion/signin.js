@@ -8,8 +8,12 @@ function Signin( props ) {
 	const handleSignIn = () => {
 		
 		props.navigation.navigate( 'Mes Mariages' );		
-	}
-  
+    }
+    const handleSignUp = () => {
+		
+		props.navigation.navigate( 'SignUp' );		
+    }
+
   return (
 
 
@@ -23,7 +27,7 @@ function Signin( props ) {
                 </View>
 
                 <View>
-                    <LoginForm signin={handleSignIn}/>
+                    <LoginForm signin={handleSignIn} signup={handleSignUp}/>
                 </View>
                 
             </KeyboardAvoidingView>
