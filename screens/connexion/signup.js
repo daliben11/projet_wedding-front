@@ -3,21 +3,27 @@ import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView } from 'react
 import LogupForm from './logupform'
 
 /* SIGN-IN */
-function Signup() {
+function Signup ( props ) {
+
+	const handleSignUp = () => {
+		
+		props.navigation.navigate( 'Mes Mariages' );		
+	}
+
     return (
             <ScrollView>
                 
                 <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
                     <View style={styles.logoContainer}>
-                    <Image 
-                    style={styles.logo}
-                    source={require('../../assets/logo1.png')} 
-                    />
+		                  <Image 
+		                  style={styles.logo}
+		                  source={require('../../assets/logo1.png')} 
+		                  />
                     </View>
 
                     <View>
-                        <LogupForm />
+                        <LogupForm signup={handleSignUp} />
                     </View>
 
                 </KeyboardAvoidingView>
@@ -38,7 +44,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         marginTop: 50,
-        width: 200,
+        width: 250,
         height: 200,
     },
 })

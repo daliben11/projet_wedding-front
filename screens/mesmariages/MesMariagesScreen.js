@@ -11,7 +11,7 @@ import HeaderNav from '../HeaderNav';
 import AddWedding from './AddWedding'
 
 
-function MesMariagesScreen({navigation}) {
+function MesMariagesScreen( props ) {
 
 	const [createNewWed, setCreateNewWed] = useState( false );
 	
@@ -23,6 +23,7 @@ function MesMariagesScreen({navigation}) {
 
 	if (createNewWed) {
 		return(
+		
 			<AddWedding showPage={changePage} />
 
 		);
@@ -41,63 +42,34 @@ function MesMariagesScreen({navigation}) {
 					
 				<ScrollView>
 				
-					<ListItem key={1}
-						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
-						title='Mariage John & Janet'
-						titleStyle={styles.titleView}
-						subtitle={
-						  <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-						  	<View style={styles.subtitleView}>
-									<Icon name='clock' type='evilicon' color='grey' />
-									<Text style={styles.ratingText}>10/02/2020</Text>
-							  </View>
-							  <View style={styles.subtitleView}>
-								  <Icon name='location-on' type='materialIcons' color='grey' />
-								  <Text style={styles.ratingText}>Paris</Text>
-						    </View>
-						  </View>
-						}
-						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
-						bottomDivider
-					/>
-					<ListItem key={2}
-						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
-						title='Mariage John & Janet'
-						titleStyle={styles.titleView}
-						subtitle={
-						  <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-						  	<View style={styles.subtitleView}>
-									<Icon name='clock' type='evilicon' color='grey' />
-									<Text style={styles.ratingText}>10/02/2020</Text>
-							  </View>
-							  <View style={styles.subtitleView}>
-								  <Icon name='location-on' type='materialIcons' color='grey' />
-								  <Text style={styles.ratingText}>Paris</Text>
-						    </View>
-						  </View>
-						}
-						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
-						bottomDivider
-					/>
-					<ListItem key={3}
-						rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
-						title='Mariage John & Janet'
-						titleStyle={styles.titleView}
-						subtitle={
-						  <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-						  	<View style={styles.subtitleView}>
-									<Icon name='clock' type='evilicon' color='grey' />
-									<Text style={styles.ratingText}>10/02/2020</Text>
-							  </View>
-							  <View style={styles.subtitleView}>
-								  <Icon name='location-on' type='materialIcons' color='grey' />
-								  <Text style={styles.ratingText}>Paris</Text>
-						    </View>
-						  </View>
-						}
-						leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
-						bottomDivider
-					/>
+				{	[1,2,3,4].map( (el,ind) => {
+					return(
+						
+						<ListItem key={ind}
+							onPress={ () => props.navigation.navigate('GuestPage') }
+							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
+							title='Mariage John & Janet'
+							titleStyle={styles.titleView}
+							subtitle={
+								<View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+									<View style={styles.subtitleView}>
+										<Icon name='clock' type='evilicon' color='grey' />
+										<Text style={styles.ratingText}>10/02/2020</Text>
+									</View>
+									<View style={styles.subtitleView}>
+										<Icon name='location-on' type='materialIcons' color='grey' />
+										<Text style={styles.ratingText}>Paris</Text>
+								  </View>
+								</View>
+							}
+							leftAvatar={{ source: require('../../assets/picture-2.jpg') }}
+							bottomDivider
+						/>
+					);
+				})
+				
+					
+				}
 					
 					
 				</ScrollView>

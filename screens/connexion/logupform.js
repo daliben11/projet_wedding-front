@@ -5,22 +5,52 @@ import { Button } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 
 /* LOGUPFORM */
-function Logupform() {
+function Logupform( props ) {
+    const [isLogged,setIsLogged] = useState(false);
+    //state pour le sign up
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [userFirstName,setUserFirstName] = useState("");
+    const [userLastName, setUserLastName] = useState("");
+    const [messageSignUp,setMessageSignUp] = useState("");
+    //gestion sign up >>>> envoi au back les champs de signup (récupéré par button) et met à jour les états (islogin, message et token)
+    
+    var handleSignUp = async () =>{
+        let data = await fetch("http://10.2.5.190:3000/sign-up",{  //venir mettre son adresse Ip personnel
+              method: 'POST',
+              headers: {'Content-Type':'application/x-www-form-urlencoded'},
+              body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}`
+            });
+      
+            let dataJson = await data.json();
+            console.log(dataJson)
+            props.signup();
+
+    }
+
+
+
+console.log(userFirstName)
 
     return (
      
             <View style={styles.container}>
 
-                <TextInput 
-                placeholder="PRENOM"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                style={styles.input} 
-                />
 
                 <TextInput 
                 placeholder="NOM"
                 placeholderTextColor="rgba(102, 102, 102, 0.5)"
                 style={styles.input} 
+                onChangeText={(value) => setUserFirstName(value)} 
+                value={userFirstName}
+                />
+
+                <TextInput 
+                placeholder="PRENOM"
+                placeholderTextColor="rgba(102, 102, 102, 0.5)"
+                style={styles.input}
+                onChangeText={(value) => setUserLastName(value)} 
+                value={userLastName} 
                 />
 
                 <Button
@@ -31,59 +61,68 @@ function Logupform() {
                 />
 
                 <View style={styles.date}>
-                <NumericInput 
-                type='up-down' 
-                textColor='grey' 
-                totalWidth={90}
-                totalHeight={40} 
-                minValue={1} 
-                maxValue={31}
-                rounded
-                onChange={value => console.log(value)} 
-                />
-                <NumericInput 
-                type='up-down' 
-                textColor='grey' 
-                totalWidth={90}
-                totalHeight={40} 
-                minValue={1} 
-                maxValue={12}
-                rounded
-                onChange={value => console.log(value)} 
-                />
-                <NumericInput 
-                type='up-down' 
-                textColor='grey' 
-                totalWidth={90}
-                totalHeight={40} 
-                minValue={1950} 
-                maxValue={2004}
-                rounded
-                onChange={value => console.log(value)} 
-                />
+		              <NumericInput 
+		              type='up-down' 
+		              textColor='grey' 
+		              totalWidth={90}
+		              totalHeight={40} 
+		              minValue={1} 
+		              maxValue={31}
+		              rounded
+		              onChange={value => console.log(value)} 
+		              />
+		              <NumericInput 
+		              type='up-down' 
+		              textColor='grey' 
+		              totalWidth={90}
+		              totalHeight={40} 
+		              minValue={1} 
+		              maxValue={12}
+		              rounded
+		              onChange={value => console.log(value)} 
+		              />
+		              <NumericInput 
+		              type='up-down' 
+		              textColor='grey' 
+		              totalWidth={90}
+		              totalHeight={40} 
+		              minValue={1950} 
+		              maxValue={2004}
+		              rounded
+		              onChange={value => console.log(value)} 
+		              />
                 </View>
 
                 <TextInput 
-                placeholder="EMAIL"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                keyboardType="email-address"
-                style={styles.input} 
+		              placeholder="EMAIL"
+		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
+		              keyboardType="email-address"
+                      style={styles.input} 
+                      onChangeText={(value) => setEmail(value)} 
+                      value={email}
                 />
 
                 <TextInput 
-                placeholder="MOT DE PASSE"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                secureTextEntry
-                style={styles.input} 
+		              placeholder="MOT DE PASSE"
+		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
+		              secureTextEntry
+                      style={styles.input} 
+                      onChangeText={(value) => setPassword(value)} 
+                      value={password}
                 />
-
-                <TouchableOpacity style={styles.buttonInscription}>
+                <Button title="Inscription" 
+                    buttonStyle={{backgroundColor:'#f4c6c1'}}
+                    onPress={()=>handleSignUp()}
+                />
+                {/* <TouchableOpacity style={styles.buttonInscription}
+                	onPress={ () => handleSignUp() }
+                >
                     <Text style={styles.buttonText}>INSCRIPTION</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <Button title="VOUS AVEZ DEJA UN COMPTE" 
-                type="clear"
-                titleStyle={{ color: 'grey', fontSize: 12, marginTop: 10}}
+		              type="clear"
+		              titleStyle={{ color: 'grey', fontSize: 12, marginTop: 10}}
                 />
 
             </View>
