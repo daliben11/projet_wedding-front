@@ -189,7 +189,7 @@ export default connect(
 )( AddWedding );
 
 
-			
+
 
 
 

@@ -43,10 +43,16 @@ function MesMariagesScreen( props ) {
 				<ScrollView>
 				
 				{	[1,2,3,4].map( (el,ind) => {
+					var nextPage;
+					if( ind === 0 ) {
+						nextPage = 'Dashboard';
+					} else {
+						nextPage = 'GuestPage';
+					}
 					return(
 						
 						<ListItem key={ind}
-							onPress={ () => props.navigation.navigate('GuestPage') }
+							onPress={ () => props.navigation.navigate( nextPage ) }
 							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 							title='Mariage John & Janet'
 							titleStyle={styles.titleView}
@@ -74,7 +80,7 @@ function MesMariagesScreen( props ) {
 					
 				</ScrollView>
 				
-				<View 
+				<TouchableOpacity
 					style={{
 						width:'100%', height:'auto',
 						padding: 5,
@@ -86,7 +92,7 @@ function MesMariagesScreen( props ) {
 					</Text>
 					<View style={styles.interSpace}/>
 					<Icon name='plus' type='feather' color='grey' />
-				</View>
+				</TouchableOpacity>
 				
 				<TouchableOpacity 
 					style={{
@@ -151,6 +157,10 @@ const styles = StyleSheet.create({
 
 
 export default MesMariagesScreen; 
+
+
+
+//					onPress={()=>props.navigation.openDrawer()}
 
 //function mapStateToProps(state) {
 //  return { 
