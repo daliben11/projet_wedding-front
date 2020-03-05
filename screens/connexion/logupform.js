@@ -112,7 +112,7 @@ console.log(userFirstName)
                 />
                 <Button title="Inscription" 
                     buttonStyle={{backgroundColor:'#f4c6c1'}}
-                    onPress={()=>handleSignUp()}
+                    onPress={ ()=>handleSignUp() }
                 />
                 {/* <TouchableOpacity style={styles.buttonInscription}
                 	onPress={ () => handleSignUp() }
@@ -123,6 +123,7 @@ console.log(userFirstName)
                 <Button title="VOUS AVEZ DEJA UN COMPTE" 
 		              type="clear"
 		              titleStyle={{ color: 'grey', fontSize: 12, marginTop: 10}}
+		              onPress={ ()=>props.signin() }
                 />
 
             </View>

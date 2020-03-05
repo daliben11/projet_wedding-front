@@ -1,40 +1,75 @@
-import React, { Component } from 'react';
+import React, { Component,useState } from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 
 /* LOGINFORM */
 function Loginform( props ) {
+    const [isLogged,setIsLogged] = useState(false);
+    // state sign in
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [messageSignIn,setMessageSignIn] = useState("");
+    console.log(email,password)
+//gestion sign in >>>> envoi au back les champs de signin (récupéré par button) et met à jour les états (islogin, message et token)
+    var handleSignIn = async () =>{
+        if((email=="")||(password=="")) {
+        setMessageSignIn("Champs requis !")
+        console.log(messageSignIn)
+        }
+
+        else {
+        let data = await fetch("http://10.2.5.190:3000/sign-in",{
+            method: 'POST',
+            headers: {'Content-Type':'application/x-www-form-urlencoded'},
+            body: `email=${email}&password=${password}`
+        });
+
+        let dataJson = await data.json();
+        console.log(dataJson.result)
+        if(dataJson.result==false){
+            setMessageSignIn("Identifiant incorrect")
+        } else {
+            props.signin()
+        }
+        }
+        
+    }
+    
+
     return (
             <View style={styles.container}>
 
                 <TextInput 
-                placeholder="EMAIL"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                keyboardType="email-address"
-                style={styles.input} 
+		              placeholder="EMAIL"
+		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
+                      style={styles.input} 
+                      onChangeText={(value) => setEmail(value)} 
+                      value={email}
                 />
 
                 <TextInput 
-                placeholder="MOT DE PASSE"
-                placeholderTextColor="rgba(102, 102, 102, 0.5)"
-                secureTextEntry
-                style={styles.input} 
+		              placeholder="MOT DE PASSE"
+		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
+		              secureTextEntry
+                      style={styles.input} 
+                      onChangeText={(value) => setPassword(value)} 
+                      value={password}
                 />
+                
 
                 <TouchableOpacity>
                     <Text style={styles.buttonMotdepasse}>MOT DE PASSE OUBLIE</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonMeconnecter}
-                	onPress={ () => props.signin() }
-                >
-                    <Text style={styles.buttonText}>ME CONNECTER</Text>
-                </TouchableOpacity>
+                <Button title="ME CONNECTER" 
+                    buttonStyle={{backgroundColor:'#f4c6c1'}}
+                    onPress={()=>handleSignIn()}
+                />
 
                 <Button title="INSCRIVEZ-VOUS" 
                 type="clear"
                 titleStyle={{ color: 'grey', fontSize: 12, marginBottom: 40}}
-                
+                onPress={ ()=>props.signup() }
                 />
 
             </View>

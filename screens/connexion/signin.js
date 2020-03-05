@@ -6,13 +6,16 @@ import LoginForm from './loginform'
 function Signin( props ) {
 
 	const handleSignIn = () => {
-		
 		props.navigation.navigate( 'Mes Mariages' );		
 		props.setLogin({status: true});
 	}
   
+  const handleSignUp = () => {
+		props.navigation.navigate( 'SignUp' );		
+  }
+
   return (
-        <ScrollView>
+
 
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
@@ -24,19 +27,20 @@ function Signin( props ) {
                 </View>
 
                 <View>
-                    <LoginForm signin={handleSignIn}/>
+                    <LoginForm signin={handleSignIn} signup={handleSignUp}/>
                 </View>
                 
             </KeyboardAvoidingView>
 
-        </ScrollView >
+
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5F8FB'
+        backgroundColor: '#F5F8FB',
+        marginTop:40
     },
     logoContainer: {
         alignItems: 'center',

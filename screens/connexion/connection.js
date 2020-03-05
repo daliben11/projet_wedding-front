@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { StyleSheet, View, Image, 
-	KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
+	KeyboardAvoidingView,  TouchableOpacity } from 'react-native';
 import ConnectionForm from './connectionform'
 
 /* CONNECTION */
@@ -18,7 +18,7 @@ function Connection( props ) {
 
 
     return (
-        <ScrollView >
+
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
                 <TouchableOpacity style={styles.logoContainer}
@@ -35,7 +35,7 @@ function Connection( props ) {
                 </View>
                 
             </KeyboardAvoidingView>
-        </ScrollView >
+
     )
 }
 
