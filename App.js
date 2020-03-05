@@ -11,7 +11,7 @@ import { AppLoading } from 'expo'
 
 import MesMariagesScreen from './screens/mesmariages/MesMariagesScreen'
 import ProfileUser  from './screens/profile/ProfileUser';
-import connection from './screens/sign/connection';
+import connection from './screens/connexion/connection';
 
 import myWedding from './reducers/mariage.reducer'; 
 
