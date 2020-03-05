@@ -1,3 +1,4 @@
+console.disableYellowBox = true;
 import React, {useState} from 'react';
 
 import {createAppContainer } from 'react-navigation';
