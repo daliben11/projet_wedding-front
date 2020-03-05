@@ -10,12 +10,10 @@ function Connection( props ) {
 
 	const toSignIn = () => {
 		props.navigation.navigate( 'SignIn' );
-		props.setLogin({status: true});
 	}
 	
 	const toSignUp = () => {
 		props.navigation.navigate( 'SignUp' );
-		props.setLogin({status: true});
 	}
 
 

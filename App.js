@@ -1,12 +1,19 @@
 console.disableYellowBox = true;
 import React, {useState} from 'react';
 
-import { connect } from 'react-redux';
-
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
 
-import NavigationController from './NavigationController';
+import NavigationController from './navigationController/NavigationController';
+
+import myWedding from './reducers/mariage.reducer'; 
+import isLogin from './reducers/isLogin.reducer'; 
+
+import {Provider} from 'react-redux';
+import {createStore, combineReducers}  from 'redux';
+
+const store = createStore(combineReducers( { myWedding, isLogin } ));
+
 
 
 
@@ -27,7 +34,7 @@ export default ( ) => {
   if (fontLoaded){
     return (
       <Provider store={store}>
-      	<NavigationController/>
+      	<NavigationController />
       </Provider>
           )
   } else {
