@@ -1,3 +1,4 @@
+console.disableYellowBox = true;
 import React, {useState} from 'react';
 
 import { connect } from 'react-redux';
@@ -25,6 +26,7 @@ import GuestPage from './screens/mesmariages/Guestprogramme';
 import ProfileUser from './screens/profile/ProfileUser';
 
 import Dashboard from './screens/Dashboard';
+
 
 
 import myWedding from './reducers/mariage.reducer'; 
@@ -105,7 +107,34 @@ const stackConnexion = createStackNavigator({
 
 const App = createAppContainer( stackConnexion ) ;
 
-
+const bottomNavigator = createBottomTabNavigator({
+  'Mon Profil': ProfileUser,
+  'Mes Mariages': MesMariagesScreen,
+  'signup': signup,
+},
+{ defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ tintColor }) => {
+      var iconName, iconType;
+      if (navigation.state.routeName == 'Mes Mariages') {
+        iconName = 'heart';
+        iconType = 'evilicon';
+      } else if (navigation.state.routeName == 'Mon Profil') {
+        iconName = 'user';
+        iconType = 'antdesign';
+      }
+      
+      return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
+    },
+  }),
+  tabBarOptions: {
+    activeTintColor: '#ffffff',
+    inactiveTintColor: '#1f6a39',
+    style: {
+    	backgroundColor: '#31AE89',
+    }
+  },
+}
+);
 
 
 export default ( ) => {
