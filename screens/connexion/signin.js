@@ -11,7 +11,7 @@ function Signin( props ) {
 	}
   
   return (
-        <ScrollView>
+
 
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
@@ -28,14 +28,15 @@ function Signin( props ) {
                 
             </KeyboardAvoidingView>
 
-        </ScrollView >
+
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5F8FB'
+        backgroundColor: '#F5F8FB',
+        marginTop:40
     },
     logoContainer: {
         alignItems: 'center',
