@@ -22,16 +22,18 @@ export default function Dashboard({navigation}) {
 
             </ImageBackground>
       
-                <View style={{flex: 0.2, backgroundColor: '#FAEBE4' }}>
+                <View style={{backgroundColor: '#FAEBE4' }}>
                   <Text h4 style={{ textAlign:'center',fontWeight: 'bold', fontFamily:'greatvibes'}} style={styles.container} > 200 jours 11 Heures 37 min 34 s</Text>
                 </View>
 
+                
 
-              <View  style={{flex:1 , marginBottom: 10, marginBottom: 30}}>
+
+              <View  style={{flex:1 }}>
               
-    
+                <ScrollView  style={{flex:1}} >
 
-                        <ListItem key={1}
+                        <ListItem key={1} style={{flex:1}} 
                         
                         
                         rightAvatar={ <Icon name='list' type='materialIcons' color='#31AE89'  size={35}/>}
@@ -46,7 +48,7 @@ export default function Dashboard({navigation}) {
                          bottomDivider
                         />
    
-                        <ListItem key={2}
+                        <ListItem key={2} style={{flex:1}} 
                         
                         rightAvatar={ <Icon name='playlist-add' type='materialIcons' color='#31AE89' size={35}/>}
                         title='Choix des prestataires (3 sur10)'
@@ -62,7 +64,7 @@ export default function Dashboard({navigation}) {
                         />
                     
 
-                        <ListItem key={3}
+                        <ListItem key={3} style={{flex:1}} 
                         
                         rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>}
                         title='Listes des invités (30 sur 150)'
@@ -77,7 +79,7 @@ export default function Dashboard({navigation}) {
                         />
                         
                         
-                         <ListItem key={4}
+                         <ListItem key={4} style={{flex:1}} 
     
                           rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='#31AE89'  size={35}/>}
                           title='Budget(1000€ sur 30000€)'
@@ -87,9 +89,12 @@ export default function Dashboard({navigation}) {
                               <Progress.Bar progress={0.3} width={200} color={'#31AE89'} /> 
                             </View>
                           }
-                        
-                         
                         />
+                        
+                       
+
+
+                </ScrollView>
 
                </View>
                           
@@ -131,6 +136,9 @@ export default function Dashboard({navigation}) {
       },
       interSpace:{
         paddingLeft: 30,
+      },
+      contentContainer: {
+        paddingVertical: 20
       }
     });
 

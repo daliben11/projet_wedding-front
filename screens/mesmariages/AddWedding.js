@@ -62,8 +62,7 @@ function AddWedding ( props ) {
 		
 			<View 
 				containerStyle={{
-					flex:1, alignItems:'center',
-					backgroundColor:'#F5F8FB'
+			    flexbackgroundColor:'#FFF'
 				}}
 			>	
 				
