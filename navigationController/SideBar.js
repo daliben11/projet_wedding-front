@@ -6,7 +6,7 @@ function SideBar(props) {
     return (
        <ScrollView>
            <ImageBackground 
-                style={{ alignSelf:'center', width: undefined, padding: 16, paddingTop: 50, backgroundColor: '#ecf0f1' }}>
+                style={{ width: undefined, padding: 5, paddingTop: 50}}>
                     <Image source={require('../assets/logo1.png')} style={styles.logo}/>
            </ImageBackground>
        <View style={styles.container}>
