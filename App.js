@@ -21,6 +21,8 @@ export default ( ) => {
   
   const [fontLoaded, setFontLoaded]= useState(false);
 
+  
+
 
 	async function getFonts(){
 		await Font.loadAsync({

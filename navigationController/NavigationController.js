@@ -22,7 +22,8 @@ import DeconnexionScreen from '../screens/connexion/DeconnexionScreen';
 import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 import GuestPage from '../screens/mesmariages/Guestprogramme';
 
-import ProfileUser from '../screens/profile/ProfileUser';
+import ProfilUser from '../screens/profile/ProfileUser';
+import ProfilEdit from '../screens/profile/ProfileModif';
 
 import Dashboard from '../screens/Dashboard';
 import Invites from '../screens/guest/Guest';
@@ -37,10 +38,102 @@ import Prestations from '../screens/prestataires/Prestations';
 function NavigationController( props ) {
 	var App;
 	
+	console.log('login ', !props.isLogin.status);
+	
+
+			
+	// Vue des mariages
+	const stackMariage = createStackNavigator({ 
+		'MyWeddings': MesMariagesScreen,
+		'GuestPage': GuestPage,
+		'Dashboard': Dashboard,
+		},  
+		{ headerMode: 'none' }
+	);
+
+
+	const stackProfil = createStackNavigator({ 
+			'ProfilUser': ProfilUser, 
+			'ProfilEdit': ProfilEdit,
+			},  
+			{ headerMode: 'none' } 
+		);
+	
+	
+	// Profil et Espace Perso
+	const profilBottom = createBottomTabNavigator({
+			'Mes Mariages':	stackMariage,
+			'Mon Profil':		stackProfil,
+			Home: 	connection, 
+		},
+		{ defaultNavigationOptions: ({ navigation }) => ({
+				tabBarIcon: ({ tintColor }) => {
+					var iconName, iconType;
+					if (navigation.state.routeName == 'Mes Mariages') {
+						iconName = 'heart';
+						iconType = 'evilicon';
+					} else if (navigation.state.routeName == 'Mon Profil') {
+						iconName = 'user';
+						iconType = 'antdesign';
+					}
+					return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
+				},
+			}),
+			tabBarOptions: {
+				activeTintColor: '#ffffff',
+				inactiveTintColor: '#1f6a39',
+				style: {
+					backgroundColor: '#31AE89',
+				}
+			}
+		}
+	);
+	
+	//if ( !props.isLogin.status ) {
+		
+		// Connexion screens à créer que si l'user n'est pas enregistré dans le local storage
+		const stackConnexion = createStackNavigator({ 
+			'Home': 	connection, 
+			'SignIn': signin,
+			'SignUp': signup,
+			profilBottom: profilBottom,
+			},  
+			{ headerMode: 'none' } 
+		);
+		
+		//App = createAppContainer( stackConnexion ) ;
+
+	//}
+	
+	if ( props.myWedding.status ) {	
+		// stack des dashboard
+		const stackDashboard = createStackNavigator({ 
+			'Dashboard': Dashboard,
+			'Invites': MesMariagesScreen,
+			'Prestations': Prestations,
+			'Budget': Budget,
+			'Tasks': Tasks		
+			},  
+			{ headerMode: 'none' }
+		);
+		
+		// bottomtab de mon dashboard view
+		const bottomTab = createBottomTabNavigator({
+			'HomeDashboard': stackDashboard,
+			'My Tasks': Tasks,
+			'Invites': Invites, 
+			}
+		);
+		profilBottom = null;
+	}
+
+
+	
 	const DrawerNavigator = createDrawerNavigator(
-		{
+		{		
 		   HomeConnection: {
-	      screen: connection,
+		   // HomeConnection sera effacé du drawer qd on aura fini le dev, car elle ne sera pas définie si le user se connecte pour une deuxième fois.
+	      screen: stackConnexion,
 	      navigationOptions: {
 	        title: "Home connection",
 	        drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
@@ -54,7 +147,7 @@ function NavigationController( props ) {
 	      }
 	    },
 	    MonProfilScreen: {
-	      screen: ProfileUser,
+	      screen: stackProfil,
 	      navigationOptions: {
 	        title: "Mon Profil",
 	        drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
@@ -63,7 +156,7 @@ function NavigationController( props ) {
 	    AccueilScreen: {
 	      screen: Dashboard,
 	      navigationOptions: {
-	        title: "Accueil",
+	        title: "Dashboard",
 	        drawerIcon: ({ tintColor }) => <Feather name="home" size={16} color={tintColor} />
 	      }
 	    },
@@ -85,78 +178,11 @@ function NavigationController( props ) {
 			}
 		}
 	);
+		
+
+
+	
 	App = createAppContainer( DrawerNavigator ) ;
-
-	
-
-		
-	// bottom de mon mariage
-	const bottomDashboard = createBottomTabNavigator({
-		'HomeDashboard': Dashboard,
-		'MyTasks': ProfileUser,
-		'Budget': GuestPage, 
-		}
-	);
-
-
-	// Vue des mariages
-	const stackMariage = createStackNavigator({ 
-		'MyWeddings': MesMariagesScreen,
-		'GuestPage': GuestPage,
-		'Dashboard': bottomDashboard,
-		},  
-		{ headerMode: 'none' }
-	);
-
-
-	// Profil et Espace Perso
-	const profilBottom = createBottomTabNavigator({
-			'Mes Mariages': stackMariage,
-			'Mon Profil': ProfileUser,
-			Home: 	connection, 
-		},
-		{ defaultNavigationOptions: ({ navigation }) => ({
-				tabBarIcon: ({ tintColor }) => {
-					var iconName, iconType;
-					if (navigation.state.routeName == 'Mes Mariages') {
-						iconName = 'heart';
-						iconType = 'evilicon';
-					} else if (navigation.state.routeName == 'Mon Profil') {
-						iconName = 'user';
-						iconType = 'antdesign';
-					}
-					
-					return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
-				},
-			}),
-			tabBarOptions: {
-				activeTintColor: '#ffffff',
-				inactiveTintColor: '#1f6a39',
-				style: {
-					backgroundColor: '#31AE89',
-				}
-			}
-		}
-	);
-
-	console.log('login ', !props.isLogin.status);
-	
-	if ( !props.isLogin.status ) {
-			
-		// Connexion screens
-		const stackConnexion = createStackNavigator({ 
-			'Home': 	connection, 
-			'SignIn': signin,
-			'SignUp': signup,
-			profilBottom: profilBottom
-			},  
-			{ headerMode: 'none' } 
-		);
-		
-		App = createAppContainer( stackConnexion ) ;
-
-	}
-	
 	
 	return (
 		<App />
