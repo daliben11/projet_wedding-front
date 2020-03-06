@@ -22,7 +22,11 @@ function Connection( props ) {
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
                 <TouchableOpacity style={styles.logoContainer}
-				        	onPress={ ()=>{ props.navigation.navigate('profilBottom') } }>
+				        	onPress={ ()=>{
+				        		console.log('Fausse connexion !');
+				        		props.navigation.navigate('Enter');
+				        		props.setLogin({status: true});
+				        	} }>
 				           <Image 
 						         style={styles.logo}
 						         source={require('../../assets/logo1.png')}

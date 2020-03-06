@@ -16,7 +16,7 @@ function Logupform( props ) {
     //gestion sign up >>>> envoi au back les champs de signup (récupéré par button) et met à jour les états (islogin, message et token)
     
     var handleSignUp = async () =>{
-        let data = await fetch("http://192.168.43.169:3000/sign-up",{  //venir mettre son adresse Ip personnel
+        let data = await fetch("http://10.2.5.190:3000/sign-up",{  //venir mettre son adresse Ip personnel
               method: 'POST',
               headers: {'Content-Type':'application/x-www-form-urlencoded'},
               body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}`

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, Image, 
-	View, KeyboardAvoidingView, ScrollView, 
+	View, KeyboardAvoidingView, ScrollView, TouchableOpacity,
 	AsyncStorage } from 'react-native';
 
 import LoginForm from './loginform'
@@ -11,7 +11,8 @@ function Signin( props ) {
 
 	const handleSignIn = () => {
 		props.navigation.navigate( 'Mes Mariages' );		
-		props.setLogin({status: true});
+        /* props.setLogin({status: true}); */
+        console.log(props)
 	}
   
   const handleSignUp = () => {
@@ -23,12 +24,14 @@ function Signin( props ) {
 
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
-                <View style={styles.logoContainer}>
-                <Image 
-		              style={styles.logo}
-		              source={require('../../assets/logo1.png')} 
-                />
-                </View>
+                <TouchableOpacity style={styles.logoContainer}
+			            onPress={()=>props.navigation.navigate( 'Home' )}
+                >
+		              <Image 
+				            style={styles.logo}
+				            source={require('../../assets/logo1.png')}
+		              />
+                </TouchableOpacity>
 
                 <View>
                     <LoginForm signin={handleSignIn} signup={handleSignUp}/>

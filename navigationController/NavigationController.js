@@ -7,12 +7,14 @@ import {createAppContainer } from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
 
+/* https://reactnavigation.org/docs/drawer-navigator/ */
 import { createDrawerNavigator, DrawerView } from 'react-navigation-drawer'
 
 import { Feather } from '@expo/vector-icons'
 import { Icon } from 'react-native-elements';
 
 import SideBar from './SideBar'
+import HeaderNav from '../screens/HeaderNav'
 
 import connection from '../screens/connexion/connection';
 import signin from '../screens/connexion/signin';
@@ -39,34 +41,40 @@ import Prestations from '../screens/prestataires/Prestations';
 function NavigationController( props ) {
 	var App;
 	
-	console.log('login ', !props.isLogin.status);
+	console.log('myWedding exists? ', props.myWedding.status);
 	
-
-			
-	// Vue des mariages
-	const stackMariage = createStackNavigator({ 
-		
-		'MyWeddings': MesMariagesScreen,
-		'GuestPage': GuestPage,
-		'Dashboard': Dashboard,
-		},  
-		{ headerMode: 'none' }
-	);
-
-
-	const stackProfil = createStackNavigator({ 
-			'ProfilUser': ProfilUser, 
-			'ProfilEdit': ProfilEdit,
+	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
+	const stackMariage = props.myWedding.status 	
+		? createStackNavigator({ 
+			'MyWeddings': MesMariagesScreen,
+			'GuestPage': GuestPage,
+			'Dashboard': Dashboard,
 			},  
 			{ headerMode: 'none' } 
-		);
+			)
+		: createStackNavigator({ 
+			'MyWeddings': MesMariagesScreen,
+			'GuestPage': GuestPage
+			},  
+			{ headerMode: 'none' }
+			) ;
+
+
+
+	// Stack Profil et Edition Profil
+	const stackProfil = createStackNavigator({ 
+		'ProfilUser': ProfilUser, 
+		'ProfilEdit': ProfilEdit,
+		},  
+		{ headerMode: 'none' } 
+	);
 	
 	
-	// Profil et Espace Perso
+	
+	// Tab bottom Espace Perso
 	const profilBottom = createBottomTabNavigator({
 			'Mes Mariages':	stackMariage,
 			'Mon Profil':		stackProfil,
-			Home: 	connection, 
 		},
 		{ defaultNavigationOptions: ({ navigation }) => ({
 				tabBarIcon: ({ tintColor }) => {
@@ -91,86 +99,126 @@ function NavigationController( props ) {
 		}
 	);
 	
-	//if ( !props.isLogin.status ) {
 		
-		// Connexion screens à créer que si l'user n'est pas enregistré dans le local storage
-		const stackConnexion = createStackNavigator({ 
-			'Home': 	connection, 
-			'SignIn': signin,
-			'SignUp': signup,
-			profilBottom: profilBottom,
-			},  
-			{ headerMode: 'none' } 
-		);
-		
-		//App = createAppContainer( stackConnexion ) ;
-
-	//}
 	
-	if ( props.myWedding.status ) {	
-		// stack des dashboard
-		const stackDashboard = createStackNavigator({ 
-			'Dashboard': Dashboard,
-			'Invites': MesMariagesScreen,
-			'Prestations': Prestations,
-			'Budget': Budget,
-			'Tasks': Tasks		
-			},  
-			{ headerMode: 'none' }
-		);
-		
-		// bottomtab de mon dashboard view
-		const bottomTab = createBottomTabNavigator({
-			'HomeDashboard': stackDashboard,
-			'My Tasks': Tasks,
-			'Invites': Invites, 
+	////// Navigation pour MON mariage, Dashboard & Co
+	
+	// stack du dashboard et pages de gestion du mariage
+	const stackDashboard = createStackNavigator({ 
+		'Dashboard': Dashboard,
+		'Invites': MesMariagesScreen,
+		'Prestations': Prestations,
+		'Budget': Budget,
+		'Tasks': Tasks		
+		},  
+		{ headerMode: 'none' }
+	);
+	
+	
+	// bottomtab de mon dashboard view
+	const dashboardBottom = createBottomTabNavigator({
+		'Dashboard': stackDashboard,
+		'Mes tâches': Tasks,
+		'Invités': Invites,
+		'Prestataires': Prestations,
+		'Budget': Budget
+		},
+		{ defaultNavigationOptions: ({ navigation }) => ({
+				tabBarIcon: ({ tintColor }) => {
+					var iconName, iconType;
+					if (navigation.state.routeName == 'Dashboard') {
+						iconName = 'home';
+						iconType = 'entypo';
+					} else if (navigation.state.routeName == 'Mes tâches') {
+						iconName = 'tasks';
+						iconType = 'font-awesome';
+					}
+					else if (navigation.state.routeName == 'Invités') {
+						iconName = 'md-people';
+						iconType = 'ionicon';
+					}
+					else if (navigation.state.routeName == 'Prestataires') {
+						iconName = 'playlist-add';
+						iconType = 'material';
+					}
+					else if (navigation.state.routeName == 'Budget') {
+						iconName = 'euro-symbol';
+						iconType = 'material';
+					}
+					return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
+				},
+			}),
+			tabBarOptions: {
+				activeTintColor: '#ffffff',
+				inactiveTintColor: '#1f6a39',
+				style: {
+					backgroundColor: '#31AE89',
+				}
 			}
-		);
-		profilBottom = null;
-	}
+		}
+	);
+	
 
-
+	// Ça crée les élements du tiroir selon le type d'utilisateur (avec ou sans mariage propre)
+	const ScreensToNavigateDrawer = props.myWedding.status
+		?	{		
+				MesMariagesScreen: {
+					screen: profilBottom,
+					navigationOptions: {
+					  title: "Mes Mariages",
+					  drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
+					}
+				},
+				AccueilScreen: {
+					screen: dashboardBottom,
+					navigationOptions: {
+					  title: "Dashboard",
+					  drawerIcon: ({ tintColor }) => <Feather name="home" size={16} color={tintColor} />
+					}
+				},
+				MonProfilScreen: {
+					screen: stackProfil,
+					navigationOptions: {
+					  title: "Mon Profil",
+					  drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+					}
+				},
+				DeconnexionScreen: {
+					screen: DeconnexionScreen,
+					navigationOptions: {
+					  title: "Déconnexion",
+					  drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
+					}
+				}
+			}
+		: {		
+				MesMariagesScreen: {
+				  screen: profilBottom,
+				  navigationOptions: {
+				    title: "Mes Mariages",
+				    drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
+				  }
+				},
+				MonProfilScreen: {
+				  screen: stackProfil,
+				  navigationOptions: {
+				    title: "Mon Profil",
+				    drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+				  }
+				},
+				DeconnexionScreen: {
+				  screen: DeconnexionScreen,
+				  navigationOptions: {
+				    title: "Déconnexion",
+				    drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
+				  }
+				}
+			} ;
+	
 	
 	const DrawerNavigator = createDrawerNavigator(
-		{		
-		   HomeConnection: {
-		   // HomeConnection sera effacé du drawer qd on aura fini le dev, car elle ne sera pas définie si le user se connecte pour une deuxième fois.
-	      screen: stackConnexion,
-	      navigationOptions: {
-	        title: "Home connection",
-	        drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
-	      }
-	    },
-		  MesMariagesScreen: {
-	      screen: MesMariagesScreen,
-	      navigationOptions: {
-	        title: "Mes Mariages",
-	        drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
-	      }
-	    },
-	    MonProfilScreen: {
-	      screen: stackProfil,
-	      navigationOptions: {
-	        title: "Mon Profil",
-	        drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
-	      }
-	    },
-	    AccueilScreen: {
-	      screen: Dashboard,
-	      navigationOptions: {
-	        title: "Dashboard",
-	        drawerIcon: ({ tintColor }) => <Feather name="home" size={16} color={tintColor} />
-	      }
-	    },
-		  DeconnexionScreen: {
-	      screen: DeconnexionScreen,
-	      navigationOptions: {
-	        title: "Déconnexion",
-	        drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
-	      }
-	    } 
-		},
-		{
+		ScreensToNavigateDrawer,
+		{	
 			contentComponent: props => <SideBar {...props} />,
 			drawerWidth: Dimensions.get("window").width * 0.80,
 			hideStatusBar: true,
@@ -179,12 +227,26 @@ function NavigationController( props ) {
 					activeTintColor: "#53115B"
 			}
 		}
-	);
-		
+	);		
 
 
 	
-	App = createAppContainer( DrawerNavigator ) ;
+	//if ( !props.isLogin.status ) { 	//}
+		
+	// Connexion screens à créer que si l'user n'est pas enregistré dans le local storage
+	const stackConnexion = createStackNavigator({ 
+		'Home': 	connection, 
+		'SignIn': signin,
+		'SignUp': signup,
+		'Enter': DrawerNavigator,
+		},  
+		{ headerMode: 'none' } 
+	);
+	
+	
+	App = props.isLogin.status
+		? createAppContainer( DrawerNavigator )
+		: createAppContainer( stackConnexion ) ;
 	
 	return (
 		<App />

@@ -1,5 +1,5 @@
 import React, { Component,useState } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, TextInput, TouchableOpacity, Text,AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 
 /* LOGINFORM */
@@ -18,7 +18,7 @@ function Loginform( props ) {
         }
 
         else {
-        let data = await fetch("http://192.168.43.169:3000/sign-in",{
+        let data = await fetch("http://10.2.5.190:3000/sign-in",{
             method: 'POST',
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
             body: `email=${email}&password=${password}`
@@ -28,8 +28,12 @@ function Loginform( props ) {
         console.log(dataJson.result)
         if(dataJson.result==false){
             setMessageSignIn("Identifiant incorrect")
+            console.log(dataJson)
         } else {
             props.signin()
+            console.log(dataJson)
+            AsyncStorage.setItem("tokenUser",dataJson.tokenUser)
+
         }
         }
         

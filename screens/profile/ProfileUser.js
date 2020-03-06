@@ -1,23 +1,46 @@
-import React,{useState} from 'react';
-import { StyleSheet, View, Text,TouchableOpacity,ScrollView } from 'react-native';
+import React,{useState, useEffect} from 'react';
+import { StyleSheet, View, Text,TouchableOpacity,AsyncStorage } from 'react-native';
 import { Avatar, Icon, Overlay, Input,Header} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import ProfileModif from './ProfileModif';
 import {connect} from 'react-redux';
+import { dateFnsLocalizer } from 'react-big-calendar';
 
 function ProfileUser({navigation}) {
   const [modifier,setModifier]=useState(false)
-  const [nom,setNom]=useState('')
-  const [prenom,setPrenom]=useState('')
-  const [birthday, setBirthday]=useState('')
-  const [phone, setPhone]=useState('')
-  const [mail,setMail]=useState('')
-  const [adresse,setAdresse]=useState('')
-  const [ville,setVille]=useState('')
-  const [codeP,setCodeP]=useState('')
+  const [user,setUser]=useState('')
+ 
   
 if (modifier===false) {
-  console.log("test1",codeP)
+  
+const [userToken,setUserToken]=useState("")
+
+console.log("test",userToken)
+useEffect(() => {  
+  
+  
+  
+  console.log("hghghg")
+  async function detailProfil(){
+    
+            var data = await AsyncStorage.getItem("tokenUser");
+           //setUserToken(data);  
+
+            var dataProfile = await fetch("http://10.2.5.190:3000/profile",{
+              method: 'POST',
+              headers: {'Content-Type':'application/x-www-form-urlencoded'},
+              body: `tokenUser=${data}`
+            });
+            var profile = await dataProfile.json();
+            console.log('get json')
+             setUser(profile)
+            }
+            detailProfil();
+            
+            
+          }, []);
+      
+      console.log(user)
   
   return (
     
@@ -33,31 +56,31 @@ if (modifier===false) {
             />
             <View style={{position:'absolute', left:220, top:5}}>
               <Text style={styles.title}>Nom</Text>
-              <Text style={styles.description}>Guevara</Text>
+              <Text style={styles.description}>{user.userfirstname}</Text>
             </View>
             <View style={{position:'absolute', left:220, top:55}}>
               <Text style={styles.title} >Prénom</Text>
-              <Text style={styles.description} >Marion</Text>
+              <Text style={styles.description} >{user.userlastname}</Text>
             </View>
             <View style={{position:'absolute', left:220, top:105}}>
               <Text style={styles.title}>Téléphone</Text>
-              <Text style={styles.description}>06 12 34 56 78</Text>
+              <Text style={styles.description}>{user.phone}</Text>
             </View>
             <View  style={{position:'absolute', left:20, top:155}}>
               <Text style={styles.title}>Email</Text>
-              <Text style={styles.description}>marionguevara@guevara.fr</Text>
+              <Text style={styles.description}>{user.email}</Text>
             </View>
             <View  style={{position:'absolute', left:20, top:205}}>
               <Text style={styles.title}>Adresse</Text>
-              <Text style={styles.description}>24bis rue de la Machine, Paris</Text>
+              <Text style={styles.description}>{user.address}, {user.city}</Text>
             </View>
             <View style={{position:'absolute', left:20, top:255}}>
               <Text style={styles.title}>Code Postal</Text>
-              <Text style={styles.description}>75010</Text>
+              <Text style={styles.description}>{user.zipcode}</Text>
             </View>
             <View style={{position:'absolute', left:20, top:305}}>
               <Text style={styles.title}>Mot de passe</Text>
-              <Text style={styles.description}>***********</Text>
+              <Text style={styles.description}>**********</Text>
             </View>
           </View>
           <View 

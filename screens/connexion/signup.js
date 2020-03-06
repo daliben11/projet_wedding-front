@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import LogupForm from './logupform'
 
 /* SIGN-IN */
@@ -7,12 +7,12 @@ function Signup ( props ) {
 
 	const handleSignUp = () => {
 		
-		props.navigation.navigate( 'Mes Mariages' );
+		props.navigation.navigate( 'Enter' );
 		props.setLogin({status: true});	
 	}
 	
 	const handleSignIn = () => {
-		props.navigation.navigate( 'SignIn' );		
+		props.navigation.navigate( 'SignIn' );
 	}
 
     return (
@@ -20,12 +20,14 @@ function Signup ( props ) {
                 
                 <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
-                    <View style={styles.logoContainer}>
+                    <TouchableOpacity style={styles.logoContainer}
+                    	onPress={()=>props.navigation.navigate( 'Home' )}
+                    >
 		                  <Image 
 		                  style={styles.logo}
-		                  source={require('../../assets/logo1.png')} 
+		                  source={require('../../assets/logo1.png')}
 		                  />
-                    </View>
+                    </TouchableOpacity>
 
                     <View>
                         <LogupForm signup={handleSignUp} signin={handleSignIn} />
@@ -54,4 +56,4 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Signup
+export default Signup ;
