@@ -81,6 +81,7 @@ function AddWedding ( props ) {
 						<Icon name='check' type='antdesign' color='#000' 
 							onPress={ () => {
 								props.setMyWedding( {
+									status: true,
 									bride: brideName, 
 									groom: groomName, 
 									city: city, 
@@ -166,12 +167,13 @@ const styles = StyleSheet.create({
 
 
 
-//function mapStateToProps(state) {
-//  return { 
-////  	photoUrlList: state.photoUrlList,
-////  	username: state.username,
-//  }
-//}
+function mapStateToProps(state) {
+  return { 
+	 	isLogin: state.isLogin,
+	 	myWedding: state.myWedding,
+//  	username: state.username,
+  }
+}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -183,7 +185,7 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(
-  null, 
+  mapStateToProps, 
   mapDispatchToProps
 )( AddWedding );
 
