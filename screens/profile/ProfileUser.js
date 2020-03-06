@@ -90,7 +90,11 @@ useEffect(() => {
               backgroundColor: '#FAEBE4', 
               flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
             }}>
-            <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  onPress={() => {setModifier(true)}}>
+            <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
+            	onPress={() => {
+            		setModifier(true);
+            		props.navigation.navigate( 'ProfilEdit' );     		
+            }}>
                 <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Modifier mon profil</Text>
                 <Icon containerStyle={{paddingLeft: 5}} name='edit' type='feather' color='grey' />
             </TouchableOpacity>

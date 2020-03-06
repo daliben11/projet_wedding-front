@@ -16,6 +16,8 @@ import { Icon } from 'react-native-elements';
 import SideBar from './SideBar'
 import HeaderNav from '../screens/HeaderNav'
 
+import Accueil from '../screens/Accueil'
+
 import connection from '../screens/connexion/connection';
 import signin from '../screens/connexion/signin';
 import signup from '../screens/connexion/signup';
@@ -39,6 +41,7 @@ import Prestations from '../screens/prestataires/Prestations';
 
 function NavigationController( props ) {
 	var App;
+	
 	
 	console.log('myWedding exists? ', props.myWedding.status);
 	
@@ -64,7 +67,7 @@ function NavigationController( props ) {
 	const stackProfil = createStackNavigator({ 
 		'ProfilUser': ProfilUser, 
 		'ProfilEdit': ProfilEdit,
-		},  
+		}, 
 		{ headerMode: 'none' } 
 	);
 	
@@ -168,7 +171,7 @@ function NavigationController( props ) {
 					  drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
 					}
 				},
-				AccueilScreen: {
+				DashboardScreen: {
 					screen: dashboardBottom,
 					navigationOptions: {
 					  title: "Dashboard",
@@ -228,7 +231,15 @@ function NavigationController( props ) {
 		}
 	);		
 
-
+		
+	
+	const stackAccueil = createStackNavigator({ 
+		'Accueil':	Accueil,
+		'Drawer':		DrawerNavigator
+		},  
+		{ headerMode: 'none' } 
+	);
+	
 	
 	//if ( !props.isLogin.status ) { 	//}
 		
@@ -237,16 +248,16 @@ function NavigationController( props ) {
 		'Home': 	connection, 
 		'SignIn': signin,
 		'SignUp': signup,
-		'Enter': DrawerNavigator,
+		'Enter':	stackAccueil,
 		},  
 		{ headerMode: 'none' } 
 	);
 	
 	
 	App = props.isLogin.status
-		? createAppContainer( DrawerNavigator )
+		? createAppContainer( stackAccueil )
 		: createAppContainer( stackConnexion ) ;
-	
+		
 	return (
 		<App />
 	);

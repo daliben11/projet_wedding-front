@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 
 
 function ProfileModif(onSubmitStatut) {
+
   const [modifier,setModifier]=useState(false)
   const [nom,setNom]=useState('')
   const [prenom,setPrenom]=useState('')
