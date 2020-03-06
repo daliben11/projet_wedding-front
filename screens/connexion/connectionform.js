@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, SocialIcon } from 'react-native-elements';
 import { View, Image, StyleSheet } from 'react-native';
 
+
 /* CONNECTIONFORM */
 function Connectionform( props ) {
     return (
