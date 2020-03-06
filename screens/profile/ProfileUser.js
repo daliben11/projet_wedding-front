@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet, View, Text,TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, View, Text,TouchableOpacity,AsyncStorage } from 'react-native';
 import { Avatar, Icon, Overlay, Input,Header} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import ProfileModif from './ProfileModif';
@@ -18,6 +18,9 @@ function ProfileUser({navigation}) {
   
 if (modifier===false) {
   console.log("test1",codeP)
+
+  AsyncStorage.getItem("tokenUser",data)
+  console.log(data)
   
   return (
     
