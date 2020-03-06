@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import { StyleSheet, View, Text, ImageBackground, ScrollView } from 'react-native';
 import { Avatar,Header, ListItem, Icon}  from 'react-native-elements';
 import Timeline from 'react-native-timeline-flatlist';
+import HeaderNav from '../HeaderNav';
 
 
 
@@ -18,49 +19,51 @@ export default function Guestprogramme( props ) {
       
         
 
-    <View style={{flex:1, marginTop: 39}}> 
+    <View style={{flex:1}}> 
+    
+       <HeaderNav nom='Programme'/>
 
-        <ImageBackground  source={require('../../assets/mariagefondecran.jpg')} style={{flex:1.3}}>
-            
-            <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginTop: 170}}> 
-            	Janet & John
-            </Text>
-            <Text 
-            	style={{
-            		color: 'white', 
-            		fontFamily:'greatvibes', 
-            		fontSize: 20, 
-            		marginBottom: 20, 
-            		marginRight: 95, 
-            		marginLeft: 95}} >
-            	23/08/2020
-            </Text>
+          <View style={{flex:1}}>
+              <ImageBackground  style={{flex:1}} source={require('../../assets/mariagefondecran.jpg')} >
+                  
+              <Text  style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginBottom: 5, marginTop: 120}}>    
+                   'Janet & John '
+                </Text>
+                <Text 
+                  style={{
+                    color: 'white', 
+                    fontFamily:'greatvibes', 
+                    fontSize: 20, 
+                    marginBottom: 20, 
+                    marginRight: 95, 
+                    marginLeft: 95}} >
+                  23/08/2020
+                </Text>
+ 
+              </ImageBackground>
+            </View>
 
-        </ImageBackground>
-        
-        <View style={{flex: 0.3, backgroundColor: '#FAEBE4' }}>
-            <Text h4 
-            	style={{ textAlign:'center',fontWeight: 'bold', fontFamily:'greatvibes'}} 
-            	style={styles.container} > 
-            	200 jours 11 Heures 37 min 34 s
-            </Text>
-        </View>
+             <View >
+              <View style={{ backgroundColor: '#FAEBE4' }}>
+                  <Text  h4
+                    style={styles.container} > 
+                    200 jours 11 Heures 37 min 34 s
+                  </Text>
+              </View>
+             </View>
 
         <Text h4 
-        	style={{textAlign:'center', fontFamily:'greatvibes',fontWeight: 'bold'}}  
-        	style={styles.container} >
-        	Hello cher Etienne.
-        	Nous avons la joie et le plaisir de vous convier à notre mariage qui aura lieu au domaine du Morlais en Ardèche le 23/08/2020.
+            style={styles.container} >
+            Hello cher Etienne.
+            Nous avons la joie et le plaisir de vous convier à notre mariage qui aura lieu au domaine du Morlais en Ardèche le 23/08/2020.
         </Text>
 
         
-        <ScrollView style={{flex:1}}>  
-
-          <Timeline style={{marginTop : 15}}
-            data={data}
-          />
-
-        </ScrollView>
+          <ScrollView style={{flex:1}}>  
+            <Timeline style={{marginTop : 15}}
+              data={data}
+            />
+          </ScrollView>
                 
     </View>
 	);

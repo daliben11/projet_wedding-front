@@ -33,6 +33,7 @@ import Dashboard from '../screens/Dashboard';
 import Invites from '../screens/guest/Guest';
 import Budget from '../screens/budget/Budget';
 import Tasks from '../screens/tasks/Tasks';
+import AddTasks from '../screens/tasks/AddTasks';
 import Prestations from '../screens/prestataires/Prestations';
 
 
