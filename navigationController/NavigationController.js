@@ -40,28 +40,25 @@ function NavigationController( props ) {
 	
 	console.log('login ', !props.isLogin.status);
 	
-	//if ( !props.isLogin.status ) {
-			
-		// Connexion screens à créer que si l'user n'est pas enregistré dans le local storage
-		const stackConnexion = createStackNavigator({ 
-			'Home': 	connection, 
-			'SignIn': signin,
-			'SignUp': signup,
-			profilBottom: profilBottom,
-			},  
-			{ headerMode: 'none' } 
-		);
-		
-		//App = createAppContainer( stackConnexion ) ;
 
-	//}
-	
+			
+	// Vue des mariages
+	const stackMariage = createStackNavigator({ 
+		'MyWeddings': MesMariagesScreen,
+		'GuestPage': GuestPage,
+		'Dashboard': Dashboard,
+		},  
+		{ headerMode: 'none' }
+	);
+
+
 	const stackProfil = createStackNavigator({ 
 			'ProfilUser': ProfilUser, 
 			'ProfilEdit': ProfilEdit,
 			},  
 			{ headerMode: 'none' } 
 		);
+	
 	
 	// Profil et Espace Perso
 	const profilBottom = createBottomTabNavigator({
@@ -92,7 +89,21 @@ function NavigationController( props ) {
 		}
 	);
 	
-	
+	//if ( !props.isLogin.status ) {
+		
+		// Connexion screens à créer que si l'user n'est pas enregistré dans le local storage
+		const stackConnexion = createStackNavigator({ 
+			'Home': 	connection, 
+			'SignIn': signin,
+			'SignUp': signup,
+			profilBottom: profilBottom,
+			},  
+			{ headerMode: 'none' } 
+		);
+		
+		//App = createAppContainer( stackConnexion ) ;
+
+	//}
 	
 	if ( props.myWedding.status ) {	
 		// stack des dashboard
@@ -122,7 +133,7 @@ function NavigationController( props ) {
 		{		
 		   HomeConnection: {
 		   // HomeConnection sera effacé du drawer qd on aura fini le dev, car elle ne sera pas définie si le user se connecte pour une deuxième fois.
-	      screen: connection,
+	      screen: stackConnexion,
 	      navigationOptions: {
 	        title: "Home connection",
 	        drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
@@ -136,14 +147,14 @@ function NavigationController( props ) {
 	      }
 	    },
 	    MonProfilScreen: {
-	      screen: ProfileStack,
+	      screen: stackProfil,
 	      navigationOptions: {
 	        title: "Mon Profil",
 	        drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
 	      }
 	    },
 	    AccueilScreen: {
-	      screen: bottomDashboard,
+	      screen: Dashboard,
 	      navigationOptions: {
 	        title: "Dashboard",
 	        drawerIcon: ({ tintColor }) => <Feather name="home" size={16} color={tintColor} />
@@ -168,17 +179,6 @@ function NavigationController( props ) {
 		}
 	);
 		
-		
-	// Vue des mariages
-	const stackMariage = createStackNavigator({ 
-		'MyWeddings': MesMariagesScreen,
-		'GuestPage': GuestPage,
-		'Dashboard': bottomDashboard,
-		},  
-		{ headerMode: 'none' }
-	);
-
-
 
 
 	
