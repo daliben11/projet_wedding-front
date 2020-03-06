@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, TouchableOpacity , Text} from 'react-native';
 import { Icon, Input,Header} from 'react-native-elements';
 
 
@@ -10,21 +10,7 @@ import { Icon, Input,Header} from 'react-native-elements';
   return (
   <View style={{backgroundColor:"#F5F8FB",flex:1}}>
 
-      <Header
-            leftComponent={<Icon
-              onPress={() => {setModifier(false)}}
-              name='close'
-            />}
-            rightComponent={<Icon
-              onPress={() => {setModifier(false)}}
-              name='check'
-            />}
-            centerComponent={{ text: "Ajouter un presta ", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
-            containerStyle={{
-                backgroundColor: '#FAEBE4',
-                height: 84,
-            }}>
-        </Header>
+   
     
   <ScrollView style={{flex:1}}>
     <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
@@ -61,6 +47,21 @@ import { Icon, Input,Header} from 'react-native-elements';
 
     </View>
   </ScrollView>
+                  <View 
+                    style={{
+                      width:'100%', height:'auto',
+                      padding: 5,
+                      backgroundColor: '#FAEBE4', 
+                      flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
+                    }}>
+                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
+                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter une nouvelle dépense</Text>
+                        <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
+                        {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
+                    </TouchableOpacity>
+                  
+                 </View>
+  
 </View>
   )
 }

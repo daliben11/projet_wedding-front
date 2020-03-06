@@ -16,8 +16,8 @@ export default function Guest({navigation}) {
   const [ville,setVille]=useState('')
   const [codeP,setCodeP]=useState('')
   
-if (modifier===false) {
-  console.log("CAARRRLL")
+
+  
 
   
   return (
@@ -95,23 +95,22 @@ if (modifier===false) {
                         rightAvatar={ <Icon name='trash-2' type='feather' color='#31AE89' size={25}/>}
                         title='Pnl'
                         titleStyle={styles.titleView}
-                         bottomDivider
+                         
                         />
                    
                  </ScrollView>
 
             </View>
 
-                <View 
+            <View 
                     style={{
                       width:'100%', height:'auto',
                       padding: 5,
                       backgroundColor: '#FAEBE4', 
                       flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
                     }}>
-                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
-                    	onPress={() => {setModifier(true)}}>
-                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Ajouter un invité</Text>
+                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
+                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter un invité</Text>
                         <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
                         {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
                     </TouchableOpacity>
@@ -121,13 +120,6 @@ if (modifier===false) {
 
    </View>
   )
- } else {
-  return (
-    <AddGuest nom='Ajouter un invité'/>
-  )
- }
-
-
  };
 
   const styles = StyleSheet.create({

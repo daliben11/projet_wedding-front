@@ -25,7 +25,7 @@ if (modifier===false) {
 
        
           <View style={{flex:1}} >
-
+                <View >
                   <ListItem 
                       rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='#31AE89'  size={35}/>}
                       title='Budget (1 000 € sur 30 000€)'
@@ -35,31 +35,15 @@ if (modifier===false) {
                     </View>
                     }
                   />
-        
-                 <View 
-                    style={{
-                      width:'100%', height:'auto',
-                      padding: 5,
-                      backgroundColor: '#FAEBE4', 
-                      flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
-                    }}>
-                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  onPress={() => {setModifier(true)}}>
-                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter une nouvelle dépense</Text>
-                        <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
-                        {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
-                    </TouchableOpacity>
-                  
+
                  </View>
-
-
-            <ScrollView  stickyHeaderIndices={[8]} style={{marginBottom: 10, marginTop:5}} >
-
-              <View style={{flex: 1, flexDirection: 'row', marginBottom:40, marginLeft:15, marginRight:15, marginTop:10}}>
-                <View style={{flex: 1,width:50, height: 60, backgroundColor: '#31AE89'}}><Text style={styles.titleView}> Budget  {"\n"}12 000€</Text></View>
-                <Text>       </Text>   
-                <View style={{flex: 1 , width: 50, height: 60, backgroundColor: '#31AE89'}}><Text style={styles.titleView}> Montant payé {"\n"}      10 000€</Text></View>
-              </View>
-            
+                    <View style={{flex: 1, flexDirection: 'row', marginBottom:40, marginLeft:15, marginRight:15, marginTop:10}}>
+                    <View style={{flex: 1,width:50, height: 60, backgroundColor: '#31AE89'}}><Text style={styles.titleView}> Budget  {"\n"}12 000€</Text></View>
+                    <Text>       </Text>   
+                    <View style={{flex: 1 , width: 50, height: 60, backgroundColor: '#31AE89'}}><Text style={styles.titleView}> Montant payé {"\n"}      10 000€</Text></View>
+                 </View>
+           
+            <ScrollView  stickyHeaderIndices={[8]} style={{marginBottom: 10, marginTop:30}} >
               <ScrollView >
                 <View style={{flex: 1, flexDirection: 'row', marginTop: 0}}>
 
@@ -152,12 +136,24 @@ if (modifier===false) {
                     </Card>
                 </View>
               </ScrollView>
-              
             </ScrollView>
             
-            
-          </View>
-            
+        </View>
+
+                 <View 
+                    style={{
+                      width:'100%', height:'auto',
+                      padding: 5,
+                      backgroundColor: '#FAEBE4', 
+                      flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
+                    }}>
+                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
+                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter une nouvelle dépense</Text>
+                        <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
+                        {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
+                    </TouchableOpacity>
+                  </View>
+
 
      </View>
   )
