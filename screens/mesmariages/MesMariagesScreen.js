@@ -31,10 +31,7 @@ function MesMariagesScreen( props ) {
 	
 		return(
 
-			<View style={{
-					flex:1,
-					backgroundColor:'#F5F8FB'
-				}}>
+			<View style={{flex:1, backgroundColor:'#FFF'}}  >
 
 				<HeaderNav nom='Mon Mariage'/>			
 				
