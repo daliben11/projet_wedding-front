@@ -16,7 +16,7 @@ function MesMariagesScreen( props ) {
 	const [createNewWed, setCreateNewWed] = useState( false );
 	
 	const changePage = (val) => {
-		console.log('create new wed  ', createNewWed );
+		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
 		setCreateNewWed( val );
 	}
 
@@ -36,7 +36,7 @@ function MesMariagesScreen( props ) {
 					backgroundColor:'#F5F8FB'
 				}}>
 
-				<HeaderNav nom='Mon Mariage'/>			
+				<HeaderNav nom='Mon Mariage'  />
 				
 				
 					
