@@ -31,6 +31,7 @@ import Dashboard from '../screens/Dashboard';
 import Invites from '../screens/guest/Guest';
 import Budget from '../screens/budget/Budget';
 import Tasks from '../screens/tasks/Tasks';
+import AddTasks from '../screens/tasks/AddTasks';
 import Prestations from '../screens/prestataires/Prestations';
 
 
@@ -119,6 +120,7 @@ function NavigationController( props ) {
 		'Dashboard': stackDashboard,
 		'Mes tâches': Tasks,
 		'Invités': Invites,
+		'Prestataires': Prestations,
 		'Budget': Budget
 		},
 		{ defaultNavigationOptions: ({ navigation }) => ({
@@ -134,6 +136,10 @@ function NavigationController( props ) {
 					else if (navigation.state.routeName == 'Invités') {
 						iconName = 'md-people';
 						iconType = 'ionicon';
+					}
+					else if (navigation.state.routeName == 'Prestataires') {
+						iconName = 'playlist-add';
+						iconType = 'material';
 					}
 					else if (navigation.state.routeName == 'Budget') {
 						iconName = 'euro-symbol';

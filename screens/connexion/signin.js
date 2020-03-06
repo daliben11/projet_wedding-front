@@ -10,8 +10,9 @@ import LoginForm from './loginform'
 function Signin( props ) {
 
 	const handleSignIn = () => {
-		props.navigation.navigate( 'Enter' );		
-		props.setLogin({status: true});
+		props.navigation.navigate( 'Mes Mariages' );		
+        /* props.setLogin({status: true}); */
+        console.log(props)
 	}
   
   const handleSignUp = () => {
