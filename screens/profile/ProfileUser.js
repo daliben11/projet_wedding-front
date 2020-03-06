@@ -14,28 +14,31 @@ function ProfileUser({navigation}) {
 if (modifier===false) {
   
 const [userToken,setUserToken]=useState("")
-  AsyncStorage.getItem("tokenUser",
-        function(err, data) { 
-          console.log(data);
-          setUserToken(data);
-        } 
-        )
 
 console.log("test",userToken)
-        useEffect(async() => {  
-          async function detailProfil(){
+useEffect(() => {  
+  
+  
+  
+  console.log("hghghg")
+  async function detailProfil(){
+    
+            var data = await AsyncStorage.getItem("tokenUser");
+           //setUserToken(data);  
+
             var dataProfile = await fetch("http://10.2.5.190:3000/profile",{
               method: 'POST',
               headers: {'Content-Type':'application/x-www-form-urlencoded'},
-              body: `tokenUser=${userToken}`
+              body: `tokenUser=${data}`
             });
             var profile = await dataProfile.json();
-            setUser(profile)
-            console.log(profile)
-          }
-        detailProfil();
-        
-      }, []);
+            console.log('get json')
+             setUser(profile)
+            }
+            detailProfil();
+            
+            
+          }, []);
       
       console.log(user)
   
