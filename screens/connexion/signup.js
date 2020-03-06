@@ -7,7 +7,12 @@ function Signup ( props ) {
 
 	const handleSignUp = () => {
 		
-		props.navigation.navigate( 'Mes Mariages' );		
+		props.navigation.navigate( 'Mes Mariages' );
+		props.setLogin({status: true});	
+	}
+	
+	const handleSignIn = () => {
+		props.navigation.navigate( 'SignIn' );		
 	}
 
     return (
@@ -23,7 +28,7 @@ function Signup ( props ) {
                     </View>
 
                     <View>
-                        <LogupForm signup={handleSignUp} />
+                        <LogupForm signup={handleSignUp} signin={handleSignIn} />
                     </View>
 
                 </KeyboardAvoidingView>

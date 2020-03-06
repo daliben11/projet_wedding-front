@@ -14,23 +14,29 @@ import {createStore, combineReducers}  from 'redux';
 
 const store = createStore(combineReducers( { myWedding, isLogin } ));
 
+
+
+
 export default ( ) => {
+  
+  const [fontLoaded, setFontLoaded]= useState(false);
 
   const [fontLoaded, setFontLoaded]= useState(false);
 
-async function getFonts(){
-    await Font.loadAsync({
-      'catamaran-semibold': require ('./assets/fonts/Catamaran-SemiBold.ttf'),
-      'catamaran-regular': require ('./assets/fonts/Catamaran-Regular.ttf'),
-      'greatvibes': require ('./assets/fonts/GreatVibes-Regular.ttf'),
-    })
-}
 
-    
+	async function getFonts(){
+		await Font.loadAsync({
+		  'catamaran-semibold': require ('./assets/fonts/Catamaran-SemiBold.ttf'),
+		  'catamaran-regular': require ('./assets/fonts/Catamaran-Regular.ttf'),
+		  'greatvibes': require ('./assets/fonts/GreatVibes-Regular.ttf'),
+		})
+	}
+
+		
   if (fontLoaded){
     return (
       <Provider store={store}>
-          <NavigationController />
+      	<NavigationController />
       </Provider>
           )
   } else {

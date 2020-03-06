@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import { StyleSheet, View, Image, 
-	KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
+	KeyboardAvoidingView,  TouchableOpacity } from 'react-native';
 import ConnectionForm from './connectionform'
 
 /* CONNECTION */
@@ -16,11 +18,11 @@ function Connection( props ) {
 
 
     return (
-        <ScrollView >
+
             <KeyboardAvoidingView behavior="padding" style={styles.container}>
 
                 <TouchableOpacity style={styles.logoContainer}
-				        	onPress={ ()=>{ props.navigation.navigate('Mes Mariages') } }>
+				        	onPress={ ()=>{ props.navigation.navigate('profilBottom') } }>
 				           <Image 
 						         style={styles.logo}
 						         source={require('../../assets/logo1.png')}
@@ -33,7 +35,7 @@ function Connection( props ) {
                 </View>
                 
             </KeyboardAvoidingView>
-        </ScrollView >
+
     )
 }
 
@@ -54,4 +56,25 @@ const styles = StyleSheet.create({
     },
 })
 
-export default Connection
+
+function mapStateToProps(state) {
+  return { 
+	 	isLogin: state.isLogin,
+//  	username: state.username,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setLogin: function ( val ) {
+    	 dispatch( {type: 'setLogin', login: val } )
+    }
+  }
+}
+
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)( Connection );
+
