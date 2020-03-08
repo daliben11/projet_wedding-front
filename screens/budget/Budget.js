@@ -11,6 +11,15 @@ export default function Budget({navigation}) {
   const [modifier,setModifier]=useState(false)
   const [budget,setBudget]=useState(0)
  
+  const listePrestataire = [
+    { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
+    { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
+    { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
+    { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
+    { name:'Robe',img:require('../../assets/robe.jpg')},
+    { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
+    { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
+    { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
 
 
   
@@ -44,8 +53,21 @@ if (modifier===false) {
                  </View>
            
             <ScrollView  stickyHeaderIndices={[8]} style={{marginBottom: 10, marginTop:30}} >
-              <ScrollView >
-                <View style={{flex: 1, flexDirection: 'row', marginTop: 0}}>
+              <ScrollView   style={{ marginBottom: 10, marginTop:5}} stickyHeaderIndices={[8]}  >
+              
+                <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around'}} >
+                    
+                          {listePrestataire.map((u,i)=>{
+                          return(
+                              <TouchableOpacity>
+                                <Card key={i} image={u.img} containerStyle={{ width: 150, height: 220}}  >
+                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.name}{"\n"}(1000 €)  </Text>
+                                </Card>
+                              </TouchableOpacity>
+                            )
+                            })}
+                </View>
+                {/* <View style={{flex: 1, flexDirection: 'row', marginTop: 0}}>
 
                         <Card  containerStyle={{padding: 0, marginLeft:13}}>
                           <View >
@@ -134,7 +156,7 @@ if (modifier===false) {
                       <Text style={{marginBottom: 10}} style={styles.card} >Bijoux {"\n"}(900€)</Text>
                       </View>
                     </Card>
-                </View>
+                </View> */}
               </ScrollView>
             </ScrollView>
             

@@ -16,7 +16,7 @@ function Accueil () {
   		
   		
   		<TouchableOpacity>
-  			<Image source{{require('../assets/icons/icons8-invitation-100.png')}}/>
+  			<Image source={require('../assets/icons/icons8-invitation-100.png')}/>
 		    <Text>Je suis invité·e à un mariage</Text>
   		</TouchableOpacity>
   		  

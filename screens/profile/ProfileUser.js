@@ -26,7 +26,7 @@ useEffect(() => {
             var data = await AsyncStorage.getItem("tokenUser");
            //setUserToken(data);  
 
-            var dataProfile = await fetch("http://10.2.5.190:3000/profile",{
+            var dataProfile = await fetch("http://192.168.0.44:3000/profile",{
               method: 'POST',
               headers: {'Content-Type':'application/x-www-form-urlencoded'},
               body: `tokenUser=${data}`
