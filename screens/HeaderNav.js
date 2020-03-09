@@ -7,7 +7,7 @@ function HeaderNav( props ){
             <Header
                 leftComponent={
 		              <Icon name='menu' color='#000'
-											onPress={ () => {props.navigation.openDrawer();} }
+											onPress={ () => { props.navigation.openDrawer(); } }
 									/>
 								}
                 centerComponent={{ text: `${props.nom} `, style: {fontFamily:'greatvibes', color: '#000', fontSize:30, marginTop: 5 } }}
