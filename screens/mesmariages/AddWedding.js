@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import { 
 	View,
-	StyleSheet, TouchableOpacity, Text  } from 'react-native';
+	StyleSheet, TouchableOpacity, Text, AsyncStorage, TextInput  } from 'react-native';
 
 import { Icon, Header, Input, Button } from 'react-native-elements';
 
@@ -12,17 +12,48 @@ import DatePicker from 'react-native-datepicker'
 
 
 
+
+
+
 function AddWedding ( props ) {
 
-	const [brideName, setBrideName] = useState('');
-	const [groomName, setGroomName] = useState('');
+	const [brideName, setBrideName] = useState('Janet');
+	const [groomName, setGroomName] = useState('John');
 	const [city, setCity] = useState('');
-	
-
+	const [userToken,setUserToken] = useState('');
+	const [user,setUser]=useState('');
+	const [descriptif, setDescriptif] = useState('');
 	  
 	const [date, setDate] = useState('')
 	console.log(date)
  
+	useEffect( () => {  
+	
+		async function detailProfil(){
+			var data = await AsyncStorage.getItem("tokenUser");
+		  
+			setUserToken(data);  
+			var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
+			  method: 'POST',
+			  headers: {'Content-Type':'application/x-www-form-urlencoded'},
+			  body: `tokenUser=${data}`
+			});
+			var profile = await dataProfile.json();
+			 setUser(profile)
+			if (profile.sexe=='homme'){
+				setGroomName(profile.userlastname)
+			} else {
+				setBrideName(profile.userlastname)
+			}
+			console.log('affiche moi le nom du marié',groomName)
+
+			}
+			detailProfil();
+	
+	},[]);
+
+	
+
 	
 
 
@@ -71,13 +102,15 @@ function AddWedding ( props ) {
 				<Input
 					containerStyle={styles.input}
 					label='PRÉNOM DE LA MARIÉE'
-					placeholder='Janet'
+					placeholder='John'
+					value={brideName}
 					onChangeText={ (val) => setBrideName(val) }
 				/>
 				<Input
 					containerStyle={styles.input}
 					label='PRÉNOM DU MARIÉ'
-					placeholder='John'
+					placeholder={groomName}
+					value={groomName}
 					onChangeText={ (val) => setGroomName(val) }
 		      style={styles.input} 
 				/>
@@ -88,11 +121,6 @@ function AddWedding ( props ) {
 					onChangeText={ (val) => setCity(val) }
 				/>
 				
-				
-
-				
-
-
 				<View style={{margin: 10}}>
                   <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
                     <DatePicker
@@ -118,7 +146,23 @@ function AddWedding ( props ) {
                     }}
                     onDateChange={(date) => setDate(date)}
                   />
-            </View>
+            	</View>
+				{/* <Input
+					containerStyle={styles.input}
+					label='Descriptif du mariage'
+
+					onChangeText={ (val) => setCity(val) }
+				/> */}
+				<TextInput
+					placeholder='INPUT WITH CUSTOM ICON'
+					style={{margin:20, backgroundColor:'white',
+					paddingTop: 10}}
+					
+					multiline={true}
+					numberOfLines={4}
+					onChangeText={(text) => setCity({text})}
+					placeholder='Veuillez écrire une petite description de votre mariage'
+					/>
 
 
 
