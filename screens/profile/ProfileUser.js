@@ -24,7 +24,7 @@ function ProfileUser ( props ) {
 		    var data = await AsyncStorage.getItem("tokenUser");
 		  
 		    setUserToken(data);  
-		    var dataProfile = await fetch("http://10.2.5.190:3000/profile",{
+		    var dataProfile = await fetch("https://tranquil-journey-96536.herokuapp.com/profile",{
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 		      body: `tokenUser=${data}`
@@ -44,40 +44,46 @@ function ProfileUser ( props ) {
     <View style={{backgroundColor:"#F5F8FB",flex:1}} >
       <HeaderNav nom='Mon Profil'/> 
           <View style={{flex:1}} >
-            <Avatar 
-              containerStyle={{ marginLeft: 30, marginTop: 10}} 
-              size="xlarge" 
-              rounded 
-              icon={{ name: 'home' }} 
-              source={{uri:'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-            />
-            <View style={{position:'absolute', left:220, top:5}}>
-              <Text style={styles.title}>Nom</Text>
-              <Text style={styles.description}>{user.userfirstname}</Text>
+            <View style={{flex:0.5 ,alignItems:'center'}} >
+              <Avatar 
+                containerStyle={{marginLeft: 30, marginTop: 10}} 
+                size="xlarge" 
+                rounded 
+                icon={{ name: 'home' }} 
+                source={{uri:'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
+              />
+
             </View>
-            <View style={{position:'absolute', left:220, top:55}}>
-              <Text style={styles.title} >Prénom</Text>
-              <Text style={styles.description} >{user.userlastname}</Text>
-            </View>
-            <View style={{position:'absolute', left:220, top:105}}>
-              <Text style={styles.title}>Téléphone</Text>
-              <Text style={styles.description}>{user.phone}</Text>
-            </View>
-            <View  style={{position:'absolute', left:20, top:155}}>
-              <Text style={styles.title}>Email</Text>
-              <Text style={styles.description}>{user.email}</Text>
-            </View>
-            <View  style={{position:'absolute', left:20, top:205}}>
-              <Text style={styles.title}>Adresse</Text>
-              <Text style={styles.description}>{user.address}, {user.city}</Text>
-            </View>
-            <View style={{position:'absolute', left:20, top:255}}>
-              <Text style={styles.title}>Code Postal</Text>
-              <Text style={styles.description}>{user.zipcode}</Text>
-            </View>
-            <View style={{position:'absolute', left:20, top:305}}>
-              <Text style={styles.title}>Mot de passe</Text>
-              <Text style={styles.description}>**********</Text>
+            <View style={{flex:1, alignItems:'flex-start',marginLeft: 20}}>
+              <View >
+                <Text style={styles.title}>Nom</Text>
+                <Text style={styles.description}>{user.userfirstname}</Text>
+              </View>
+              <View >
+                <Text style={styles.title} >Prénom</Text>
+                <Text style={styles.description} >{user.userlastname}</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Téléphone</Text>
+                <Text style={styles.description}>{user.phone}</Text>
+              </View>
+              <View  >
+                <Text style={styles.title}>Email</Text>
+                <Text style={styles.description}>{user.email}</Text>
+              </View>
+              <View  >
+                <Text style={styles.title}>Adresse</Text>
+                <Text style={styles.description}>{user.address}, {user.city}</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Code Postal</Text>
+                <Text style={styles.description}>{user.zipcode}</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Mot de passe</Text>
+                <Text style={styles.description}>**********</Text>
+              </View>
+
             </View>
           </View>
           <View 
