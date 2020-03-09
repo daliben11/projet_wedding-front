@@ -48,7 +48,7 @@ function NavigationController( props ) {
 	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
 	const stackMariage = props.myWedding.status 	
 		? createStackNavigator({ 
-			'MyWeddings': AddTasks,
+			'MyWeddings': MesMariagesScreen,
 			'GuestPage': GuestPage,
 			'Dashboard': Dashboard,
 			},  
