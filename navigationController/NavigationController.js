@@ -34,8 +34,7 @@ import Invites from '../screens/guest/Guest';
 import Budget from '../screens/budget/Budget';
 import Tasks from '../screens/tasks/Tasks';
 import Prestations from '../screens/prestataires/Prestations';
-
-
+import AddTasks from '../screens/tasks/AddTasks';
 
 
 

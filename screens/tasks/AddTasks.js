@@ -1,38 +1,29 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { Avatar, Icon, Input, Header, Button } from 'react-native-elements';
-
+import DatePicker from 'react-native-datepicker'
+import TimePicker from 'react-native-simple-time-picker';
 
 
 function AddTasks(props) {
 
-    const [date, setDate] = useState(new Date(1598051730000));
-    const [mode, setMode] = useState('date');
-    const [show, setShow] = useState(false);
-  
-    const onChange = (event, selectedDate) => {
-      const currentDate = selectedDate || date;
-      setShow(Platform.OS === 'ios');
-      setDate(currentDate);
-    };
-  
-    const showMode = currentMode => {
-      setShow(true);
-      setMode(currentMode);
-    };
-  
-    const showDatepicker = () => {
-      showMode('date');
-    };
-  
 
+  const [date, setDate] = useState('')
+  console.log(date)
+
+  const [state, setState] = useState({ 
+    selectedHours: '00', 
+    selectedMinutes: '00' 
+  })
+  console.log(state.selectedHours)
+  console.log(state.selectedMinutes)
     
     return (
-    <View style={{backgroundColor:"#F5F8FB",flex:1}}>
+    <View style={{backgroundColor:"#F5F8FB", flex:1}}>
 
       
     <ScrollView style={{flex:1}}>
-      <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
+      <View style={{backgroundColor:"#F5F8FB",flex:1, marginTop:40}}>
   
             <Input
               containerStyle={{marginTop:15}}
@@ -44,36 +35,47 @@ function AddTasks(props) {
               label='Description'
               placeholder='Par ex : Appleler Mme Dupont au 06...'
             />  
-              <Input
-              containerStyle={{marginTop:15}}
-              label='Date'
-              placeholder='Par ex : 9 septembre 2020'
-            />
-            
-{/*         <Button onPress={showDatepicker} title="Choisir la date" />
-        {show && (
-            <DateTimePicker
-            testID="dateTimePicker"
-            timeZoneOffsetInMinutes={0}
-            value={date}
-            mode={mode}
-            is24Hour={true}
-            display="default"
-            onChange={onChange}
-            />
-        )} */}
-
-            <Input
-              containerStyle={{marginTop:15}}
-              label='Heure de début'
-              placeholder='Par ex : 09h00'
-            />
-
-            <Input
-              containerStyle={{marginTop:15}}
-              label='Heure de fin'
-              placeholder='Par ex : 14h00'
-            />
+            <View style={{margin: 10}}>
+                  <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date de la tâche</Text>
+                    <DatePicker
+                    style={{width: 200, marginTop: 10}}
+                    date={date}
+                    mode="date"
+                    placeholder="Sélectionner une date"
+                    format="DD-MM-YYYY"
+                    minDate="01-01-1950"
+                    maxDate="01-01-2050"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                    }}
+                    onDateChange={(date) => setDate(date)}
+                  />
+            </View>
+            <Text style={{marginTop: 10, marginLeft: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Heure de la tâche</Text>
+            <View style={{marginTop: 1, marginLeft: 10, width: 90}}>
+              
+              <Text style={{color: '#636e72', fontWeight: 'bold', fontSize: 14}}>{state.selectedHours} h {state.selectedMinutes} min</Text>
+                  <TimePicker
+                  
+                  selectedHours={state.selectedHours}
+                  //initial Hourse value
+                  selectedMinutes={state.selectedMinutes}
+                  //initial Minutes value
+                  onChange={(hours, minutes) => setState({ 
+                        selectedHours: hours, selectedMinutes: minutes 
+                  })}
+              />
+            </View>
           
               <Input
               containerStyle={{marginTop:15}}
