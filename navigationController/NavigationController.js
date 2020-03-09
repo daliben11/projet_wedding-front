@@ -34,8 +34,7 @@ import Invites from '../screens/guest/Guest';
 import Budget from '../screens/budget/Budget';
 import Tasks from '../screens/tasks/Tasks';
 import Prestations from '../screens/prestataires/Prestations';
-
-
+import AddTasks from '../screens/tasks/AddTasks';
 
 
 
@@ -49,7 +48,7 @@ function NavigationController( props ) {
 	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
 	const stackMariage = props.myWedding.status 	
 		? createStackNavigator({ 
-			'MyWeddings': MesMariagesScreen,
+			'MyWeddings': AddTasks,
 			'GuestPage': GuestPage,
 			'Dashboard': Dashboard,
 			},  

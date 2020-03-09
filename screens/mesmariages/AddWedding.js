@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 import { 
 	View,
-	StyleSheet, TouchableOpacity  } from 'react-native';
+	StyleSheet, TouchableOpacity, Text  } from 'react-native';
 
 import { Icon, Header, Input, Button } from 'react-native-elements';
 
-import DateTimePicker from '@react-native-community/datetimepicker';
+
+import DatePicker from 'react-native-datepicker'
 
 
 
@@ -16,46 +17,16 @@ function AddWedding ( props ) {
 	const [brideName, setBrideName] = useState('');
 	const [groomName, setGroomName] = useState('');
 	const [city, setCity] = useState('');
-	const [myWeddingDate, setMyWeddingDate] = useState( Date.now() );
 	
-  const [show, setShow] = useState(false);
 
 	  
-  
-	const onChangeDate = (event, selectedDate) => {
-    const currentDate = selectedDate || myWeddingDate;
-    setMyWeddingDate( currentDate );
-  };
+	const [date, setDate] = useState('')
+	console.log(date)
  
 	
-	const dateFormat = (date) => {
-	
-			if ( typeof(date) != "date" ) {
-				date = new Date(date);
-			}
-			let day = String( date.getDate() ).padStart(2,'0'); 
-			let month = String( date.getMonth()+1 ).padStart(2,'0');
-		 	let year = String( date.getFullYear() );
-		 	
-		 	return `${day}/${month}/${year}`;
-	}
 
 
-	const Calendar = () => {
-	
-		if(show){
-			return(
-					<DateTimePicker
-						value={myWeddingDate}
-						mode="date"
-						display="default"
-						onChange={onChangeDate}
-					/>
-			);				
-		} else {
-			return(null); 
-		}
-	}
+
 
 
 	return(
@@ -117,16 +88,40 @@ function AddWedding ( props ) {
 					onChangeText={ (val) => setCity(val) }
 				/>
 				
-				<Button
-					buttonStyle={{backgroundColor: '#FAEBE4', borderColor:'grey', marginTop: 10}}
-					titleStyle={{color: '#000'}}
-					containerStyle={{width:'70%', alignSelf:'center'}}
-					title={ `Je choisie ma date ${dateFormat(myWeddingDate)}` }
-					type="outline"
-					onPress={ () => setShow( !show ) }
-				/>
+				
 
-				<Calendar/>
+				
+
+
+				<View style={{margin: 10}}>
+                  <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
+                    <DatePicker
+                    style={{width: 200, marginTop: 10}}
+                    date={date}
+                    mode="date"
+                    placeholder="Sélectionner une date"
+                    format="DD-MM-YYYY"
+                    minDate="01-01-1950"
+                    maxDate="01-01-2050"
+                    confirmBtnText="Confirm"
+                    cancelBtnText="Cancel"
+                    customStyles={{
+                      dateIcon: {
+                        position: 'absolute',
+                        left: 0,
+                        top: 4,
+                        marginLeft: 0
+                      },
+                      dateInput: {
+                        marginLeft: 36
+                      }
+                    }}
+                    onDateChange={(date) => setDate(date)}
+                  />
+            </View>
+
+
+
 
 			</View>
 
