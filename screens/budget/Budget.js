@@ -61,7 +61,7 @@ if (modifier===false) {
                           return(
                               <TouchableOpacity>
                                 <Card key={i} image={u.img} containerStyle={{ width: 150, height: 220}}  >
-                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.name}{"\n"}(1000 €)  </Text>
+                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.name}{"\n"}(1000 €)</Text>
                                 </Card>
                               </TouchableOpacity>
                             )
@@ -204,11 +204,11 @@ if (modifier===false) {
       marginTop:10,
     },
    card:{
-    marginTop:3,
     fontFamily:'greatvibes',
     fontSize: 21,
     alignSelf:'center',
     alignItems: 'center',
+    
    }
   });
 
