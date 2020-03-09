@@ -6,81 +6,84 @@ import ProfileModif from './ProfileModif';
 import {connect} from 'react-redux';
 import { dateFnsLocalizer } from 'react-big-calendar';
 
-function ProfileUser({navigation}) {
+
+
+function ProfileUser ( props ) {
   const [modifier,setModifier]=useState(false)
-  const [user,setUser]=useState('')
+  const [user,setUser] = useState('')
  
-  
-if (modifier===false) {
-  
-const [userToken,setUserToken]=useState("")
-
-console.log("test",userToken)
-useEffect(() => {  
-  
-  
-  
-  console.log("hghghg")
-  async function detailProfil(){
+		
+//	if (modifier===false) {
+		
+	const [userToken,setUserToken] = useState("");
+	console.log("test userToken ", userToken)
+	
+	useEffect( () => {  
+	
+		async function detailProfil(){
+		    var data = await AsyncStorage.getItem("tokenUser");
+		  
+		    setUserToken(data);  
+		    var dataProfile = await fetch("https://tranquil-journey-96536.herokuapp.com/profile",{
+		      method: 'POST',
+		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+		      body: `tokenUser=${data}`
+		    });
+		    var profile = await dataProfile.json();
+		    console.log('get json')
+		     setUser(profile)
+		    }
+		    detailProfil();
     
-            var data = await AsyncStorage.getItem("tokenUser");
-           //setUserToken(data);  
-
-            var dataProfile = await fetch("http://192.168.0.44:3000/profile",{
-              method: 'POST',
-              headers: {'Content-Type':'application/x-www-form-urlencoded'},
-              body: `tokenUser=${data}`
-            });
-            var profile = await dataProfile.json();
-            console.log('get json')
-             setUser(profile)
-            }
-            detailProfil();
-            
-            
-          }, []);
+	}, []);
       
-      console.log(user)
+  console.log('fetched user data from DB ', user);
   
   return (
     
     <View style={{backgroundColor:"#F5F8FB",flex:1}} >
       <HeaderNav nom='Mon Profil'/> 
           <View style={{flex:1}} >
-            <Avatar 
-              containerStyle={{ marginLeft: 30, marginTop: 10}} 
-              size="xlarge" 
-              rounded 
-              icon={{ name: 'home' }} 
-              source={{uri:'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
-            />
-            <View style={{position:'absolute', left:220, top:5}}>
-              <Text style={styles.title}>Nom</Text>
-              <Text style={styles.description}>{user.userfirstname}</Text>
+            <View style={{flex:0.5 ,alignItems:'center'}} >
+              <Avatar 
+                containerStyle={{marginLeft: 30, marginTop: 10}} 
+                size="xlarge" 
+                rounded 
+                icon={{ name: 'home' }} 
+                source={{uri:'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg'}}
+              />
+
             </View>
-            <View style={{position:'absolute', left:220, top:55}}>
-              <Text style={styles.title} >Prénom</Text>
-              <Text style={styles.description} >{user.userlastname}</Text>
-            </View>
-            <View style={{position:'absolute', left:220, top:105}}>
-              <Text style={styles.title}>Téléphone</Text>
-              <Text style={styles.description}>{user.phone}</Text>
-            </View>
-            <View  style={{position:'absolute', left:20, top:155}}>
-              <Text style={styles.title}>Email</Text>
-              <Text style={styles.description}>{user.email}</Text>
-            </View>
-            <View  style={{position:'absolute', left:20, top:205}}>
-              <Text style={styles.title}>Adresse</Text>
-              <Text style={styles.description}>{user.address}, {user.city}</Text>
-            </View>
-            <View style={{position:'absolute', left:20, top:255}}>
-              <Text style={styles.title}>Code Postal</Text>
-              <Text style={styles.description}>{user.zipcode}</Text>
-            </View>
-            <View style={{position:'absolute', left:20, top:305}}>
-              <Text style={styles.title}>Mot de passe</Text>
-              <Text style={styles.description}>**********</Text>
+            <View style={{flex:1, alignItems:'flex-start',marginLeft: 20}}>
+              <View >
+                <Text style={styles.title}>Nom</Text>
+                <Text style={styles.description}>{user.userfirstname}</Text>
+              </View>
+              <View >
+                <Text style={styles.title} >Prénom</Text>
+                <Text style={styles.description} >{user.userlastname}</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Téléphone</Text>
+                <Text style={styles.description}>{user.phone}</Text>
+              </View>
+              <View  >
+                <Text style={styles.title}>Email</Text>
+                <Text style={styles.description}>{user.email}</Text>
+              </View>
+              <View  >
+                <Text style={styles.title}>Adresse</Text>
+                <Text style={styles.description}>{user.address}, {user.city}</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Code Postal</Text>
+                <Text style={styles.description}>{user.zipcode}</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Mot de passe</Text>
+                <Text style={styles.description}>**********</Text>
+              </View>
+
             </View>
           </View>
           <View 
@@ -101,41 +104,42 @@ useEffect(() => {
             
           </View>
     </View>
-  )
-} else {
-  return (
-    <ProfileModif nom='Mon Profil'/>
-  )
+		);
+//	} else {
+//		return (
+//		  <ProfileModif nom='Mon Profil'/>
+//		)
+//	}
+
 }
 
-  };
-  const styles = StyleSheet.create({
-    title: {
-      fontFamily:'catamaran-semibold',
-      fontSize:12,
-      letterSpacing:2,
-      opacity:0.5,
-      lineHeight: 20,
-    },
-    description: {
-      fontFamily:'catamaran-semibold',
-      fontSize:17,
-      lineHeight: 28,
-    },
-    input:{
-      marginTop:10,
-    }
+const styles = StyleSheet.create({
+  title: {
+    fontFamily:'catamaran-semibold',
+    fontSize:12,
+    letterSpacing:2,
+    opacity:0.5,
+    lineHeight: 20,
+  },
+  description: {
+    fontFamily:'catamaran-semibold',
+    fontSize:17,
+    lineHeight: 28,
+  },
+  input:{
+    marginTop:10,
+  }
 
-  });
+});
 
-  function mapStateToProps(state) {
-    console.log("TCL: mapStateToProps -> state", state)
-    
-        return { statut : state.modifier}
-      }
-      
-      export default connect(
-        mapStateToProps, 
-        null
-      )(ProfileUser);
+function mapStateToProps(state) {
+console.log("TCL: mapStateToProps -> state", state)
+
+  return { statut : state.modifier}
+}
+
+export default connect(
+  mapStateToProps, 
+  null
+)(ProfileUser);
 

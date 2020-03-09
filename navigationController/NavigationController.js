@@ -160,7 +160,7 @@ function NavigationController( props ) {
 	);
 	
 
-	// Ça crée les élements du tiroir selon le type d'utilisateur (avec ou sans mariage propre)
+	// Ça crée les élements du tiroir selon le type d'utilisateur (invité ou admin)
 	const ScreensToNavigateDrawer = props.myWedding.status
 		?	{		
 				MesMariagesScreen: {

@@ -18,7 +18,7 @@ function Loginform( props ) {
         }
 
         else {
-        let data = await fetch("http://192.168.0.44:3000/sign-in",{
+        let data = await fetch("https://weedingplanner.herokuapp.com/sign-in",{
             method: 'POST',
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
             body: `email=${email}&password=${password}`
