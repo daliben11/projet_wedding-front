@@ -1,15 +1,24 @@
 import React,{useState} from 'react';
-import { StyleSheet, View, Text, TouchableOpacity ,ScrollView, Image } from 'react-native';
-import { Icon, ListItem, Card, Header} from 'react-native-elements';
+import { StyleSheet, View, Text, TouchableOpacity ,ScrollView } from 'react-native';
+import {Card} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import {connect} from 'react-redux';
 
 
 
 export default function Prestataires({navigation}) {
-  const [modifier,setModifier]=useState(false)
-  const [prestataire,setPrestataire]=useState(0)
  
+
+
+  const listePrestataire = [
+    { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
+    { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
+    { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
+    { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
+    { name:'Robe',img:require('../../assets/robe.jpg')},
+    { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
+    { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
+    { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
 // PRESTATAIRES PAGE ATTENTION
 
   
@@ -27,22 +36,21 @@ export default function Prestataires({navigation}) {
 
 
 
-            <ScrollView   style={{flex:1, marginBottom: 10, marginTop:5}}stickyHeaderIndices={[8]} style={{flex:1, marginBottom: 10, marginTop:5}} >
+            <ScrollView   style={{ marginBottom: 10, marginTop:5}} stickyHeaderIndices={[8]}  >
              
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                      <TouchableOpacity>
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}onPress={() => {setModifier()}} >
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/lieuxmariage.jpg')} style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} >Lieux </Text>
-                          </View>
-                        </Card>
-                       </TouchableOpacity>
+                <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around'}} >
+                    
+                          {listePrestataire.map((u,i)=>{
+                          return(
+                              <TouchableOpacity>
+                                <Card key={i} image={u.img} containerStyle={{ width: 150, height: 200}}  >
+                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
+                                </Card>
+                              </TouchableOpacity>
+                            )
+                            })}
 
-                       <TouchableOpacity>
+                       {/* <TouchableOpacity>
                         <Card  containerStyle={{padding: 0, marginLeft:13}}>
                           <View >
                             <Image 
@@ -130,7 +138,7 @@ export default function Prestataires({navigation}) {
                       <Text style={{marginBottom: 10}} style={styles.card} >Bijoux </Text>
                       </View>
                     </Card>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                 </View>
               
             </ScrollView>

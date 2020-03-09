@@ -42,7 +42,6 @@ function Accueil ( props ) {
 						flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
 						backgroundColor:'#FAEBE4',
 						width: Dimensions.get('window').width*0.9,
-						height: Dimensions.get('window').height*0.25,
 						borderRadius: 5, border:'#000'
   				}}
   				>

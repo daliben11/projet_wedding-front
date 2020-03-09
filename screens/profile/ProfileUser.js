@@ -35,7 +35,7 @@ function ProfileUser ( props ) {
 		    }
 		    detailProfil();
     
-  }, []);
+	}, []);
       
   console.log('fetched user data from DB ', user);
   
