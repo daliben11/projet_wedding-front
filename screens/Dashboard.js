@@ -16,25 +16,31 @@ export default function Dashboard({navigation}) {
           <HeaderNav nom='Mon Mariage'/> 
           
 
-            <ImageBackground  source={require('../assets/mariagefondecran.jpg')} style={{flex:1}}>
+            <ImageBackground  source={require('../assets/bougiewedding.jpg')} style={{flex:1}}>
               
-            <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginTop: 170}}> 
-            	'Janet & John '
+            <Text style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 30,textAlign: 'center',
+                    color: 'white', 
+                    fontFamily:'greatvibes', 
+                    fontSize: 30, 
+                    marginTop: 20,
+                 }}> 
+            	Janet & John 
             </Text>
             <Text 
             	style={{
             		color: 'white', 
             		fontFamily:'greatvibes', 
-            		fontSize: 20, 
-            		marginBottom: 5, 
-            		marginRight: 95, 
-            		marginLeft: 95}} >
+                fontSize: 20, 
+                textAlign: 'center',
+               
+            	}} >
+              
             	23/08/2020
             </Text>
 
             </ImageBackground>
       
-                <View style={{backgroundColor: '#FAEBE4' }}>
+                <View style={{backgroundColor: '#FAEBE4' , height:45}}>
                   <Text h4 style={{ textAlign:'center',fontWeight: 'bold', fontFamily:'greatvibes'}} style={styles.container} > 200 jours 11 Heures 37 min 34 s</Text>
                 </View>
 

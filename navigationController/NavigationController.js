@@ -33,8 +33,8 @@ import Dashboard from '../screens/Dashboard';
 import Invites from '../screens/guest/Guest';
 import Budget from '../screens/budget/Budget';
 import Tasks from '../screens/tasks/Tasks';
-import AddTasks from '../screens/tasks/AddTasks';
 import Prestations from '../screens/prestataires/Prestations';
+
 
 
 
@@ -88,6 +88,7 @@ function NavigationController( props ) {
 					} else if (navigation.state.routeName == 'Mon Profil') {
 						iconName = 'user';
 						iconType = 'antdesign';
+						marginTop= 5;
 					}
 					return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
 				},
@@ -97,6 +98,8 @@ function NavigationController( props ) {
 				inactiveTintColor: '#1f6a39',
 				style: {
 					backgroundColor: '#31AE89',
+									height: 40,
+
 				}
 			}
 		}
@@ -123,7 +126,6 @@ function NavigationController( props ) {
 		'Dashboard': stackDashboard,
 		'Mes tâches': Tasks,
 		'Invités': Invites,
-		'Prestataires': Prestations,
 		'Budget': Budget
 		},
 		{ defaultNavigationOptions: ({ navigation }) => ({
@@ -139,10 +141,6 @@ function NavigationController( props ) {
 					else if (navigation.state.routeName == 'Invités') {
 						iconName = 'md-people';
 						iconType = 'ionicon';
-					}
-					else if (navigation.state.routeName == 'Prestataires') {
-						iconName = 'playlist-add';
-						iconType = 'material';
 					}
 					else if (navigation.state.routeName == 'Budget') {
 						iconName = 'euro-symbol';

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { Avatar, Icon, Input, Header, Button } from 'react-native-elements';
 
 
 
-export default function AddGuest(props) {
+function AddTasks(props) {
 
     const [date, setDate] = useState(new Date(1598051730000));
     const [mode, setMode] = useState('date');
@@ -29,22 +29,7 @@ export default function AddGuest(props) {
     
     return (
     <View style={{backgroundColor:"#F5F8FB",flex:1}}>
-  
-        <Header
-              leftComponent={<Icon
-                onPress={() => {setModifier(false)}}
-                name='close'
-              />}
-              rightComponent={<Icon
-                onPress={() => {setModifier(false)}}
-                name='check'
-              />}
-              centerComponent={{ text: "Ajouter une nouvelle tâche ", style: {fontFamily:'greatvibes', color: '#000', fontSize:26 } }}
-              containerStyle={{
-                  backgroundColor: '#FAEBE4',
-                  height: 84,
-              }}>
-          </Header>
+
       
     <ScrollView style={{flex:1}}>
       <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
@@ -100,6 +85,21 @@ export default function AddGuest(props) {
 
       </View>
     </ScrollView>
+    <TouchableOpacity onPress={ () => props.navigation.navigate('AddTaks') }
+					style={{
+						width:'100%', height:'auto',
+						padding: 5,
+            backgroundColor: '#FAEBE4', 
+            height: 50,
+						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
+					}}
+          >
+					<Text style={{paddingLeft: 20}} >
+					Ajouter une nouvelle tâche
+					</Text>
+					<View style={styles.interSpace}/>
+					<Icon name='plus' type='feather' color='grey' />
+				</TouchableOpacity>
   </View>
     )
   }
@@ -128,3 +128,5 @@ export default function AddGuest(props) {
       color: "#6a4595"
     }
   });
+
+  export default AddTasks;
