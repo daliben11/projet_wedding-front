@@ -88,7 +88,7 @@ function NavigationController( props ) {
 					} else if (navigation.state.routeName == 'Mon Profil') {
 						iconName = 'user';
 						iconType = 'antdesign';
-						marginTop= 5;
+					
 					}
 					return <Icon name={iconName} type={iconType} size={25} color={tintColor} />;
 				},
