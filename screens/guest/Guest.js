@@ -104,7 +104,8 @@ export default function Guest({navigation}) {
 
             <View 
                     style={{
-                      width:'100%', height:'auto',
+                      width:'100%',
+                      height: 50,
                       padding: 5,
                       backgroundColor: '#FAEBE4', 
                       flexDirection: 'row', alignItems: 'center', justifyContent:'center', 

@@ -9,14 +9,14 @@ import * as Progress from 'react-native-progress';
 import HeaderNav from '../HeaderNav';
 
 
-function MesMariagesScreen( props ) {
+function Tasks( props ) {
 
 	
 		return(
 
 			<View style={{
 					flex:1,
-					backgroundColor:'#F5F8FB'
+					backgroundColor:'#FFF'
 				}}>
 
 				<HeaderNav nom='Mes tâches'/>			
@@ -30,21 +30,6 @@ function MesMariagesScreen( props ) {
                     </View>
                     }
                   />
-
-				<TouchableOpacity
-					style={{
-						width:'100%', height:'auto',
-						padding: 5,
-						backgroundColor: '#FAEBE4', 
-						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
-					}}>
-					<Text style={{paddingLeft: 20}}>
-					Ajouter une nouvelle tâche
-					</Text>
-					<View style={styles.interSpace}/>
-					<Icon name='plus' type='feather' color='grey' />
-				</TouchableOpacity>
-				
 
 					
 				<ScrollView>
@@ -86,6 +71,21 @@ function MesMariagesScreen( props ) {
 					
 					
 				</ScrollView>
+
+				<TouchableOpacity onPress={ () => props.navigation.navigate('AddTaks') }
+					style={{
+						width:'100%', height:'auto',
+						padding: 5,
+						backgroundColor: '#FAEBE4', 
+						height: 50,
+						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
+					}}>
+					<Text style={{paddingLeft: 20}}>
+					Ajouter une nouvelle tâche
+					</Text>
+					<View style={styles.interSpace}/>
+					<Icon name='plus' type='feather' color='grey' />
+				</TouchableOpacity>
 				
 
 				
@@ -129,4 +129,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default MesMariagesScreen; 
+export default Tasks; 

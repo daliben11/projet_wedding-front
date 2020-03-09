@@ -12,6 +12,7 @@ export default function Guestprogramme( props ) {
   const data = [
       {time: '15:00', title: 'Début de la cérémonie', description: 'Dress code: caraibe style !'},
       {time: '20:00', title: 'Dîner', description: 'Tu seras à la table Camomille'},
+      {time: '18:00', title: 'Cocktail', description: 'Open bar!!'},
       {time: '21:00', title: 'Party time', description: 'Echauffe bien tes genoux!!'},  
     ];
   
@@ -24,10 +25,10 @@ export default function Guestprogramme( props ) {
        <HeaderNav nom='Programme'/>
 
           <View style={{flex:1}}>
-              <ImageBackground  style={{flex:1}} source={require('../../assets/mariagefondecran.jpg')} >
+              <ImageBackground  style={{flex:1}} source={require('../../assets/weddingimg2.jpg')} >
                   
-              <Text  style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 25,marginLeft: 95, marginBottom: 5, marginTop: 120}}>    
-                   'Janet & John '
+              <Text  style={{color: 'white', fontFamily:'greatvibes' ,fontSize: 30,textAlign: 'center', marginTop: 120, marginLeft: 140}}>    
+                   Janet & John
                 </Text>
                 <Text 
                   style={{
@@ -35,18 +36,21 @@ export default function Guestprogramme( props ) {
                     fontFamily:'greatvibes', 
                     fontSize: 20, 
                     marginBottom: 20, 
-                    marginRight: 95, 
-                    marginLeft: 95}} >
-                  23/08/2020
+                    marginLeft:200}} >
+                      23/08/2020
                 </Text>
  
               </ImageBackground>
             </View>
 
              <View >
-              <View style={{ backgroundColor: '#FAEBE4' }}>
+              <View style={{ backgroundColor: '#FAEBE4', height:40 , }}>
                   <Text  h4
-                    style={styles.container} > 
+                    style={{textAlign: 'center',  justifyContent: 'center',
+                    fontFamily:'greatvibes',
+                    fontSize: 21, marginTop: 5
+                  }}
+                    > 
                     200 jours 11 Heures 37 min 34 s
                   </Text>
               </View>
@@ -59,7 +63,7 @@ export default function Guestprogramme( props ) {
         </Text>
 
         
-          <ScrollView style={{flex:1}}>  
+          <ScrollView style={{flex:1, marginBottom:10}}>  
             <Timeline style={{marginTop : 15}}
               data={data}
             />
