@@ -26,7 +26,7 @@ useEffect(() => {
             var data = await AsyncStorage.getItem("tokenUser");
            //setUserToken(data);  
 
-            var dataProfile = await fetch("http://10.2.5.190:3000/profile",{
+            var dataProfile = await fetch("http://192.168.0.44:3000/profile",{
               method: 'POST',
               headers: {'Content-Type':'application/x-www-form-urlencoded'},
               body: `tokenUser=${data}`
@@ -90,7 +90,11 @@ useEffect(() => {
               backgroundColor: '#FAEBE4', 
               flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
             }}>
-            <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  onPress={() => {setModifier(true)}}>
+            <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
+            	onPress={() => {
+            		setModifier(true);
+            		props.navigation.navigate( 'ProfilEdit' );     		
+            }}>
                 <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Modifier mon profil</Text>
                 <Icon containerStyle={{paddingLeft: 5}} name='edit' type='feather' color='grey' />
             </TouchableOpacity>
