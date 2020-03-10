@@ -1,14 +1,25 @@
-import React,{useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import {connect} from 'react-redux';
+
 import { StyleSheet, View, Text, ImageBackground, ScrollView } from 'react-native';
 import { Avatar,Header, ListItem, Icon}  from 'react-native-elements';
+
 import * as Progress from 'react-native-progress';
 // import IconAntDesign from 'react-native-vector-icons/AntDesign';
+
 import HeaderNav from './HeaderNav';
 import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 
 
-export default function Dashboard({navigation}) {
-//props.setJustCreateWedding( false );
+function Dashboard( props ) {
+console.log( "je suis dans dashboard ", props.myWedding );
+
+//		useEffect(() => {
+//		props.setJustCreateWedding( false );
+//	},[]);
+
+
+
     return (
       
       
@@ -161,4 +172,17 @@ export default function Dashboard({navigation}) {
     });
 
 
+
+function mapDispatchToProps(dispatch) {
+  return {
+		setJustCreateWedding: function ( val ) {
+			 dispatch( {type: 'setJustCreateWedding', justCreate: val } )
+		}
+  }
+}
+
+export default connect(
+  null, 
+  mapDispatchToProps
+)( Dashboard );
 

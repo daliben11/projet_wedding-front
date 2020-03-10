@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { 
 	View, ScrollView, SafeAreaView,
 	Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
@@ -12,32 +12,32 @@ import AddWedding from './AddWedding'
 
 
 function MesMariagesScreen( props ) {
+	console.log( "je suis dans mes mariages ", props.myWedding );
 
 	const [createNewWed, setCreateNewWed] = useState( false );
 	const [modalVisible, setModalVisible] = useState( false );
 	const [codeMariage, setCodeMariage] = useState('');
 	
-	const changePage = (val) => {
-		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
-		
-		setCreateNewWed( val );
-	}
+//	const changePage = (val) => {
+//		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
+//		
+//		setCreateNewWed( val );
+//	}
 
 
-	if (createNewWed) {
-		return(
-		
-			<AddWedding showPage={changePage} />
+//	if (createNewWed) {
+//		return(
+//		
+//			<AddWedding showPage={changePage} />
 
-		);
-	} else {
+//		);
+//	} else {
 	
 		return(
 
 			<View style={{flex:1, backgroundColor:'#FFF'}}  >
 
 				<HeaderNav nom='Mon Mariage'  />
-				
 				
 					
 				<ScrollView>
@@ -89,14 +89,15 @@ function MesMariagesScreen( props ) {
 						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
 					}}>
 					<Text style={{paddingLeft: 20}}>
-					Rejoindre un mariage
+						Rejoindre un mariage
 					</Text>
 					<View style={styles.interSpace}/>
 					<Icon name='plus' type='feather' color='grey' />
 				</TouchableOpacity>
 				
+				
 				<TouchableOpacity
-					onPress={ () => setCreateNewWed( true ) }
+					onPress={ () => props.navigation.navigate('AddWedding') }
 					style={{
 						width:'100%', height:50,
 						padding: 5,
@@ -155,7 +156,7 @@ function MesMariagesScreen( props ) {
 			</View>
 	
 		);
-	}
+//	}
 
 }
 
@@ -193,7 +194,22 @@ const styles = StyleSheet.create({
 });
 
 
-export default MesMariagesScreen; 
+function mapStateToProps(state) {
+  return { 
+//	 	isLogin: state.isLogin,
+	 	myWedding: state.myWedding,
+//  	username: state.username,
+  }
+}
+
+
+
+export default connect(
+  mapStateToProps, 
+  null
+)( MesMariagesScreen );
+
+
 
 
 

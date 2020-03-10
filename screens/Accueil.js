@@ -6,9 +6,11 @@ import { Icon, Image } from 'react-native-elements';
 
 
 function Accueil ( props ) {
+	console.log( "je suis dans l'accueil ", props.myWedding );
 
 	if ( props.myWedding.justCreate ) {
-		console.log( props.myWedding );
+		
+		
 		return(
 			<View 
 				style={{ 
@@ -17,7 +19,6 @@ function Accueil ( props ) {
 			
 				<TouchableOpacity
 					onPress={ () => { 
-						console.log('going to Dashboard 2 ');
 						props.navigation.navigate( 'Drawer', { screen: 'DashboardScreen' } );
 					} }
 					style={{ 
@@ -54,7 +55,7 @@ function Accueil ( props ) {
 								}}>
 							
 								<TouchableOpacity
-									onPress={ () => { props.navigation.navigate('Drawer'); } }
+									onPress={ () => { props.navigation.navigate('CreateWed'); } }
 									style={{ 
 									flex:1, justifyContent:'space-around'
 									}}>

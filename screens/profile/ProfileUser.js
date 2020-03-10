@@ -1,10 +1,14 @@
 import React,{useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+
 import { StyleSheet, View, Text,TouchableOpacity,AsyncStorage } from 'react-native';
 import { Avatar, Icon} from 'react-native-elements';
+import { dateFnsLocalizer } from 'react-big-calendar';
+
 import HeaderNav from '../HeaderNav';
 import ProfileModif from './ProfileModif';
-import {connect} from 'react-redux';
-import { dateFnsLocalizer } from 'react-big-calendar';
+
+
 
 
 
@@ -99,7 +103,6 @@ function ProfileUser ( props ) {
             }}>
             <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
             	onPress={() => {
-            		setModifier(true);
             		props.navigation.navigate( 'ProfilEdit' );     		
             }}>
                 <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Modifier mon profil</Text>

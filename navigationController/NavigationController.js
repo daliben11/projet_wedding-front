@@ -25,6 +25,7 @@ import DeconnexionScreen from '../screens/connexion/DeconnexionScreen';
 
 import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 import GuestPage from '../screens/mesmariages/Guestprogramme';
+import AddWedding from '../screens/mesmariages/AddWedding';
 
 import ProfilUser from '../screens/profile/ProfileUser';
 import ProfilEdit from '../screens/profile/ProfileModif';
@@ -43,12 +44,13 @@ function NavigationController( props ) {
 	var App;
 	
 	
-	console.log('myWedding exists? ', props.myWedding.status);
+	console.log('myWedding exists on nav controller? ', props.myWedding);
 	
 	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
 	const stackMariage = props.myWedding.status 	
 		? createStackNavigator({ 
 			'MyWeddings': MesMariagesScreen,
+			'AddWedding': AddWedding,
 			'GuestPage': GuestPage,
 			'Dashboard': Dashboard,
 			},  
@@ -56,6 +58,7 @@ function NavigationController( props ) {
 			)
 		: createStackNavigator({ 
 			'MyWeddings': MesMariagesScreen,
+			'AddWedding': AddWedding,
 			'GuestPage': GuestPage
 			},  
 			{ headerMode: 'none' }
@@ -226,6 +229,7 @@ function NavigationController( props ) {
 	
 	const stackAccueil = createStackNavigator({ 
 		'Accueil':	Accueil,
+		'CreateWed': AddWedding,
 		'Drawer':		DrawerNavigator
 		},  
 		{ headerMode: 'none' } 

@@ -1,14 +1,14 @@
 import React,{useState} from 'react';
-import { View, ScrollView } from 'react-native';
-import { Avatar, Icon, Input,Header} from 'react-native-elements';
 import {connect} from 'react-redux';
 
+import { View, ScrollView } from 'react-native';
+import { Avatar, Icon, Input,Header} from 'react-native-elements';
 
 
-function ProfileModif(onSubmitStatut) {
 
-  const [modifier,setModifier] = useState(false)
-  
+
+function ProfileModif( props ) {
+
   const [nom,setNom] = useState('')
   const [prenom,setPrenom] = useState('')
   const [birthday, setBirthday] = useState('')
@@ -31,11 +31,11 @@ function ProfileModif(onSubmitStatut) {
 
       <Header
           leftComponent={<Icon
-            onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
+            onPress={() => { props.navigation.goBack() }}
             name='close'
           />}
           rightComponent={<Icon
-            onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
+            onPress={() => { props.navigation.goBack() }}
             name='check'
           />}
           centerComponent={{ text: "Mon Profil", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}

@@ -13,9 +13,9 @@ import DatePicker from 'react-native-datepicker'
 
 
 
-
-
 function AddWedding ( props ) {
+console.log( "je suis dans AddWedding ", props.myWedding );
+
 
 	const [brideName, setBrideName] = useState('Janet');
 	const [groomName, setGroomName] = useState('John');
@@ -26,7 +26,8 @@ function AddWedding ( props ) {
 	const [userToken,setUserToken] = useState('');
 	const [user,setUser] = useState('');
 
-	console.log(dateWedding)
+	console.log(dateWedding);
+	
  
 	useEffect( () => {  
 	
@@ -72,7 +73,7 @@ function AddWedding ( props ) {
 				<Header
 					leftComponent={ 
 						<Icon name='close' type='antdesign' color='#000'
-							onPress={ () => props.showPage(false) }
+							onPress={ () => props.navigation.goBack() }
 						/> 
 					}
 					centerComponent={{ 
@@ -91,7 +92,7 @@ function AddWedding ( props ) {
 									city: city, 
 									description: descriptif
 								} );
-								props.showPage( false )
+								props.navigation.goBack();
 							} } 
 						/>
 						}
