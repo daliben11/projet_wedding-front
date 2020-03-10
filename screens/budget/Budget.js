@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,ScrollView, Image } from 'react-native';
 import { Icon, ListItem, Card, Header} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
@@ -7,19 +7,42 @@ import {connect} from 'react-redux';
 import * as Progress from 'react-native-progress';
 
 
-export default function Budget({navigation}) {
+export default function Budget(props) {
   const [modifier,setModifier]=useState(false)
-  const [budget,setBudget]=useState(0)
+  
+  const [listePrestataire, setListePrestataire]= useState([]);
  
-  const listePrestataire = [
-    { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
-    { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
-    { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
-    { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
-    { name:'Robe',img:require('../../assets/robe.jpg')},
-    { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
-    { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
-    { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
+  useEffect( () => { 
+
+    async function  etatBudget(){
+
+      var dataBudget = await fetch('http://10.2.5.195:3000/budget', {
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: "id=5e6762c9f5023800170451a7"
+        });
+       
+        var budget = await dataBudget.json();
+        setListePrestataire(budget.wedding.serviceProviders)
+        console.log("YOOOOOOO", listePrestataire)
+      }
+          etatBudget()
+
+},[]);
+
+ 
+
+
+
+  // [
+  //   { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
+  //   { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
+  //   { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
+  //   { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
+  //   { name:'Robe',img:require('../../assets/robe.jpg')},
+  //   { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
+  //   { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
+  //   { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
 
 
   
@@ -58,10 +81,11 @@ if (modifier===false) {
                 <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around'}} >
                     
                           {listePrestataire.map((u,i)=>{
+                        
                           return(
                               <TouchableOpacity>
-                                <Card key={i} image={u.img} containerStyle={{ width: 150, height: 220}}  >
-                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.name}{"\n"}(1000 €)</Text>
+                                <Card key={i} image={{img: u.img}} containerStyle={{ width: 150, height: 220}}  >
+                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service}{"\n"}(1000 €)</Text>
                                 </Card>
                               </TouchableOpacity>
                             )
@@ -169,7 +193,7 @@ if (modifier===false) {
                       backgroundColor: '#FAEBE4', 
                       flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
                     }}>
-                    <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
+                    <TouchableOpacity onPress={ () => props.navigation.navigate('AddBudget') }style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
                         <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter une nouvelle dépense</Text>
                         <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
                         {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}

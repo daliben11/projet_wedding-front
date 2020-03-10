@@ -1,40 +1,49 @@
 import React,{useState} from 'react';
-import { View, ScrollView } from 'react-native';
-import { Avatar, Icon, Input,Header} from 'react-native-elements';
 import {connect} from 'react-redux';
 
+import { View, ScrollView } from 'react-native';
+import { Avatar, Icon, Input,Header} from 'react-native-elements';
 
 
-function ProfileModif(onSubmitStatut) {
 
-  const [modifier,setModifier]=useState(false)
-  const [nom,setNom]=useState('')
-  const [prenom,setPrenom]=useState('')
-  const [birthday, setBirthday]=useState('')
-  const [phone, setPhone]=useState('')
-  const [mail,setMail]=useState('')
-  const [adresse,setAdresse]=useState('')
-  const [ville,setVille]=useState('')
-  const [codeP,setCodeP]=useState('')
+
+function ProfileModif( props ) {
+
+  const [nom,setNom] = useState('')
+  const [prenom,setPrenom] = useState('')
+  const [birthday, setBirthday] = useState('')
+  
+  const [phone, setPhone] = useState('')
+  const [mail,setMail] = useState('')
+  
+  const [adresse,setAdresse] = useState('')
+  const [ville,setVille] = useState('')
+  const [codeP,setCodeP] = useState('')
+  
+  
+  const postProfilEditToBDD = async() => {
+  	
+  };
+  
   
   return (
   <View style={{backgroundColor:"#F5F8FB",flex:1}}>
 
       <Header
-            leftComponent={<Icon
-              onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
-              name='close'
-            />}
-            rightComponent={<Icon
-              onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
-              name='check'
-            />}
-            centerComponent={{ text:  `${props.nom} `, style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
-            containerStyle={{
-                backgroundColor: '#FAEBE4',
-                height: 84,
-            }}>
-        </Header>
+          leftComponent={<Icon
+            onPress={() => { props.navigation.goBack() }}
+            name='close'
+          />}
+          rightComponent={<Icon
+            onPress={() => { props.navigation.goBack() }}
+            name='check'
+          />}
+          centerComponent={{ text: "Mon Profil", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
+          containerStyle={{
+              backgroundColor: '#FAEBE4',
+              height: 84,
+          }}>
+      </Header>
     
   <ScrollView style={{flex:1}}>
     <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
@@ -114,8 +123,8 @@ function ProfileModif(onSubmitStatut) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSubmitStatut: function(modifier) { 
-      dispatch( {type: 'savePseudo', statut: modifier }) 
+    saveUsername: function(val) { 
+      dispatch( {type: 'saveUsername', username: val }) 
     }
   }
 }

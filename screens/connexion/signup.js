@@ -18,18 +18,20 @@ function Signup ( props ) {
     return (
             <ScrollView>
                 
-                <KeyboardAvoidingView behavior="padding" style={styles.container}>
+                <KeyboardAvoidingView behavior="padding" style={{flex:1}}>
+                    <View style={{flex:3,alignItems:'center'}}>
+                        <TouchableOpacity 
+                            onPress={()=>props.navigation.navigate( 'Home' )}
+                        >
+                            <Image 
+                            style={styles.logo}
+                            source={require('../../assets/logo1.png')}
+                            />
+                        </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.logoContainer}
-                    	onPress={()=>props.navigation.navigate( 'Home' )}
-                    >
-		                  <Image 
-		                  style={styles.logo}
-		                  source={require('../../assets/logo1.png')}
-		                  />
-                    </TouchableOpacity>
+                    </View>
 
-                    <View>
+                    <View >
                         <LogupForm signup={handleSignUp} signin={handleSignIn} />
                     </View>
 

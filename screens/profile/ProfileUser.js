@@ -1,19 +1,20 @@
 import React,{useState, useEffect} from 'react';
+import {connect} from 'react-redux';
+
 import { StyleSheet, View, Text,TouchableOpacity,AsyncStorage } from 'react-native';
 import { Avatar, Icon} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import ProfileModif from './ProfileModif';
-import {connect} from 'react-redux';
-import { dateFnsLocalizer } from 'react-big-calendar';
+
+
 
 
 
 function ProfileUser ( props ) {
-  const [modifier,setModifier]=useState(false)
+
   const [user,setUser] = useState('')
  
-		
-//	if (modifier===false) {
+
 		
 	const [userToken,setUserToken] = useState("");
 	console.log("test userToken ", userToken)
@@ -100,7 +101,6 @@ function ProfileUser ( props ) {
             }}>
             <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
             	onPress={() => {
-            		setModifier(true);
             		props.navigation.navigate( 'ProfilEdit' );     		
             }}>
                 <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Modifier mon profil</Text>
@@ -108,13 +108,9 @@ function ProfileUser ( props ) {
             </TouchableOpacity>
             
           </View>
-    </View>
+    	</View>
 		);
-//	} else {
-//		return (
-//		  <ProfileModif nom='Mon Profil'/>
-//		)
-//	}
+
 
 }
 
@@ -138,13 +134,25 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-console.log("TCL: mapStateToProps -> state", state)
+	console.log("TCL: mapStateToProps -> state", state);
+	return { 
+	 	isLogin: state.isLogin,
+	 	myWedding: state.myWedding,
+//  	username: state.username,
+  }
+}
 
-  return { statut : state.modifier}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setToken: function ( val ) {
+    	 dispatch( {type: 'setUserToken', userToken: val } )
+    }
+  }
 }
 
 export default connect(
   mapStateToProps, 
-  null
+  mapDispatchToProps
 )(ProfileUser);
 

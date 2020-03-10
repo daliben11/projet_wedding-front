@@ -1,7 +1,7 @@
 
-import React, { Component, useState } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text } from 'react-native';
-import { Button } from 'react-native-elements';
+import React, { Component, useState,useEffect } from 'react';
+import { StyleSheet, View, TextInput} from 'react-native';
+import { Button, CheckBox } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 
 /* LOGUPFORM */
@@ -13,13 +13,33 @@ function Logupform( props ) {
     const [userFirstName,setUserFirstName] = useState("");
     const [userLastName, setUserLastName] = useState("");
     const [messageSignUp,setMessageSignUp] = useState("");
+    const [sexeM, setSexeM]= useState(false)
+    const [sexeF, setSexeF]= useState(true)
+    const [sexe, setSexe] = useState("")
+    
+    // gestion du sexe de l'utilisateur
+
+    useEffect (() => {
+        if (sexeM==false){
+            setSexe("femme")
+        } else {
+            setSexe("homme")
+        }
+        console.log(sexe)
+    })
+
+    
+    
+    
     //gestion sign up >>>> envoi au back les champs de signup (récupéré par button) et met à jour les états (islogin, message et token)
     
+    
+    
     var handleSignUp = async () =>{
-        let data = await fetch("https://weedingplanner.herokuapp.com/sign-up",{  //venir mettre son adresse Ip personnel
+        let data = await fetch("https://weedingplanner.herokuapp.com/sign-up",{  
               method: 'POST',
               headers: {'Content-Type':'application/x-www-form-urlencoded'},
-              body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}`
+              body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}&sexe=${sexe}`
             });
       
             let dataJson = await data.json();
@@ -34,7 +54,7 @@ console.log(userFirstName)
 
     return (
      
-            <View style={styles.container}>
+            <View style={{padding:20}}>
 
 
                 <TextInput 
@@ -53,14 +73,14 @@ console.log(userFirstName)
                 value={userLastName} 
                 />
 
-                <Button
+{/*                 <Button
                 title="DATE DE NAISSANCE JJ/MM/AN"
                 disabled
                 style={styles.jourmoisan} 
                 titleStyle={{ fontSize: 10 }}
-                />
+                /> */}
 
-                <View style={styles.date}>
+                {/* <View style={styles.date}>
 		              <NumericInput 
 		              type='up-down' 
 		              textColor='grey' 
@@ -91,7 +111,7 @@ console.log(userFirstName)
 		              rounded
 		              onChange={value => console.log(value)} 
 		              />
-                </View>
+                </View> */}
 
                 <TextInput 
 		              placeholder="EMAIL"
@@ -110,6 +130,23 @@ console.log(userFirstName)
                       onChangeText={(value) => setPassword(value)} 
                       value={password}
                 />
+                <View style={{flexDirection:'row',flex:1, justifyContent:'space-around',marginBottom:15}}>
+                    
+                        
+                    <CheckBox
+                            center
+                            title='Femme'
+                            checked={sexeF}
+                            onPress={() => setSexeF( !sexeF ) & setSexeM( !sexeM ) }/>  
+
+                    <CheckBox
+                        center
+                        title='Homme'
+                        checked={sexeM}
+                        onPress={() => setSexeM( !sexeM ) & setSexeF(!sexeF) }/>    
+
+                </View>
+
                 <Button title="Inscription" 
                     buttonStyle={{backgroundColor:'#f4c6c1'}}
                     onPress={ ()=>handleSignUp() }
