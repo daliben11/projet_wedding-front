@@ -25,6 +25,7 @@ import DeconnexionScreen from '../screens/connexion/DeconnexionScreen';
 
 import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 import GuestPage from '../screens/mesmariages/Guestprogramme';
+import AddWedding from '../screens/mesmariages/AddWedding';
 
 import ProfilUser from '../screens/profile/ProfileUser';
 import ProfilEdit from '../screens/profile/ProfileModif';
@@ -43,12 +44,13 @@ function NavigationController( props ) {
 	var App;
 	
 	
-	console.log('myWedding exists? ', props.myWedding.status);
+	console.log('myWedding exists on nav controller? ', props.myWedding);
 	
 	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
 	const stackMariage = props.myWedding.status 	
 		? createStackNavigator({ 
 			'MyWeddings': MesMariagesScreen,
+			'AddWedding': AddWedding,
 			'GuestPage': GuestPage,
 			'Dashboard': Dashboard,
 			},  
@@ -56,6 +58,7 @@ function NavigationController( props ) {
 			)
 		: createStackNavigator({ 
 			'MyWeddings': MesMariagesScreen,
+			'AddWedding': AddWedding,
 			'GuestPage': GuestPage
 			},  
 			{ headerMode: 'none' }
@@ -68,7 +71,7 @@ function NavigationController( props ) {
 		'ProfilUser': ProfilUser, 
 		'ProfilEdit': ProfilEdit,
 		}, 
-		{ headerMode: 'none' } 
+		{ mode:'modal', headerMode: 'none' } 
 	);
 	
 	
@@ -162,13 +165,6 @@ function NavigationController( props ) {
 	// Ça crée les élements du tiroir selon le type d'utilisateur (invité ou admin)
 	const ScreensToNavigateDrawer = props.myWedding.status
 		?	{		
-				MesMariagesScreen: {
-					screen: profilBottom,
-					navigationOptions: {
-					  title: "Mes Mariages",
-					  drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
-					}
-				},
 				DashboardScreen: {
 					screen: dashboardBottom,
 					navigationOptions: {
@@ -176,11 +172,11 @@ function NavigationController( props ) {
 					  drawerIcon: ({ tintColor }) => <Feather name="home" size={16} color={tintColor} />
 					}
 				},
-				MonProfilScreen: {
-					screen: stackProfil,
+				MesMariagesScreen: {
+					screen: profilBottom,
 					navigationOptions: {
-					  title: "Mon Profil",
-					  drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+					  title: "Mes Mariages",
+					  drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
 					}
 				},
 				DeconnexionScreen: {
@@ -233,6 +229,7 @@ function NavigationController( props ) {
 	
 	const stackAccueil = createStackNavigator({ 
 		'Accueil':	Accueil,
+		'CreateWed': AddWedding,
 		'Drawer':		DrawerNavigator
 		},  
 		{ headerMode: 'none' } 
@@ -271,18 +268,10 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setLogin: function ( val ) {
-    	 dispatch( {type: 'setLogin', login: val } )
-    }
-  }
-}
-
 
 export default connect(
   mapStateToProps, 
-  mapDispatchToProps
+  null
 )( NavigationController );
 
 

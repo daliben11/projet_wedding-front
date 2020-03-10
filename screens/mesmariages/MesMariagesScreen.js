@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-//import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { 
 	View, ScrollView, SafeAreaView,
 	Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
@@ -12,29 +12,32 @@ import AddWedding from './AddWedding'
 
 
 function MesMariagesScreen( props ) {
+	console.log( "je suis dans mes mariages ", props.myWedding );
 
 	const [createNewWed, setCreateNewWed] = useState( false );
+	const [modalVisible, setModalVisible] = useState( false );
+	const [codeMariage, setCodeMariage] = useState('');
 	
-	const changePage = (val) => {
-		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
-		setCreateNewWed( val );
-	}
+//	const changePage = (val) => {
+//		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
+//		
+//		setCreateNewWed( val );
+//	}
 
 
-	if (createNewWed) {
-		return(
-		
-			<AddWedding showPage={changePage} />
+//	if (createNewWed) {
+//		return(
+//		
+//			<AddWedding showPage={changePage} />
 
-		);
-	} else {
+//		);
+//	} else {
 	
 		return(
 
 			<View style={{flex:1, backgroundColor:'#FFF'}}  >
 
 				<HeaderNav nom='Mon Mariage'  />
-				
 				
 					
 				<ScrollView>
@@ -78,6 +81,7 @@ function MesMariagesScreen( props ) {
 				</ScrollView>
 				
 				<TouchableOpacity
+					onPress={ () => setModalVisible( true ) }
 					style={{
 						width:'100%', height:50,
 						padding: 5,
@@ -85,20 +89,21 @@ function MesMariagesScreen( props ) {
 						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
 					}}>
 					<Text style={{paddingLeft: 20}}>
-					Rejoindre un mariage
+						Rejoindre un mariage
 					</Text>
 					<View style={styles.interSpace}/>
 					<Icon name='plus' type='feather' color='grey' />
 				</TouchableOpacity>
 				
-				<TouchableOpacity 
+				
+				<TouchableOpacity
+					onPress={ () => props.navigation.navigate('AddWedding') }
 					style={{
 						width:'100%', height:50,
 						padding: 5,
 						backgroundColor: '#fff', 
 						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
-					}}
-					onPress={ () => setCreateNewWed( true ) }>
+					}}>
 					
 					<Text style={{paddingLeft: 20}}>
 						Ajouter mon mariage
@@ -108,14 +113,50 @@ function MesMariagesScreen( props ) {
 				</TouchableOpacity>
 				
 				
-				
+				<Overlay
+				 isVisible={modalVisible}
+				 onBackdropPress={ () => setModalVisible(false) }
+				 windowBackgroundColor="rgba(0, 0, 0, .4)"
+				 overlayBackgroundColor="rgba(255, 255, 255, 1)"
+				 width="90%" height="75%"
+				 >
+					 <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+					   <Input
+								containerStyle={styles.input}
+								label='CODE DU MARIAGE'
+								placeholder="WXYZ123"
+								value={codeMariage}
+								onChangeText={ (val) => setCodeMariage(val) }
+								style={styles.input} 
+						 />
+						 <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+						 <Button
+						 	title="Rejoindre un mariage"
+						 	buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
+						 	titleStyle={{color:"#31AE89"}}
+							onPress={ () => {
+									
+									setModalVisible( false );
+							} }
+						 />
+						 <View style={{padding:10}}/>
+						 <Button
+							title="Cancel"
+							buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
+						 	titleStyle={{color:"#31AE89"}}
+							onPress={ () => {
+									setModalVisible( false );
+							} }
+						/>
+					 </View></View>
+				</Overlay>
 				
 				
 				
 			</View>
 	
 		);
-	}
+//	}
 
 }
 
@@ -153,7 +194,22 @@ const styles = StyleSheet.create({
 });
 
 
-export default MesMariagesScreen; 
+function mapStateToProps(state) {
+  return { 
+//	 	isLogin: state.isLogin,
+	 	myWedding: state.myWedding,
+//  	username: state.username,
+  }
+}
+
+
+
+export default connect(
+  mapStateToProps, 
+  null
+)( MesMariagesScreen );
+
+
 
 
 
