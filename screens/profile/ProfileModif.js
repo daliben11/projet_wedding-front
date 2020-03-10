@@ -29,7 +29,7 @@ function ProfileModif(onSubmitStatut) {
               onPress={() => {setModifier(false),onSubmitStatut(modifier)}}
               name='check'
             />}
-            centerComponent={{ text:  `${props.nom} `, style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
+            centerComponent={{ text: "Mon Profil", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
             containerStyle={{
                 backgroundColor: '#FAEBE4',
                 height: 84,
