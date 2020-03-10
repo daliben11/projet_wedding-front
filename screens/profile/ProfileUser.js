@@ -102,7 +102,7 @@ function ProfileUser ( props ) {
             <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
             	onPress={() => {
             		props.navigation.navigate( 'ProfilEdit' );     		
-            }}>
+            	}}>
                 <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Modifier mon profil</Text>
                 <Icon containerStyle={{paddingLeft: 5}} name='edit' type='feather' color='grey' />
             </TouchableOpacity>

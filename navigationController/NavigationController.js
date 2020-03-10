@@ -32,17 +32,24 @@ import ProfilEdit from '../screens/profile/ProfileModif';
 
 import Dashboard from '../screens/Dashboard';
 import Invites from '../screens/guest/Guest';
+import AddInvite from '../screens/guest/AddGuest';
+
 import Budget from '../screens/budget/Budget';
+import AddBudget from '../screens/budget/AddBudget';
+
 import Tasks from '../screens/tasks/Tasks';
-import Prestations from '../screens/prestataires/Prestations';
 import AddTasks from '../screens/tasks/AddTasks';
+
+import Prestations from '../screens/prestataires/Prestations';
+import AddPresta from '../screens/prestataires/AjoutPresta';
+import PrestaView from '../screens/prestataires/PrestaView';
 
 
 
 
 function NavigationController( props ) {
 	var App;
-	
+	console.log('route ', props.navigation)
 	
 	console.log('myWedding exists on nav controller? ', props.myWedding);
 	
@@ -114,10 +121,15 @@ function NavigationController( props ) {
 	// stack du dashboard et pages de gestion du mariage
 	const stackDashboard = createStackNavigator({ 
 		'Dashboard': Dashboard,
-		'Invites': MesMariagesScreen,
+		'Invites': Invites,
+		'AddInvite':AddInvite,
 		'Prestations': Prestations,
-		'Budget': Budget,
-		'Tasks': Tasks		
+		'AddPresta':AddPresta,
+		'PrestaView': PrestaView,
+		'Budget': 	Budget,
+		'AddBudget':AddBudget,
+		'Tasks':		Tasks,
+		'AddTasks': AddTasks,	
 		},  
 		{ headerMode: 'none' }
 	);

@@ -22,7 +22,8 @@ export default function PrestaView({navigation}) {
 
        <HeaderNav nom='Prestataires'/> 
 
-        <ImageBackground  source={require('../../assets/prestataire.jpeg')} style={{flex:1}}/> 
+        <ImageBackground style={{flex:1}}
+        source={{uri:'https://3.bp.blogspot.com/-kXEFQ6-TE-o/TcpOet-2JrI/AAAAAAAAABI/_My0t2hQ7PU/s1600/huf+house.jpg'}} /> 
 
             <View  style={{flex: 0.4, flexDirection: 'row',  alignSelf:'center', alignItems: 'center',}} >
             <Text style={styles.titleView} >Passion Events</Text>
