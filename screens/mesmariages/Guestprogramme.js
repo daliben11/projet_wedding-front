@@ -46,7 +46,7 @@ export default function Guestprogramme( props ) {
              <View >
               <View style={{ backgroundColor: '#FAEBE4', height:40 , }}>
                   <Text  h4
-                    style={{textAlign: 'center',  justifyContent: 'center',
+                    style={{textAlign: 'center',  justifyContent: 'center', alignItems:'center',
                     fontFamily:'greatvibes',
                     fontSize: 21, marginTop: 5
                   }}

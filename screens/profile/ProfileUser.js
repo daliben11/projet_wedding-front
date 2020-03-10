@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import { StyleSheet, View, Text,TouchableOpacity,AsyncStorage } from 'react-native';
-import { Avatar, Icon, Overlay, Input,Header} from 'react-native-elements';
+import { Avatar, Icon} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import ProfileModif from './ProfileModif';
 import {connect} from 'react-redux';
@@ -24,7 +24,7 @@ function ProfileUser ( props ) {
 		    var data = await AsyncStorage.getItem("tokenUser");
 		  
 		    setUserToken(data);  
-		    var dataProfile = await fetch("https://tranquil-journey-96536.herokuapp.com/profile",{
+		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 		      body: `tokenUser=${data}`
@@ -54,6 +54,7 @@ function ProfileUser ( props ) {
               />
 
             </View>
+
             <View style={{flex:1, alignItems:'flex-start',marginLeft: 20}}>
               <View >
                 <Text style={styles.title}>Nom</Text>
@@ -82,6 +83,10 @@ function ProfileUser ( props ) {
               <View >
                 <Text style={styles.title}>Mot de passe</Text>
                 <Text style={styles.description}>**********</Text>
+              </View>
+              <View >
+                <Text style={styles.title}>Sexe</Text>
+                <Text style={styles.description}>{user.sexe}</Text>
               </View>
 
             </View>

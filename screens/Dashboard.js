@@ -40,9 +40,10 @@ export default function Dashboard({navigation}) {
 
             </ImageBackground>
       
-                <View style={{backgroundColor: '#FAEBE4' , height:45}}>
-                  <Text h4 style={{ textAlign:'center',fontWeight: 'bold', fontFamily:'greatvibes'}} style={styles.container} > 200 jours 11 Heures 37 min 34 s</Text>
+                <View style={{backgroundColor: '#FAEBE4' , height:45, alignItems:'center', justifyContent:'center'}}>
+                  <Text style={styles.container} > 200 jours 11 Heures 37 min 34 s</Text> 
                 </View>
+                
 
                 
 
@@ -126,13 +127,10 @@ export default function Dashboard({navigation}) {
       container: {
        
         alignItems: 'center',
-        justifyContent: 'center',
+       
         fontFamily:'greatvibes',
         fontSize: 21,
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 10,
-        marginBottom: 10,
+       
         
       },
       titleView: {
