@@ -23,6 +23,7 @@ function AddWedding ( props ) {
 	const [userToken,setUserToken] = useState('');
 	const [user,setUser]=useState('');
 	const [descriptif, setDescriptif] = useState('');
+	const [budget , setBudget] = useState('')
 	  
 	const [date, setDate] = useState('')
 	console.log(date)
@@ -53,7 +54,19 @@ function AddWedding ( props ) {
 	},[]);
 
 	
+	var handleAddWeeding = async () =>{
+        let data = await fetch("https://weedingplanner.herokuapp.com/add-wedding",{  
+              method: 'POST',
+              headers: {'Content-Type':'application/x-www-form-urlencoded'},
+              body: `date=${date}&description=${descriptif}&budget=${budget}&tokenUser=${userToken}`
+            });
+      
+            let dataJson = await data.json();
+			console.log(dataJson)
+			
+            
 
+    }
 	
 
 
@@ -87,10 +100,10 @@ function AddWedding ( props ) {
 									bride: brideName, 
 									groom: groomName, 
 									city: city, 
-									date: myWeddingDate
+									/* date: myWeddingDate */
 								} );
 								props.showPage(false)
-							} } 
+							, handleAddWeeding() } }
 						/>
 						}
 					containerStyle={{
@@ -102,7 +115,7 @@ function AddWedding ( props ) {
 				<Input
 					containerStyle={styles.input}
 					label='PRÉNOM DE LA MARIÉE'
-					placeholder='John'
+					placeholder={brideName}
 					value={brideName}
 					onChangeText={ (val) => setBrideName(val) }
 				/>
@@ -112,7 +125,7 @@ function AddWedding ( props ) {
 					placeholder={groomName}
 					value={groomName}
 					onChangeText={ (val) => setGroomName(val) }
-		      style={styles.input} 
+		      
 				/>
 				<Input
 					containerStyle={styles.input}
@@ -128,7 +141,7 @@ function AddWedding ( props ) {
                     date={date}
                     mode="date"
                     placeholder="Sélectionner une date"
-                    format="DD-MM-YYYY"
+                    format="MM-DD-YYYY"
                     minDate="01-01-1950"
                     maxDate="01-01-2050"
                     confirmBtnText="Confirm"
@@ -160,10 +173,15 @@ function AddWedding ( props ) {
 					
 					multiline={true}
 					numberOfLines={4}
-					onChangeText={(text) => setCity({text})}
+					onChangeText={(text) => setDescriptif({text})}
 					placeholder='Veuillez écrire une petite description de votre mariage'
 					/>
-
+				<Input
+					containerStyle={styles.input}
+					label='Budget'
+					placeholder='Budget'
+					onChangeText={ (val) => setBudget(val) }
+				/>
 
 
 
