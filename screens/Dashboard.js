@@ -8,6 +8,7 @@ import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 
 
 export default function Dashboard({navigation}) {
+//props.setJustCreateWedding( false );
     return (
       
       

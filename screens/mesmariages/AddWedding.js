@@ -84,6 +84,7 @@ function AddWedding ( props ) {
 							onPress={ () => {
 								props.setMyWedding( {
 									status: true,
+									justCreate: true,
 									date: dateWedding,
 									bride: brideName, 
 									groom: groomName, 
@@ -206,7 +207,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return { 
-	 	isLogin: state.isLogin,
+//	 	isLogin: state.isLogin,
 	 	myWedding: state.myWedding,
 //  	username: state.username,
   }
