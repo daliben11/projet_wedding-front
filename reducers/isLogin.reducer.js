@@ -8,6 +8,12 @@ export default function ( isLogin = {}, action ) {
 
 		return action.login ;
 		
+	} else if ( action.type === 'setUserToken' ){
+		let copy = {...isLogin};
+		copy.userToken = action.userToken;
+		
+		return copy ;
+		
 	} else {
 		
 		return isLogin ;
