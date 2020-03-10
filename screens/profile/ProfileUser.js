@@ -9,11 +9,10 @@ import { dateFnsLocalizer } from 'react-big-calendar';
 
 
 function ProfileUser ( props ) {
-  const [modifier,setModifier]=useState(false)
+
   const [user,setUser] = useState('')
  
-		
-//	if (modifier===false) {
+
 		
 	const [userToken,setUserToken] = useState("");
 	console.log("test userToken ", userToken)
@@ -108,13 +107,9 @@ function ProfileUser ( props ) {
             </TouchableOpacity>
             
           </View>
-    </View>
+    	</View>
 		);
-//	} else {
-//		return (
-//		  <ProfileModif nom='Mon Profil'/>
-//		)
-//	}
+
 
 }
 
@@ -142,7 +137,6 @@ function mapStateToProps(state) {
 	return { 
 	 	isLogin: state.isLogin,
 	 	myWedding: state.myWedding,
-	 	statut : state.modifier
 //  	username: state.username,
   }
 }

@@ -84,10 +84,10 @@ function AddWedding ( props ) {
 							onPress={ () => {
 								props.setMyWedding( {
 									status: true,
+									date: dateWedding,
 									bride: brideName, 
 									groom: groomName, 
 									city: city, 
-									date: dateWedding,
 									description: descriptif
 								} );
 								props.showPage( false )

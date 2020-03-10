@@ -4,9 +4,10 @@ export default function ( mariageInfo = {status: false}, action ) {
 	mariageInfo = { 
 		status: Boolean, 
 		date: Date, 
-		brideName: String, 
-		groomName: String, 
-		city: String };
+		bride: String, 
+		groom: String, 
+		city: String,
+		description: String };
 	*/
 	
 	if ( action.type === 'setMyWedding' ) {

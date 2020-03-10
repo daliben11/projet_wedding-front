@@ -115,7 +115,7 @@ function MesMariagesScreen( props ) {
 				<Overlay
 				 isVisible={modalVisible}
 				 onBackdropPress={ () => setModalVisible(false) }
-				 windowBackgroundColor="rgba(255, 255, 255, .5)"
+				 windowBackgroundColor="rgba(0, 0, 0, .4)"
 				 overlayBackgroundColor="rgba(255, 255, 255, 1)"
 				 width="90%" height="75%"
 				 >
@@ -131,17 +131,17 @@ function MesMariagesScreen( props ) {
 						 <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
 						 <Button
 						 	title="Rejoindre un mariage"
-						 	buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 10}}
+						 	buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
 						 	titleStyle={{color:"#31AE89"}}
 							onPress={ () => {
 									
 									setModalVisible( false );
 							} }
 						 />
-						 <View style={styles.interSpace}/>
+						 <View style={{padding:10}}/>
 						 <Button
 							title="Cancel"
-							buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 10}}
+							buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
 						 	titleStyle={{color:"#31AE89"}}
 							onPress={ () => {
 									setModalVisible( false );
