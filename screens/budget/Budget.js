@@ -17,12 +17,14 @@ export default function Budget(props) {
     async function  etatBudget(){
 
       var dataBudget = await fetch('http://10.2.5.195:3000/budget', {
+
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: "id=5e6762c9f5023800170451a7"
         });
        
         var budget = await dataBudget.json();
+        
         setListePrestataire(budget.wedding.serviceProviders)
         console.log("YOOOOOOO", listePrestataire)
       }
@@ -84,7 +86,7 @@ if (modifier===false) {
                         
                           return(
                               <TouchableOpacity>
-                                <Card key={i} image={{img: u.img}} containerStyle={{ width: 150, height: 220}}  >
+                                <Card key={i} image={{ uri: ("http://10.2.5.195:3000/" + u.img.slice(2)) }} containerStyle={{ width: 150, height: 220}}  >
                                       <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service}{"\n"}(1000 €)</Text>
                                 </Card>
                               </TouchableOpacity>
