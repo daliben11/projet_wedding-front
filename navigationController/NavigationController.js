@@ -68,7 +68,7 @@ function NavigationController( props ) {
 		'ProfilUser': ProfilUser, 
 		'ProfilEdit': ProfilEdit,
 		}, 
-		{ headerMode: 'none' } 
+		{ mode:'modal', headerMode: 'none' } 
 	);
 	
 	
@@ -162,13 +162,6 @@ function NavigationController( props ) {
 	// Ça crée les élements du tiroir selon le type d'utilisateur (invité ou admin)
 	const ScreensToNavigateDrawer = props.myWedding.status
 		?	{		
-				MesMariagesScreen: {
-					screen: profilBottom,
-					navigationOptions: {
-					  title: "Mes Mariages",
-					  drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
-					}
-				},
 				DashboardScreen: {
 					screen: dashboardBottom,
 					navigationOptions: {
@@ -176,11 +169,11 @@ function NavigationController( props ) {
 					  drawerIcon: ({ tintColor }) => <Feather name="home" size={16} color={tintColor} />
 					}
 				},
-				MonProfilScreen: {
-					screen: stackProfil,
+				MesMariagesScreen: {
+					screen: profilBottom,
 					navigationOptions: {
-					  title: "Mon Profil",
-					  drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+					  title: "Mes Mariages",
+					  drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
 					}
 				},
 				DeconnexionScreen: {
@@ -271,18 +264,10 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setLogin: function ( val ) {
-    	 dispatch( {type: 'setLogin', login: val } )
-    }
-  }
-}
-
 
 export default connect(
   mapStateToProps, 
-  mapDispatchToProps
+  null
 )( NavigationController );
 
 

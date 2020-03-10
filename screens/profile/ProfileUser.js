@@ -138,13 +138,26 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-console.log("TCL: mapStateToProps -> state", state)
+	console.log("TCL: mapStateToProps -> state", state);
+	return { 
+	 	isLogin: state.isLogin,
+	 	myWedding: state.myWedding,
+	 	statut : state.modifier
+//  	username: state.username,
+  }
+}
 
-  return { statut : state.modifier}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setToken: function ( val ) {
+    	 dispatch( {type: 'setUserToken', userToken: val } )
+    }
+  }
 }
 
 export default connect(
   mapStateToProps, 
-  null
+  mapDispatchToProps
 )(ProfileUser);
 

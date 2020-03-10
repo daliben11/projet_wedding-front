@@ -20,12 +20,13 @@ function AddWedding ( props ) {
 	const [brideName, setBrideName] = useState('Janet');
 	const [groomName, setGroomName] = useState('John');
 	const [city, setCity] = useState('');
-	const [userToken,setUserToken] = useState('');
-	const [user,setUser]=useState('');
 	const [descriptif, setDescriptif] = useState('');
-	  
-	const [date, setDate] = useState('')
-	console.log(date)
+	const [dateWedding, setDateWedding] = useState('')
+	
+	const [userToken,setUserToken] = useState('');
+	const [user,setUser] = useState('');
+
+	console.log(dateWedding)
  
 	useEffect( () => {  
 	
@@ -45,7 +46,7 @@ function AddWedding ( props ) {
 			} else {
 				setBrideName(profile.userlastname)
 			}
-			console.log('affiche moi le nom du marié',groomName)
+			console.log('affiche moi le nom du marié', groomName)
 
 			}
 			detailProfil();
@@ -65,8 +66,7 @@ function AddWedding ( props ) {
 			<View 
 				containerStyle={{
 			    flexbackgroundColor:'#FFF'
-				}}
-			>	
+				}} >	
 				
 				
 				<Header
@@ -87,9 +87,10 @@ function AddWedding ( props ) {
 									bride: brideName, 
 									groom: groomName, 
 									city: city, 
-									date: myWeddingDate
+									date: dateWedding,
+									description: descriptif
 								} );
-								props.showPage(false)
+								props.showPage( false )
 							} } 
 						/>
 						}
@@ -122,31 +123,31 @@ function AddWedding ( props ) {
 				/>
 				
 				<View style={{margin: 10}}>
-                  <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
-                    <DatePicker
-                    style={{width: 200, marginTop: 10}}
-                    date={date}
-                    mode="date"
-                    placeholder="Sélectionner une date"
-                    format="DD-MM-YYYY"
-                    minDate="01-01-1950"
-                    maxDate="01-01-2050"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                      dateIcon: {
-                        position: 'absolute',
-                        left: 0,
-                        top: 4,
-                        marginLeft: 0
-                      },
-                      dateInput: {
-                        marginLeft: 36
-                      }
-                    }}
-                    onDateChange={(date) => setDate(date)}
-                  />
-            	</View>
+            <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
+              <DatePicker
+              style={{width: 200, marginTop: 10}}
+              date={dateWedding}
+              mode="date"
+              placeholder="Sélectionner une date"
+              format="DD-MM-YYYY"
+              minDate="01-01-1950"
+              maxDate="01-01-2050"
+              confirmBtnText="Confirm"
+              cancelBtnText="Cancel"
+              customStyles={{
+                dateIcon: {
+                  position: 'absolute',
+                  left: 0,
+                  top: 4,
+                  marginLeft: 0
+                },
+                dateInput: {
+                  marginLeft: 36
+                }
+              }}
+              onDateChange={(date) => setDateWedding(date)}
+            />
+      	</View>
 				{/* <Input
 					containerStyle={styles.input}
 					label='Descriptif du mariage'
@@ -154,18 +155,15 @@ function AddWedding ( props ) {
 					onChangeText={ (val) => setCity(val) }
 				/> */}
 				<TextInput
-					placeholder='INPUT WITH CUSTOM ICON'
-					style={{margin:20, backgroundColor:'white',
-					paddingTop: 10}}
-					
+					style={{
+						margin:20, 
+						backgroundColor:'white',
+						paddingTop: 10}}
 					multiline={true}
 					numberOfLines={4}
-					onChangeText={(text) => setCity({text})}
+					onChangeText={ (text) => setDescriptif( text ) }
 					placeholder='Veuillez écrire une petite description de votre mariage'
 					/>
-
-
-
 
 			</View>
 

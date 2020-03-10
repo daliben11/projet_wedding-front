@@ -14,9 +14,12 @@ import AddWedding from './AddWedding'
 function MesMariagesScreen( props ) {
 
 	const [createNewWed, setCreateNewWed] = useState( false );
+	const [modalVisible, setModalVisible] = useState( false );
+	const [codeMariage, setCodeMariage] = useState('');
 	
 	const changePage = (val) => {
 		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
+		
 		setCreateNewWed( val );
 	}
 
@@ -78,6 +81,7 @@ function MesMariagesScreen( props ) {
 				</ScrollView>
 				
 				<TouchableOpacity
+					onPress={ () => setModalVisible( true ) }
 					style={{
 						width:'100%', height:50,
 						padding: 5,
@@ -91,14 +95,14 @@ function MesMariagesScreen( props ) {
 					<Icon name='plus' type='feather' color='grey' />
 				</TouchableOpacity>
 				
-				<TouchableOpacity 
+				<TouchableOpacity
+					onPress={ () => setCreateNewWed( true ) }
 					style={{
 						width:'100%', height:50,
 						padding: 5,
 						backgroundColor: '#fff', 
 						flexDirection: 'row', alignItems: 'center', justifyContent:'center'
-					}}
-					onPress={ () => setCreateNewWed( true ) }>
+					}}>
 					
 					<Text style={{paddingLeft: 20}}>
 						Ajouter mon mariage
@@ -108,7 +112,43 @@ function MesMariagesScreen( props ) {
 				</TouchableOpacity>
 				
 				
-				
+				<Overlay
+				 isVisible={modalVisible}
+				 onBackdropPress={ () => setModalVisible(false) }
+				 windowBackgroundColor="rgba(255, 255, 255, .5)"
+				 overlayBackgroundColor="rgba(255, 255, 255, 1)"
+				 width="90%" height="75%"
+				 >
+					 <View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+					   <Input
+								containerStyle={styles.input}
+								label='CODE DU MARIAGE'
+								placeholder="WXYZ123"
+								value={codeMariage}
+								onChangeText={ (val) => setCodeMariage(val) }
+								style={styles.input} 
+						 />
+						 <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+						 <Button
+						 	title="Rejoindre un mariage"
+						 	buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 10}}
+						 	titleStyle={{color:"#31AE89"}}
+							onPress={ () => {
+									
+									setModalVisible( false );
+							} }
+						 />
+						 <View style={styles.interSpace}/>
+						 <Button
+							title="Cancel"
+							buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 10}}
+						 	titleStyle={{color:"#31AE89"}}
+							onPress={ () => {
+									setModalVisible( false );
+							} }
+						/>
+					 </View></View>
+				</Overlay>
 				
 				
 				
