@@ -16,7 +16,7 @@ export default function Budget(props) {
 
     async function  etatBudget(){
 
-      var dataBudget = await fetch('http://10.2.5.195:3000/budget', {
+      var dataBudget = await fetch('https://weedingplanner.herokuapp.com/budget', {
 
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
