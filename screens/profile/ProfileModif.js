@@ -46,7 +46,7 @@ function ProfileModif( props ) {
 
 
   	
-  	await fetch('http://10.2.5.206:3000/profile', {
+  	await fetch('https://weedingplanner.herokuapp.com/profile', {
 			method: 'PUT',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify( obj )

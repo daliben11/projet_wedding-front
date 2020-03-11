@@ -15,7 +15,7 @@ function ProfileUser ( props ) {
   const [user,setUser] = useState('')	
 	const [userToken, setUserToken] = useState("");
 	
-	console.log("test userToken ", userToken);
+	console.log("test userToken on state ", userToken);
 	
 	
 	useEffect( () => {  
@@ -25,7 +25,7 @@ function ProfileUser ( props ) {
 		  
 		    setUserToken(data);
 		    
-		    var dataProfile = await fetch("http://10.2.5.206:3000/profile",{
+		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 		      body: `tokenUser=${data}`
@@ -34,10 +34,9 @@ function ProfileUser ( props ) {
 		    
 		    console.log('get json')
 		    setUser(profile);
-		    props.setToken(userToken);
+		    
     }
     detailProfil();
-    console.log('ceci est mon token ', props.isLogin.userToken);
 	}, []);
       
   console.log('fetched user data from DB ', user);
