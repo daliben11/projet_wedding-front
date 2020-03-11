@@ -37,7 +37,7 @@ function ProfileUser ( props ) {
 		    
     }
     detailProfil();
-    return ()=>{console.log('parti')}
+    return ()=>{console.log()}
 	}, []);
       
   //console.log('fetched user data from DB ', user);
