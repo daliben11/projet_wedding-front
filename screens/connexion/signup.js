@@ -8,7 +8,7 @@ function Signup ( props ) {
 	const handleSignUp = () => {
 		
 		props.navigation.navigate( 'Enter' );
-		props.setLogin({status: true});	
+		//props.setLogin({status: true});	
 	}
 	
 	const handleSignIn = () => {

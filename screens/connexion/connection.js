@@ -25,7 +25,7 @@ function Connection( props ) {
 				        	onPress={ ()=>{
 				        		console.log('Fausse connexion !');
 				        		props.navigation.navigate('Enter');
-				        		props.setLogin({status: true});
+				        		props.setLogin({status: true, userToken: ''});
 				        	} }>
 				           <Image 
 						         style={styles.logo}

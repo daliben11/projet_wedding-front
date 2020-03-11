@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { 
 	View,
-	StyleSheet, TouchableOpacity, Text, AsyncStorage, TextInput  } from 'react-native';
+	StyleSheet, TouchableOpacity, Text, AsyncStorage, TextInput, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import { Icon, Header, Input, Button } from 'react-native-elements';
 
@@ -14,7 +14,8 @@ import DatePicker from 'react-native-datepicker'
 
 
 function AddWedding ( props ) {
-console.log( "je suis dans AddWedding ", props.myWedding );
+//console.log( "je suis dans AddWedding ", props.myWedding );
+
 
 
 	const [brideName, setBrideName] = useState('Janet');
@@ -67,7 +68,7 @@ console.log( "je suis dans AddWedding ", props.myWedding );
             });
       
             let dataJson = await data.json();
-			console.log(dataJson)
+			console.log(dataJson,usertoken)
 			
             
 
@@ -79,7 +80,8 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 
 
 	return(
-		
+		<ScrollView>
+			<KeyboardAvoidingView behavior="padding" style={{flex:1}}>
 			<View 
 				containerStyle={{
 			    flexbackgroundColor:'#FFF'
@@ -99,6 +101,7 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 					rightComponent={
 						<Icon name='check' type='antdesign' color='#000' 
 							onPress={ () => {
+								handleAddWeeding();
 								props.setMyWedding( {
 									status: true,
 									justCreate: true,
@@ -144,10 +147,10 @@ console.log( "je suis dans AddWedding ", props.myWedding );
             <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
               <DatePicker
               style={{width: 200, marginTop: 10}}
-              date={dateWedding}
+              date={date}
               mode="date"
               placeholder="Sélectionner une date"
-              format="DD-MM-YYYY"
+              format="MM-DD-YYYY"
               minDate="01-01-1950"
               maxDate="01-01-2050"
               confirmBtnText="Confirm"
@@ -163,7 +166,7 @@ console.log( "je suis dans AddWedding ", props.myWedding );
                   marginLeft: 36
                 }
               }}
-              onDateChange={(date) => setDateWedding(date)}
+              onDateChange={(date) => setDate(date)}
             />
       	</View>
 				{/* <Input
@@ -192,7 +195,8 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 
 
 			</View>
-
+			</KeyboardAvoidingView>
+		</ScrollView>				
 	);
 
 }

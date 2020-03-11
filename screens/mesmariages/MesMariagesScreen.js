@@ -12,7 +12,7 @@ import AddWedding from './AddWedding'
 
 
 function MesMariagesScreen( props ) {
-	console.log( "je suis dans mes mariages ", props.myWedding );
+	//console.log( "je suis dans mes mariages ", props.myWedding );
 
 	const [createNewWed, setCreateNewWed] = useState( false );
 	const [modalVisible, setModalVisible] = useState( false );

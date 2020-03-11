@@ -1,6 +1,6 @@
+import React, { useState,useEffect } from 'react';
 
-import React, { Component, useState,useEffect } from 'react';
-import { StyleSheet, View, TextInput} from 'react-native';
+import { StyleSheet, View, TextInput, AsyncStorage } from 'react-native';
 import { Button, CheckBox } from 'react-native-elements';
 import NumericInput from 'react-native-numeric-input';
 
@@ -8,6 +8,7 @@ import NumericInput from 'react-native-numeric-input';
 function Logupform( props ) {
     const [isLogged,setIsLogged] = useState(false);
     //state pour le sign up
+    
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [userFirstName,setUserFirstName] = useState("");
@@ -43,14 +44,15 @@ function Logupform( props ) {
             });
       
             let dataJson = await data.json();
-            console.log(dataJson)
+            console.log('reponse du back', dataJson)
             props.signup();
+            AsyncStorage.setItem("tokenUser", dataJson.tokenUser);
 
     }
 
 
 
-console.log(userFirstName)
+		console.log(userFirstName)
 
     return (
      
@@ -202,4 +204,6 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Logupform 
+
+export default Logupform ;
+

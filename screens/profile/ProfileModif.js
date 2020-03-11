@@ -1,7 +1,7 @@
-import React,{useState} from 'react';
+import React,{ useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 
-import { View, ScrollView } from 'react-native';
+import { AsyncStorage, View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { Avatar, Icon, Input,Header} from 'react-native-elements';
 
 
@@ -11,7 +11,7 @@ function ProfileModif( props ) {
 
   const [nom,setNom] = useState('')
   const [prenom,setPrenom] = useState('')
-  const [birthday, setBirthday] = useState('')
+//  const [birthday, setBirthday] = useState(Date.now());
   
   const [phone, setPhone] = useState('')
   const [mail,setMail] = useState('')
@@ -19,14 +19,61 @@ function ProfileModif( props ) {
   const [adresse,setAdresse] = useState('')
   const [ville,setVille] = useState('')
   const [codeP,setCodeP] = useState('')
+  const [password,setPassword] = useState('')
   
+	const [userToken, setUserToken] = useState("");
+	
+	
+	useEffect( () => {
+			
+			( async () => {
+				var data = await AsyncStorage.getItem("tokenUser");
+				setUserToken(data);
+				})();
+			//console.log( 'state token profil modif ', userToken );
+	}, []);
+		    
   
-  const postProfilEditToBDD = async() => {
+  const postProfilEditToBDD = async () => {
+ 
+		let myForm = new FormData();
+		myForm.append('token', userToken );
+		void ( prenom !='' && ( myForm.append('userfirstname', prenom ) ) );
+		void ( nom !='' 	 && ( myForm.append('userlastname', nom ) ) );
+		//void ( birthday !='' && ( myForm.append('birthday', prenom ) ) );
+		void ( mail !='' 	 && ( myForm.append('email', mail ) ) );
+		void ( phone !=''  && ( myForm.append('phone', prenom ) ) );
+		void (adresse !='' && ( myForm.append('address', adresse ) ) );
+		void ( ville !=''	 && ( myForm.append('city', ville ) ) );
+		void ( codeP !=''  && ( myForm.append('zipcode', codeP ) ) );
+		void (password !=''&& ( myForm.append('password',password ) ) );
+
+		
+    //sexe: String,
+    //avatar: String,
+    //password: String,
+
+ 	
+  	let dataProfile = await fetch('https://weedingplanner.herokuapp.com/profile', {//'http://10.2.5.206:3000
+			method: 'PUT',
+			body: myForm, 
+		});
+		
+    let response = await dataProfile.json();
   	
   };
   
   
+  
+  
   return (
+
+    
+<ScrollView style={{flex:1}}>
+
+ 
+    <KeyboardAvoidingView behavior="padding" style={{flex:1}}>
+    
   <View style={{backgroundColor:"#F5F8FB",flex:1}}>
 
       <Header
@@ -35,7 +82,7 @@ function ProfileModif( props ) {
             name='close'
           />}
           rightComponent={<Icon
-            onPress={() => { props.navigation.goBack() }}
+            onPress={() => { postProfilEditToBDD(); props.navigation.goBack() }}
             name='check'
           />}
           centerComponent={{ text: "Mon Profil", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
@@ -45,7 +92,7 @@ function ProfileModif( props ) {
           }}>
       </Header>
     
-  <ScrollView style={{flex:1}}>
+  
     <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
 
             <Avatar              
@@ -67,12 +114,12 @@ function ProfileModif( props ) {
               label='Prénom'
               onChangeText={(val) => setPrenom(val)}
             />  
-            <Input
+            {/*<Input
               containerStyle={{marginTop:15}}
               placeholder='Date de naissance'
               label='Date de naissance'
               onChangeText={(val) => setBirthday(val)}
-            />
+            />*/}
             
             <Input
               containerStyle={{marginTop:15}}
@@ -103,7 +150,7 @@ function ProfileModif( props ) {
               containerStyle={{marginTop:15}}
               placeholder='Code Postal'
               label='Code Postal'
-              onChangeText={(val)=>setCodeP(val) ,console.log(codeP)}
+              onChangeText={ (val)=>setCodeP(val) }
               
             />
             <Input
@@ -111,25 +158,29 @@ function ProfileModif( props ) {
               placeholder='Mot de passe'
               label='Mot de passe'
               secureTextEntry={true}
+              onChangeText={ (val)=>setPassword(val) ,console.log(password)}
             />
             
 
     </View>
-  </ScrollView>
+  
 </View>
+</KeyboardAvoidingView>
+
+</ScrollView>
   )
 }
 
+function mapStateToProps(state) {
 
-function mapDispatchToProps(dispatch) {
-  return {
-    saveUsername: function(val) { 
-      dispatch( {type: 'saveUsername', username: val }) 
-    }
+	return { 
+	 	isLogin: state.isLogin,
   }
 }
 
+
+
 export default connect(
-    null, 
-    mapDispatchToProps
+    mapStateToProps, 
+    null
 )(ProfileModif);

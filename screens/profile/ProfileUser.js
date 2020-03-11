@@ -12,33 +12,35 @@ import ProfileModif from './ProfileModif';
 
 function ProfileUser ( props ) {
 
-  const [user,setUser] = useState('')
- 
-
-		
-	const [userToken,setUserToken] = useState("");
-	console.log("test userToken ", userToken)
+  const [user,setUser] = useState('')	
+	const [userToken, setUserToken] = useState("");
+	
+//	console.log("test userToken on state ", userToken);
+	
 	
 	useEffect( () => {  
 	
 		async function detailProfil(){
 		    var data = await AsyncStorage.getItem("tokenUser");
 		  
-		    setUserToken(data);  
+		    setUserToken(data);
+		    
 		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 		      body: `tokenUser=${data}`
 		    });
 		    var profile = await dataProfile.json();
-		    console.log('get json')
-		     setUser(profile)
-		    }
-		    detailProfil();
-    
+		    
+		    //console.log('get json')
+		    setUser(profile);
+		    
+    }
+    detailProfil();
+    return ()=>{console.log()}
 	}, []);
       
-  console.log('fetched user data from DB ', user);
+  //console.log('fetched user data from DB ', user);
   
   return (
     
@@ -102,7 +104,7 @@ function ProfileUser ( props ) {
             <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
             	onPress={() => {
             		props.navigation.navigate( 'ProfilEdit' );     		
-            }}>
+            	}}>
                 <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}>Modifier mon profil</Text>
                 <Icon containerStyle={{paddingLeft: 5}} name='edit' type='feather' color='grey' />
             </TouchableOpacity>

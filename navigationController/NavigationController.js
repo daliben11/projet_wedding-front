@@ -21,7 +21,7 @@ import Accueil from '../screens/Accueil'
 import connection from '../screens/connexion/connection';
 import signin from '../screens/connexion/signin';
 import signup from '../screens/connexion/signup';
-import DeconnexionScreen from '../screens/connexion/DeconnexionScreen';
+import logout from '../screens/connexion/DeconnexionScreen';
 
 import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 import GuestPage from '../screens/mesmariages/Guestprogramme';
@@ -32,10 +32,17 @@ import ProfilEdit from '../screens/profile/ProfileModif';
 
 import Dashboard from '../screens/Dashboard';
 import Invites from '../screens/guest/Guest';
+import AddInvite from '../screens/guest/AddGuest';
+
 import Budget from '../screens/budget/Budget';
+import AddBudget from '../screens/budget/AddBudget';
+
 import Tasks from '../screens/tasks/Tasks';
-import Prestations from '../screens/prestataires/Prestations';
 import AddTasks from '../screens/tasks/AddTasks';
+
+import Prestations from '../screens/prestataires/Prestations';
+import AddPresta from '../screens/prestataires/AjoutPresta';
+import PrestaView from '../screens/prestataires/PrestaView';
 
 
 
@@ -43,8 +50,7 @@ import AddTasks from '../screens/tasks/AddTasks';
 function NavigationController( props ) {
 	var App;
 	
-	
-	console.log('myWedding exists on nav controller? ', props.myWedding);
+	//console.log('myWedding exists on nav controller? ', props.myWedding);
 	
 	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
 	const stackMariage = props.myWedding.status 	
@@ -64,7 +70,12 @@ function NavigationController( props ) {
 			{ headerMode: 'none' }
 			) ;
 
-
+	const stackLogout = createStackNavigator({ 
+		'logout': logout,
+		'gohome': connection
+		}, 
+		{ mode:'modal', headerMode: 'none' } 
+	);
 
 	// Stack Profil et Edition Profil
 	const stackProfil = createStackNavigator({ 
@@ -114,10 +125,15 @@ function NavigationController( props ) {
 	// stack du dashboard et pages de gestion du mariage
 	const stackDashboard = createStackNavigator({ 
 		'Dashboard': Dashboard,
-		'Invites': MesMariagesScreen,
+		'Invites': Invites,
+		'AddInvite':AddInvite,
 		'Prestations': Prestations,
-		'Budget': Budget,
-		'Tasks': Tasks		
+		'AddPresta':AddPresta,
+		'PrestaView': PrestaView,
+		'Budget': 	Budget,
+		'AddBudget':AddBudget,
+		'Tasks':		Tasks,
+		'AddTasks': AddTasks,	
 		},  
 		{ headerMode: 'none' }
 	);
@@ -180,7 +196,7 @@ function NavigationController( props ) {
 					}
 				},
 				DeconnexionScreen: {
-					screen: DeconnexionScreen,
+					screen: stackLogout,
 					navigationOptions: {
 					  title: "Déconnexion",
 					  drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
@@ -195,15 +211,15 @@ function NavigationController( props ) {
 				    drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
 				  }
 				},
-				MonProfilScreen: {
-				  screen: stackProfil,
-				  navigationOptions: {
-				    title: "Mon Profil",
-				    drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
-				  }
-				},
+//				MonProfilScreen: {
+//				  screen: stackProfil,
+//				  navigationOptions: {
+//				    title: "Mon Profil",
+//				    drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+//				  }
+//				},
 				DeconnexionScreen: {
-				  screen: DeconnexionScreen,
+				  screen: stackLogout,
 				  navigationOptions: {
 				    title: "Déconnexion",
 				    drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />

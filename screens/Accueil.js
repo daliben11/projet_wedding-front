@@ -6,7 +6,7 @@ import { Icon, Image } from 'react-native-elements';
 
 
 function Accueil ( props ) {
-	console.log( "je suis dans l'accueil ", props.myWedding );
+	//console.log( "je suis dans l'accueil ", props.myWedding );
 
 	if ( props.myWedding.justCreate ) {
 		

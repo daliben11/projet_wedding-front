@@ -1,40 +1,44 @@
 import React, { Component,useState } from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, Text,AsyncStorage } from 'react-native';
+
+import { StyleSheet, View, TextInput, 
+		TouchableOpacity, Text,AsyncStorage } from 'react-native';
 import { Button } from 'react-native-elements';
 
 /* LOGINFORM */
 function Loginform( props ) {
+
     const [isLogged,setIsLogged] = useState(false);
     // state sign in
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
     const [messageSignIn,setMessageSignIn] = useState("");
     console.log(email,password)
+    
 //gestion sign in >>>> envoi au back les champs de signin (récupéré par button) et met à jour les états (islogin, message et token)
-    var handleSignIn = async () =>{
+    var handleSignIn = async () => {
         if((email=="")||(password=="")) {
-        setMessageSignIn("Champs requis !")
-        console.log(messageSignIn)
+		      setMessageSignIn("Champs requis !")
+		      console.log(messageSignIn)
         }
 
         else {
-        let data = await fetch("https://weedingplanner.herokuapp.com/sign-in",{
-            method: 'POST',
-            headers: {'Content-Type':'application/x-www-form-urlencoded'},
-            body: `email=${email}&password=${password}`
-        });
+		      let data = await fetch('https://weedingplanner.herokuapp.com/sign-in',{
+		          method: 'POST',
+		          headers: {'Content-Type':'application/x-www-form-urlencoded'},
+		          body: `email=${email}&password=${password}`
+		      });
 
-        let dataJson = await data.json();
-        console.log(dataJson.result)
-        if(dataJson.result==false){
-            setMessageSignIn("Identifiant incorrect")
-            console.log(dataJson)
-        } else {
-            props.signin()
-            console.log(dataJson)
-            AsyncStorage.setItem("tokenUser",dataJson.tokenUser)
-
-        }
+		      let dataJson = await data.json();
+		      console.log(dataJson.result)
+		      
+		      if(dataJson.result==false){
+		          setMessageSignIn("Identifiant incorrect")
+		          console.log('identifiant incorrect ', dataJson)
+		      } else {
+		          props.signin()
+		          console.log( dataJson )
+		          AsyncStorage.setItem("tokenUser", dataJson.tokenUser);
+		      }
         }
         
     }
@@ -48,7 +52,8 @@ function Loginform( props ) {
 		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
                       style={styles.input} 
                       onChangeText={(value) => setEmail(value)} 
-                      value={email}
+                      autoCompleteType='email'
+                      clearTextOnFocus={true}
                 />
 
                 <TextInput 
@@ -56,8 +61,9 @@ function Loginform( props ) {
 		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
 		              secureTextEntry
                       style={styles.input} 
-                      onChangeText={(value) => setPassword(value)} 
-                      value={password}
+                      onChangeText={(value) => setPassword(value)}
+                      autoCompleteType='password'
+                      clearTextOnFocus={true}
                 />
                 
 
@@ -110,4 +116,7 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Loginform
+export default Loginform ;
+
+
+

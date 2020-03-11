@@ -3,7 +3,7 @@ export default function ( isLogin = {}, action ) {
 	/* La forme de l'objet est 
 	isLogin = { 
 		status: Boolean, 
-		tokenUser: String, 
+		userToken: String, 
 		username: String,
 		}
 	*/
@@ -15,7 +15,7 @@ export default function ( isLogin = {}, action ) {
 	} else if ( action.type === 'setUserToken' ){
 		let copy = {...isLogin};
 		copy.userToken = action.userToken;
-		
+		//console.log('copy  dans le reducer qd il garde le userToken ', copy)
 		return copy ;
 		
 	} else if ( action.type === 'saveUsername' ){
@@ -28,5 +28,4 @@ export default function ( isLogin = {}, action ) {
 		
 		return isLogin ;
 	}
-
 }
