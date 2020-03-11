@@ -12,30 +12,32 @@ import ProfileModif from './ProfileModif';
 
 function ProfileUser ( props ) {
 
-  const [user,setUser] = useState('')
- 
-
-		
+  const [user,setUser] = useState('')	
 	const [userToken,setUserToken] = useState("");
-	console.log("test userToken ", userToken)
+	
+	console.log("test userToken ", userToken);
+	
 	
 	useEffect( () => {  
 	
 		async function detailProfil(){
 		    var data = await AsyncStorage.getItem("tokenUser");
 		  
-		    setUserToken(data);  
+		    setUserToken(data);
+		    
 		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 		      body: `tokenUser=${data}`
 		    });
 		    var profile = await dataProfile.json();
+		    
 		    console.log('get json')
-		     setUser(profile)
-		    }
-		    detailProfil();
-    
+		    setUser(profile);
+		    props.setToken(userToken);
+    }
+    detailProfil();
+    console.log('ceci est mon token ', props.isLogin.userToken);
 	}, []);
       
   console.log('fetched user data from DB ', user);

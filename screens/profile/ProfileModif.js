@@ -20,8 +20,19 @@ function ProfileModif( props ) {
   const [ville,setVille] = useState('')
   const [codeP,setCodeP] = useState('')
   
+
   
-  const postProfilEditToBDD = async() => {
+  const postProfilEditToBDD = async (objChangements) => {
+  	
+  	
+  	
+  	await fetch('http://10.2.5.206:3000/profile', {
+			method: 'PUT',
+			headers: {'Content-Type':'application/x-www-form-urlencoded'},
+			body: `tokenUser=${props.isLogin.tokenUser}`
+		});
+		
+    let response = await dataProfile.json();
   	
   };
   
@@ -120,16 +131,16 @@ function ProfileModif( props ) {
   )
 }
 
+function mapStateToProps(state) {
 
-function mapDispatchToProps(dispatch) {
-  return {
-    saveUsername: function(val) { 
-      dispatch( {type: 'saveUsername', username: val }) 
-    }
+	return { 
+	 	isLogin: state.isLogin,
   }
 }
 
+
+
 export default connect(
-    null, 
-    mapDispatchToProps
+    mapStateToProps, 
+    null
 )(ProfileModif);

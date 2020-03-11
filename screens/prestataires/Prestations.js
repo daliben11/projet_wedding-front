@@ -40,17 +40,17 @@ export default function Prestataires({navigation}) {
              
                 <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around'}} >
                     
-                          {listePrestataire.map((u,i)=>{
-                          return(
-                              <TouchableOpacity>
-                                <Card key={i} image={u.img} containerStyle={{ width: 150, height: 200}}  >
-                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
-                                </Card>
-                              </TouchableOpacity>
-                            )
-                            })}
+                    {listePrestataire.map((u,i)=>{
+                    return(
+                        <TouchableOpacity>
+                          <Card key={i} image={u.img} containerStyle={{ width: 150, height: 200}}  >
+                                <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
+                          </Card>
+                        </TouchableOpacity>
+                      )
+                      })}
 
-                       {/* <TouchableOpacity>
+               {/* <TouchableOpacity>
                         <Card  containerStyle={{padding: 0, marginLeft:13}}>
                           <View >
                             <Image 

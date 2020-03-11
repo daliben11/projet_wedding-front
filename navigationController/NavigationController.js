@@ -49,7 +49,6 @@ import PrestaView from '../screens/prestataires/PrestaView';
 
 function NavigationController( props ) {
 	var App;
-	console.log('route ', props.navigation)
 	
 	console.log('myWedding exists on nav controller? ', props.myWedding);
 	
