@@ -52,7 +52,8 @@ function Loginform( props ) {
 		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
                       style={styles.input} 
                       onChangeText={(value) => setEmail(value)} 
-                      value={email}
+                      autoCompleteType='email'
+                      clearTextOnFocus={true}
                 />
 
                 <TextInput 
@@ -60,8 +61,9 @@ function Loginform( props ) {
 		              placeholderTextColor="rgba(102, 102, 102, 0.5)"
 		              secureTextEntry
                       style={styles.input} 
-                      onChangeText={(value) => setPassword(value)} 
-                      value={password}
+                      onChangeText={(value) => setPassword(value)}
+                      autoCompleteType='password'
+                      clearTextOnFocus={true}
                 />
                 
 
