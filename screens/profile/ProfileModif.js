@@ -54,7 +54,7 @@ function ProfileModif( props ) {
     //password: String,
 
  	
-  	let dataProfile = await fetch('http://10.2.5.206:3000/profile', {//'https://weedingplanner.herokuapp.com
+  	let dataProfile = await fetch('https://weedingplanner.herokuapp.com/profile', {//'http://10.2.5.206:3000
 			method: 'PUT',
 			body: myForm, 
 		});

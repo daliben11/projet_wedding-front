@@ -12,7 +12,7 @@ function Signin( props ) {
 	const handleSignIn = () => {
 		props.navigation.navigate( 'Mes Mariages' );		
     /* props.setLogin({status: true}); */
-    console.log('props dans la page signin ', props)
+    // console.log('props dans la page signin ', props)
 	}
   
   const handleSignUp = () => {

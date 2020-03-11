@@ -50,7 +50,7 @@ import PrestaView from '../screens/prestataires/PrestaView';
 function NavigationController( props ) {
 	var App;
 	
-	console.log('myWedding exists on nav controller? ', props.myWedding);
+	//console.log('myWedding exists on nav controller? ', props.myWedding);
 	
 	// Vue du user lambda, si myWedding existe, alors, j-ai acces au dashboard
 	const stackMariage = props.myWedding.status 	
@@ -211,13 +211,13 @@ function NavigationController( props ) {
 				    drawerIcon: ({ tintColor }) => <Feather name="heart" size={16} color={tintColor} />
 				  }
 				},
-				MonProfilScreen: {
-				  screen: stackProfil,
-				  navigationOptions: {
-				    title: "Mon Profil",
-				    drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
-				  }
-				},
+//				MonProfilScreen: {
+//				  screen: stackProfil,
+//				  navigationOptions: {
+//				    title: "Mon Profil",
+//				    drawerIcon: ({ tintColor }) => <Feather name="user" size={16} color={tintColor} />
+//				  }
+//				},
 				DeconnexionScreen: {
 				  screen: stackLogout,
 				  navigationOptions: {

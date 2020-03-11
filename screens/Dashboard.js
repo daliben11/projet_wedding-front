@@ -12,7 +12,7 @@ import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 
 
 function Dashboard( props ) {
-console.log( "je suis dans dashboard " );
+
 
 //		useEffect(() => {
 //		props.setJustCreateWedding( false );

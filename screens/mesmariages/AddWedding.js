@@ -14,7 +14,8 @@ import DatePicker from 'react-native-datepicker'
 
 
 function AddWedding ( props ) {
-console.log( "je suis dans AddWedding ", props.myWedding );
+//console.log( "je suis dans AddWedding ", props.myWedding );
+
 
 
 	const [brideName, setBrideName] = useState('Janet');
