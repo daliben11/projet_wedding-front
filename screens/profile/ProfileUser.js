@@ -15,7 +15,7 @@ function ProfileUser ( props ) {
   const [user,setUser] = useState('')	
 	const [userToken, setUserToken] = useState("");
 	
-	console.log("test userToken on state ", userToken);
+//	console.log("test userToken on state ", userToken);
 	
 	
 	useEffect( () => {  
@@ -32,14 +32,15 @@ function ProfileUser ( props ) {
 		    });
 		    var profile = await dataProfile.json();
 		    
-		    console.log('get json')
+		    //console.log('get json')
 		    setUser(profile);
 		    
     }
     detailProfil();
+    return ()=>{console.log('parti')}
 	}, []);
       
-  console.log('fetched user data from DB ', user);
+  //console.log('fetched user data from DB ', user);
   
   return (
     

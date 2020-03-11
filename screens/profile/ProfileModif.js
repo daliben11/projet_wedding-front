@@ -1,7 +1,7 @@
-import React,{useState} from 'react';
+import React,{ useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 
-import { View, ScrollView } from 'react-native';
+import { AsyncStorage, View, ScrollView } from 'react-native';
 import { Avatar, Icon, Input,Header} from 'react-native-elements';
 
 
@@ -21,35 +21,42 @@ function ProfileModif( props ) {
   const [codeP,setCodeP] = useState('')
   const [password,setPassword] = useState('')
   
-  const tokenUser = 'LALA';
-
-  
+	const [userToken, setUserToken] = useState("");
+	
+	
+	useEffect( () => {
+			
+			( async () => {
+				var data = await AsyncStorage.getItem("tokenUser");
+				setUserToken(data);
+				})();
+			//console.log( 'state token profil modif ', userToken );
+	}, []);
+		    
   
   const postProfilEditToBDD = async () => {
-  	
-  	let obj = { token: tokenUser };
-  	void ( prenom !='' && ( obj.userfirstname = prenom ) );
-  	void ( nom !='' 	 && ( obj.userlastname = nom ) );
-  	void ( mail !='' 	 && ( obj.email = mail ) );
-  	//void ( birthday !='' && ( obj.birthday = prenom ) );
-  	
-  	void ( phone !=''  && ( obj.phone = prenom ) );
-  	void (adresse !='' && ( obj.address = adresse ) );
-  	void ( ville !=''	 && ( obj.city = ville ) );
-  	void ( codeP !=''  && ( obj.zipcode = codeP ) );
-  	void (password !=''&& ( obj.password = password ) );
+ 
+		let myForm = new FormData();
+		myForm.append('token', userToken );
+		void ( prenom !='' && ( myForm.append('userfirstname', prenom ) ) );
+		void ( nom !='' 	 && ( myForm.append('userlastname', nom ) ) );
+		//void ( birthday !='' && ( myForm.append('birthday', prenom ) ) );
+		void ( mail !='' 	 && ( myForm.append('email', mail ) ) );
+		void ( phone !=''  && ( myForm.append('phone', prenom ) ) );
+		void (adresse !='' && ( myForm.append('address', adresse ) ) );
+		void ( ville !=''	 && ( myForm.append('city', ville ) ) );
+		void ( codeP !=''  && ( myForm.append('zipcode', codeP ) ) );
+		void (password !=''&& ( myForm.append('password',password ) ) );
+
 		
-		console.log('modifications à faire ', obj );
     //sexe: String,
     //avatar: String,
     //password: String,
 
-
-  	
-  	await fetch('https://weedingplanner.herokuapp.com/profile', {
+ 	
+  	let dataProfile = await fetch('http://10.2.5.206:3000/profile', {//'https://weedingplanner.herokuapp.com
 			method: 'PUT',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify( obj )
+			body: myForm, 
 		});
 		
     let response = await dataProfile.json();

@@ -15,7 +15,7 @@ export default function ( isLogin = {}, action ) {
 	} else if ( action.type === 'setUserToken' ){
 		let copy = {...isLogin};
 		copy.userToken = action.userToken;
-		console.log('copy  dans le reducer qd il garde le userToken ', copy)
+		//console.log('copy  dans le reducer qd il garde le userToken ', copy)
 		return copy ;
 		
 	} else if ( action.type === 'saveUsername' ){

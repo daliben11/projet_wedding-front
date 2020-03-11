@@ -21,7 +21,7 @@ import Accueil from '../screens/Accueil'
 import connection from '../screens/connexion/connection';
 import signin from '../screens/connexion/signin';
 import signup from '../screens/connexion/signup';
-import DeconnexionScreen from '../screens/connexion/DeconnexionScreen';
+import logout from '../screens/connexion/DeconnexionScreen';
 
 import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 import GuestPage from '../screens/mesmariages/Guestprogramme';
@@ -70,7 +70,12 @@ function NavigationController( props ) {
 			{ headerMode: 'none' }
 			) ;
 
-
+	const stackLogout = createStackNavigator({ 
+		'logout': logout,
+		'gohome': connection
+		}, 
+		{ mode:'modal', headerMode: 'none' } 
+	);
 
 	// Stack Profil et Edition Profil
 	const stackProfil = createStackNavigator({ 
@@ -191,7 +196,7 @@ function NavigationController( props ) {
 					}
 				},
 				DeconnexionScreen: {
-					screen: DeconnexionScreen,
+					screen: stackLogout,
 					navigationOptions: {
 					  title: "Déconnexion",
 					  drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
@@ -214,7 +219,7 @@ function NavigationController( props ) {
 				  }
 				},
 				DeconnexionScreen: {
-				  screen: DeconnexionScreen,
+				  screen: stackLogout,
 				  navigationOptions: {
 				    title: "Déconnexion",
 				    drawerIcon: ({ tintColor }) => <Feather name="log-out" size={16} color={tintColor} />
