@@ -28,8 +28,9 @@ function Connectionform( props ) {
             />
 
             <Button title="Me connecter" 
+                  style={styles.buttonLinks} 
 		          type="clear"
-		          titleStyle={{ color: 'pink', fontSize: 30, marginTop: 20}}
+		          titleStyle={{ color: 'pink', fontSize: 30, marginTop: 1}}
 		          onPress={ () => props.toSignIn() }
             />
         
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
         padding: 40
      },
     buttonLinks: {
-        marginBottom: 50,
+        marginBottom: 25,
     },
 })
 
