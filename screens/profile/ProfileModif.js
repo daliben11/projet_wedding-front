@@ -1,7 +1,7 @@
 import React,{ useEffect, useState } from 'react';
 import {connect} from 'react-redux';
 
-import { AsyncStorage, View, ScrollView } from 'react-native';
+import { AsyncStorage, View, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { Avatar, Icon, Input,Header} from 'react-native-elements';
 
 
@@ -67,6 +67,13 @@ function ProfileModif( props ) {
   
   
   return (
+
+    
+<ScrollView style={{flex:1}}>
+
+ 
+    <KeyboardAvoidingView behavior="padding" style={{flex:1}}>
+    
   <View style={{backgroundColor:"#F5F8FB",flex:1}}>
 
       <Header
@@ -85,7 +92,7 @@ function ProfileModif( props ) {
           }}>
       </Header>
     
-  <ScrollView style={{flex:1}}>
+  
     <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
 
             <Avatar              
@@ -156,8 +163,11 @@ function ProfileModif( props ) {
             
 
     </View>
-  </ScrollView>
+  
 </View>
+</KeyboardAvoidingView>
+
+</ScrollView>
   )
 }
 
