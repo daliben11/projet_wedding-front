@@ -16,7 +16,7 @@ export default function Budget(props) {
 
     async function  etatBudget(){
 
-      var dataBudget = await fetch('http://10.2.5.195:3000/budget', {
+      var dataBudget = await fetch('https://weedingplanner.herokuapp.com/budget', {
 
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -86,7 +86,7 @@ if (modifier===false) {
                         
                           return(
                               <TouchableOpacity>
-                                <Card key={i} image={{ uri: ("http://10.2.5.195:3000/" + u.img.slice(2)) }} containerStyle={{ width: 150, height: 220}}  >
+                                <Card key={i} image={{ uri: ("https://weedingplanner.herokuapp.com/" + u.img.slice(2)) }} containerStyle={{ width: 150, height: 220}}  >
                                       <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service}{"\n"}(1000 €)</Text>
                                 </Card>
                               </TouchableOpacity>

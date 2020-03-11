@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{ useState, useEffect } from 'react';
 
 import { View, ScrollView, SafeAreaView, Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
 
@@ -10,6 +10,34 @@ import HeaderNav from '../HeaderNav';
 
 
 function Tasks( props ) {
+
+	const [listTasks, setListTasks]= useState([]);
+ 
+	useEffect( () => { 
+  
+	  async function  etatTasks(){
+  
+		var dataTasks = await fetch('https://weedingplanner.herokuapp.com/budget', {
+  
+		  method: 'POST',
+		  headers: {'Content-Type':'application/x-www-form-urlencoded'},
+		  body: "id=5e67be5ac820c000174ee417"
+		  });
+		 
+		  var tasks = await dataTasks.json();
+		  
+		  
+		  
+		  
+		  setListTasks(tasks.wedding.tasksPersonal)
+		}
+		console.log("YOOOOOOO", listTasks)
+			etatTasks()
+  
+  },[]);
+			  
+
+	//5e67be5ac820c000174ee417 id d'un mariage
 
 	
 		return(
@@ -34,25 +62,22 @@ function Tasks( props ) {
 					
 				<ScrollView>
 				
-				{	[1,2,3,4].map( (el,ind) => {
-					var nextPage;
-					if( ind === 0 ) {
-						nextPage = 'Dashboard';
-					} else {
-						nextPage = 'GuestPage';
-					}
+				{	listTasks.map( (u,i) => {
+					const newDate= new Date(u.dateOut)
+
+						
 					return(
 						
-						<ListItem key={ind}
+						<ListItem key={i}
 							onPress={ () => props.navigation.navigate( nextPage ) }
 							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
-							title='Visiter la salle'
+							title={u.title}
 							titleStyle={styles.titleView}
 							subtitle={
 								<View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
 									<View style={styles.subtitleView}>
 										<Icon name='clock' type='evilicon' color='grey' />
-										<Text style={styles.ratingText}>10/02/2020</Text>
+										<Text style={styles.ratingText}>{newDate.getDate()+"/"+(newDate.getMonth()+1)+"/"+newDate.getFullYear()}</Text>
 									</View>
 									<View style={styles.subtitleView}>
 										<Icon name='location-on' type='materialIcons' color='grey' />

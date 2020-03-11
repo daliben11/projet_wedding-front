@@ -21,6 +21,10 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 	const [groomName, setGroomName] = useState('John');
 	const [city, setCity] = useState('');
 	const [descriptif, setDescriptif] = useState('');
+	const [budget , setBudget] = useState('')
+	  
+	const [date, setDate] = useState('')
+	console.log(date)
 	const [dateWedding, setDateWedding] = useState('')
 	
 	const [userToken,setUserToken] = useState('');
@@ -55,7 +59,19 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 	},[]);
 
 	
+	var handleAddWeeding = async () =>{
+        let data = await fetch("https://weedingplanner.herokuapp.com/add-wedding",{  
+              method: 'POST',
+              headers: {'Content-Type':'application/x-www-form-urlencoded'},
+              body: `date=${date}&description=${descriptif}&budget=${budget}&tokenUser=${userToken}`
+            });
+      
+            let dataJson = await data.json();
+			console.log(dataJson)
+			
+            
 
+    }
 	
 
 
@@ -105,7 +121,7 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 				<Input
 					containerStyle={styles.input}
 					label='PRÉNOM DE LA MARIÉE'
-					placeholder='John'
+					placeholder={brideName}
 					value={brideName}
 					onChangeText={ (val) => setBrideName(val) }
 				/>
@@ -115,7 +131,7 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 					placeholder={groomName}
 					value={groomName}
 					onChangeText={ (val) => setGroomName(val) }
-		      style={styles.input} 
+		      
 				/>
 				<Input
 					containerStyle={styles.input}
@@ -163,9 +179,17 @@ console.log( "je suis dans AddWedding ", props.myWedding );
 						paddingTop: 10}}
 					multiline={true}
 					numberOfLines={4}
-					onChangeText={ (text) => setDescriptif( text ) }
+					onChangeText={(text) => setDescriptif({text})}
 					placeholder='Veuillez écrire une petite description de votre mariage'
 					/>
+				<Input
+					containerStyle={styles.input}
+					label='Budget'
+					placeholder='Budget'
+					onChangeText={ (val) => setBudget(val) }
+				/>
+
+
 
 			</View>
 
