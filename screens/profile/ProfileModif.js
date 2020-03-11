@@ -11,7 +11,7 @@ function ProfileModif( props ) {
 
   const [nom,setNom] = useState('')
   const [prenom,setPrenom] = useState('')
-  const [birthday, setBirthday] = useState('')
+//  const [birthday, setBirthday] = useState(Date.now());
   
   const [phone, setPhone] = useState('')
   const [mail,setMail] = useState('')
@@ -19,22 +19,44 @@ function ProfileModif( props ) {
   const [adresse,setAdresse] = useState('')
   const [ville,setVille] = useState('')
   const [codeP,setCodeP] = useState('')
+  const [password,setPassword] = useState('')
   
+  const tokenUser = 'LALA';
 
   
-  const postProfilEditToBDD = async (objChangements) => {
+  
+  const postProfilEditToBDD = async () => {
   	
+  	let obj = { token: tokenUser };
+  	void ( prenom !='' && ( obj.userfirstname = prenom ) );
+  	void ( nom !='' 	 && ( obj.userlastname = nom ) );
+  	void ( mail !='' 	 && ( obj.email = mail ) );
+  	//void ( birthday !='' && ( obj.birthday = prenom ) );
   	
+  	void ( phone !=''  && ( obj.phone = prenom ) );
+  	void (adresse !='' && ( obj.address = adresse ) );
+  	void ( ville !=''	 && ( obj.city = ville ) );
+  	void ( codeP !=''  && ( obj.zipcode = codeP ) );
+  	void (password !=''&& ( obj.password = password ) );
+		
+		console.log('modifications à faire ', obj );
+    //sexe: String,
+    //avatar: String,
+    //password: String,
+
+
   	
   	await fetch('http://10.2.5.206:3000/profile', {
 			method: 'PUT',
-			headers: {'Content-Type':'application/x-www-form-urlencoded'},
-			body: `tokenUser=${props.isLogin.tokenUser}`
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify( obj )
 		});
 		
     let response = await dataProfile.json();
   	
   };
+  
+  
   
   
   return (
@@ -46,7 +68,7 @@ function ProfileModif( props ) {
             name='close'
           />}
           rightComponent={<Icon
-            onPress={() => { props.navigation.goBack() }}
+            onPress={() => { postProfilEditToBDD(); props.navigation.goBack() }}
             name='check'
           />}
           centerComponent={{ text: "Mon Profil", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
@@ -78,12 +100,12 @@ function ProfileModif( props ) {
               label='Prénom'
               onChangeText={(val) => setPrenom(val)}
             />  
-            <Input
+            {/*<Input
               containerStyle={{marginTop:15}}
               placeholder='Date de naissance'
               label='Date de naissance'
               onChangeText={(val) => setBirthday(val)}
-            />
+            />*/}
             
             <Input
               containerStyle={{marginTop:15}}
@@ -114,7 +136,7 @@ function ProfileModif( props ) {
               containerStyle={{marginTop:15}}
               placeholder='Code Postal'
               label='Code Postal'
-              onChangeText={(val)=>setCodeP(val) ,console.log(codeP)}
+              onChangeText={ (val)=>setCodeP(val) }
               
             />
             <Input
@@ -122,6 +144,7 @@ function ProfileModif( props ) {
               placeholder='Mot de passe'
               label='Mot de passe'
               secureTextEntry={true}
+              onChangeText={ (val)=>setPassword(val) ,console.log(password)}
             />
             
 

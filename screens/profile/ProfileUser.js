@@ -13,7 +13,7 @@ import ProfileModif from './ProfileModif';
 function ProfileUser ( props ) {
 
   const [user,setUser] = useState('')	
-	const [userToken,setUserToken] = useState("");
+	const [userToken, setUserToken] = useState("");
 	
 	console.log("test userToken ", userToken);
 	
@@ -25,7 +25,7 @@ function ProfileUser ( props ) {
 		  
 		    setUserToken(data);
 		    
-		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
+		    var dataProfile = await fetch("http://10.2.5.206:3000/profile",{
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 		      body: `tokenUser=${data}`

@@ -36,7 +36,7 @@ function Logupform( props ) {
     
     
     var handleSignUp = async () =>{
-        let data = await fetch("https://weedingplanner.herokuapp.com/sign-up",{  
+        let data = await fetch("http://10.2.5.206:3000/sign-up",{  
               method: 'POST',
               headers: {'Content-Type':'application/x-www-form-urlencoded'},
               body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}&sexe=${sexe}`

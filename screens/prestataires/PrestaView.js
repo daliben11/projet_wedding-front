@@ -7,14 +7,11 @@ import {connect} from 'react-redux';
 
 
 
-export default function PrestaView({navigation}) {
+export default function PrestaView( props ) {
 
   const [modifier,setModifier]=useState(false)
   const [prestataire,setPrestataire]=useState(0)
  
-  
-
-
   
   
   return (
