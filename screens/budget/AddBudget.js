@@ -55,7 +55,7 @@ import { Icon, Input,Header} from 'react-native-elements';
                       flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
                     }}>
                     <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
-                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter une nouvelle dépense</Text>
+                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Valider la dépense</Text>
                         <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
                         {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
                     </TouchableOpacity>

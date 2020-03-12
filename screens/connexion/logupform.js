@@ -26,7 +26,7 @@ function Logupform( props ) {
         } else {
             setSexe("homme")
         }
-        console.log(sexe)
+        //console.log(sexe)
     })
 
     
@@ -37,22 +37,22 @@ function Logupform( props ) {
     
     
     var handleSignUp = async () =>{
-        let data = await fetch("https://weedingplanner.herokuapp.com/sign-up",{  
-              method: 'POST',
-              headers: {'Content-Type':'application/x-www-form-urlencoded'},
-              body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}&sexe=${sexe}`
-            });
-      
-            let dataJson = await data.json();
-            console.log('reponse du back', dataJson)
-            props.signup();
-            AsyncStorage.setItem("tokenUser", dataJson.tokenUser);
+        let data = await fetch("https://weedingplanner.herokuapp.com/sign-up",{  //https://weedingplanner.herokuapp.com
+          method: 'POST',
+          headers: {'Content-Type':'application/x-www-form-urlencoded'},
+          body: `email=${email}&password=${password}&userfirstname=${userFirstName}&userlastname=${userLastName}&sexe=${sexe}`
+        });
+  
+        let dataJson = await data.json();
+        console.log('reponse du back', dataJson)
+        props.signup();
+        AsyncStorage.setItem("tokenUser", dataJson.tokenUser);
 
     }
 
 
 
-		console.log(userFirstName)
+		//console.log(userFirstName)
 
     return (
      

@@ -1,8 +1,8 @@
 import React ,{ useState, useEffect } from 'react';
 
-import { View, ScrollView, Text, TextInput, StyleSheet, TouchableOpacity  } from 'react-native';
+import { View, ScrollView, Text,  StyleSheet, TouchableOpacity  } from 'react-native';
 
-import { Icon,  ListItem, Card, Button , Overlay, CheckBox} from 'react-native-elements';
+import { Icon,  ListItem,  Button , Overlay, CheckBox} from 'react-native-elements';
 
 import * as Progress from 'react-native-progress';
 
@@ -26,7 +26,7 @@ function Tasks( props ) {
 	
 	const [count,setCount]=useState(0);
 
-	const [nbStatus,setNbStatus]= useState([]);
+
 
 	const [avancementTasks, setAvancementTasks ]= useState(0)
 

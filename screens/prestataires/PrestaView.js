@@ -1,16 +1,18 @@
 import React,{useState} from 'react';
+//import {connect} from 'react-redux';
+
 import { StyleSheet, View, Text, ImageBackground,TouchableOpacity , Dimensions, ScrollView } from 'react-native';
 import { Icon, ListItem, Card, Header, Avatar, Input} from 'react-native-elements';
+
 import HeaderNav from '../HeaderNav';
-import {connect} from 'react-redux';
+
 
 
 
 
 export default function PrestaView( props ) {
 
-  const [modifier,setModifier]=useState(false)
-  const [prestataire,setPrestataire]=useState(0)
+  const [prestataire,setPrestataire] = useState(0)
  
   
   
@@ -117,24 +119,7 @@ export default function PrestaView( props ) {
 		              />
                    
              </ScrollView>
-                    
-                    
-
-            <View 
-              style={{
-                width:'100%', height:'auto',
-                padding: 5,
-                backgroundColor: '#FAEBE4', 
-                flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
-              }}>
-              <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
-                onPress={() => {setModifier(true)}}>
-                  <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}> Editer mes infos </Text>
-                  <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
-                  {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89' size={35}/>} */}
-              </TouchableOpacity>
-            
-            </View>
+             
              
             
      </View>

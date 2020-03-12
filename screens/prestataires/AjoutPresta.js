@@ -1,82 +1,95 @@
 import React,{useState} from 'react';
-import { View, ScrollView } from 'react-native';
-import { Avatar, Icon, Input,Header} from 'react-native-elements';
+
+import { View, ScrollView, SafeViewArea } from 'react-native';
+import { Icon, Input, Header } from 'react-native-elements';
 
 
-export default function AddGuest(props) {
 
-  const [modifier,setModifier]=useState(false)
-  const [nom,setNom]=useState('')
-  const [desc,setDesc]=useState('')
+
+export default function AjoutPresta( props ) {
+
+  const [type_service, setType_service] = useState('')
+  const [phone, setPhone] = useState('')
+  const [contact_name,setContact_name] = useState('')
+  const [website,setWebsite] = useState('')
+  
   const [adresse,setAdresse]=useState('')
   const [mail,setMail]=useState('')
-  const [phone, setPhone]=useState(0)
+
   const [prixTotal,setPrixTotal]=useState(0)
-  const [codeP,setCodeP]=useState(0)
+  const [zipcode,setZipcode] = useState('')
+  
+    
+  
   
   return (
-  <View style={{backgroundColor:"#F5F8FB",flex:1}}>
+  <View style={{backgroundColor:"#F5F8FB", flex:1}}>
 
          <Header
-                leftComponent={<Icon
-                onPress={() => {setModifier(false)}}
-                name='close'
-                />}
-                rightComponent={<Icon
-                onPress={() => {setModifier(false)}}
-                name='check'
-                />}
-                centerComponent={{ text: "Ajouter un presta ", style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } }}
-                containerStyle={{
-                    backgroundColor: '#FAEBE4',
-                    height: 84,
-                }}>
+            leftComponent={<Icon
+		          onPress={() => {props.toCloseOverlay()}}
+		          name='close'
+            />}
+            rightComponent={<Icon
+		          onPress={() => {props.toCloseOverlay()}}
+		          name='check'
+            />}
+            centerComponent={{ text: "Ajouter une presta", 
+            	style: {fontFamily:'greatvibes', color: '#000', fontSize:30 } 
+            }}
+            containerStyle={{
+                backgroundColor: '#FAEBE4',
+                height: 84,
+            }}>
          </Header>
         
- 
-          <View style={{backgroundColor:"#F5F8FB",flex:1, alignItems:'center', marginTop:40}}>
-                
-                <Input
-                containerStyle={{marginTop:15}}
-                placeholder='Nom'
-                label='Nom'
-                onChangeText={(val) => setNom(val)}
-                />
-                <Input
-                containerStyle={{marginTop:15}}
-                placeholder='Description'
-                label='Description'
-                onChangeText={(val) => setPrenom(val)}
-                />  
-                <Input
-                containerStyle={{marginTop:15}}
-                placeholder='Adresse'
-                label='Adresse'
-                onChangeText={(val)=>setAdresse(val)}
-                />
-                <Input
-                containerStyle={{marginTop:15}}
-                placeholder='Email'
-                label='Email'
-                onChangeText={(val)=>setMail(val)}
-                />
-                <Input
-                containerStyle={{marginTop:15}}
-                placeholder='Téléphone'
-                label='Téléphone'
-                onChangeText={(val)=>setPhone(val)}
 
+          <ScrollView 
+          	contentContainerStyle={{
+          		backgroundColor:"#F5F8FB",
+          		flex:5, alignItems:'center', 
+          		marginTop:40
+          	}}>
+ 
+                <Input
+		              containerStyle={{marginTop:10}}
+		              placeholder='Prestation'
+		              onChangeText={(val) => setType_service(val)}
+                />
+                <Input
+		              containerStyle={{marginTop:10}}
+		              placeholder='Website'
+		              onChangeText={(val) => setWebsite(val)}
+                />
+                <Input
+		              containerStyle={{marginTop:10}}
+		              placeholder='Nom du contact'
+		              onChangeText={(val) => setContact_name(val)}
+                />
+                <Input
+		              containerStyle={{marginTop:10}}
+		              placeholder='Adresse'
+		              onChangeText={(val)=>setAdresse(val)}
+                />
+                <Input
+		              containerStyle={{marginTop:10}}
+		              placeholder='Email'
+		              onChangeText={(val)=>setMail(val)}
+                />
+                <Input
+		              containerStyle={{marginTop:10}}
+		              placeholder='Téléphone'
+		              onChangeText={(val)=>setPhone(val)}
                 />
         
                 <Input
-                containerStyle={{marginTop:15}}
-                placeholder='Prix total'
-                label='Prix total'
-                onChangeText={(val) => setBirthday(val)}
+		              containerStyle={{marginTop:15}}
+		              placeholder='Prix total'
+		              onChangeText={(val) => setPrixTotal(val)}
                 />
 
-            </View>
-  
+            </ScrollView>
+            
    </View>
   )
 }
