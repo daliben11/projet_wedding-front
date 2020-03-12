@@ -26,7 +26,7 @@ export default function Budget(props) {
         var budget = await dataBudget.json();
         
         setListePrestataire(budget.wedding.serviceProviders)
-        console.log("YOOOOOOO", listePrestataire)
+        console.log("afficher liste presta", listePrestataire)
       }
           etatBudget()
 
@@ -93,96 +93,7 @@ if (modifier===false) {
                             )
                             })}
                 </View>
-                {/* <View style={{flex: 1, flexDirection: 'row', marginTop: 0}}>
 
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/lieuxmariage.jpg')} style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} >Lieux {"\n"}(1000 €) </Text>
-                          </View>
-                        </Card>
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/traiteurmariage.jpg')}style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} > Traîteur  {"\n"} (900 €) </Text>
-                          </View>
-                        </Card>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/photomariage.jpeg')} style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} >Photographe{"\n"} (500€) </Text>
-                          </View>
-                        </Card>
-
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/weddingparty.jpeg')} style={{width: 150, height: 150}}
-                            />
-                          <Text style={{marginBottom: 10}} style={styles.card} >Animation {"\n"}(1000€)</Text>
-                          </View>
-                        </Card>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/robe.jpg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} >Robe {"\n"}(700€) </Text>
-                      </View>
-                    </Card>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/decoration.jpeg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} > Déco {"\n"}(1200€) </Text>
-                      </View>
-                    </Card>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/gateuxmariage.jpg')} style={{width: 150, height: 150}}
-                        />
-                        <Text style={{marginBottom: 10}} style={styles.card} >Patisserie {"\n"}(350€)</Text>
-                      </View>
-                    </Card>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/bijoux.jpg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} >Bijoux {"\n"}(900€)</Text>
-                      </View>
-                    </Card>
-                </View> */}
               </ScrollView>
             </ScrollView>
             

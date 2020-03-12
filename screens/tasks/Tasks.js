@@ -182,26 +182,7 @@ function Tasks( props ) {
 								
 								</ScrollView>
 						
-								 <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
-										<Button
-											title="Ajouter tâche"
-											buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
-											titleStyle={{color:"#31AE89"}}
-											onPress={ () => {
-													
-													setModalVisible( false );
-											} }
-										/>
-										<View style={{padding:10}}/>
-										<Button
-											title="Annuler"
-											buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15, borderColor: 'grey'}}
-											titleStyle={{color:"#31AE89"}}
-											onPress={ () => {
-													setModalVisible( false );
-											} }
-									   />
-							     </View>
+							
 							</View>
 						</Overlay>
 					
