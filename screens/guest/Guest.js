@@ -85,6 +85,7 @@ export default function Guest({navigation}) {
             }
           />
 
+
             <View style={{flex:1}} >
 
                 
