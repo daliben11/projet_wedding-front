@@ -25,7 +25,25 @@ export default function Prestataires(props) {
     { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
 // PRESTATAIRES PAGE ATTENTION
 
+//	  useEffect( () => { 
 
+//		  async function  etatBudget(){
+
+//		    var dataBudget = await fetch('https://weedingplanner.herokuapp.com/budget', {
+
+//		      method: 'POST',
+//		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+//		      body: "id=5e6762c9f5023800170451a7"
+//		      });
+//		     
+//		      var budget = await dataBudget.json();
+//		      
+//		      setListePrestataire(budget.wedding.serviceProviders)
+//		      console.log("YOOOOOOO", listePrestataire)
+//		    }
+//        etatBudget();
+
+//	},[]);
 
   
 	const handleClose = () => {

@@ -1,9 +1,10 @@
 import React,{useState, useEffect} from 'react';
-import { StyleSheet, View, Text,TouchableOpacity,ScrollView, Image } from 'react-native';
-import { Icon, ListItem, Card, Header} from 'react-native-elements';
+import { StyleSheet, View, Text,TouchableOpacity,ScrollView } from 'react-native';
+import { Icon, ListItem, Card, Overlay,Input,Button} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
 import AddBudget from './AddBudget';
 import {connect} from 'react-redux';
+import DatePicker from 'react-native-datepicker'
 import * as Progress from 'react-native-progress';
 
 
@@ -11,7 +12,15 @@ export default function Budget(props) {
   const [modifier,setModifier]=useState(false)
   
   const [listePrestataire, setListePrestataire]= useState([]);
+  const [budgetTotal,setBudgetTotal]=useState(0);
  
+  const [montant,setMontant]=useState('');
+  const [date,setDate]=useState('');
+  const [index,setIndex]=useState('');
+  console.log(montant,date)
+
+  const [modalVisible, setModalVisible] = useState( false );
+
   useEffect( () => { 
 
     async function  etatBudget(){
@@ -20,31 +29,31 @@ export default function Budget(props) {
 
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: "id=5e6762c9f5023800170451a7"
+        body: `id=5e67be5ac820c000174ee417`
         });
        
         var budget = await dataBudget.json();
         
-        setListePrestataire(budget.wedding.serviceProviders)
+        setListePrestataire(budget.prestataire)
+        setBudgetTotal(budget.budget)
         console.log("YOOOOOOO", listePrestataire)
       }
           etatBudget()
 
-	},[]);
+	},[modalVisible]);
 
+
+  var addBudget = async () => {
+    await fetch('https://weedingplanner.herokuapp.com/addbudget', {
+
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: `id=5e67be5ac820c000174ee417&index=${index}&date=${date}&montant=${montant}`
+        });
+        setListePrestataire(budget.prestataire)
+        
+  }
  
-
-
-
-  // [
-  //   { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
-  //   { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
-  //   { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
-  //   { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
-  //   { name:'Robe',img:require('../../assets/robe.jpg')},
-  //   { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
-  //   { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
-  //   { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
 
 
   
@@ -59,10 +68,10 @@ if (modifier===false) {
 
        
           <View style={{flex:1}} >
-                <View >
+                <View style={{marginBottom:15}}>
                   <ListItem 
                       rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='#31AE89'  size={35}/>}
-                      title='Budget (1 000 € sur 30 000€)'
+                      title='Budget '
                       subtitle={
                     <View>
                       <Progress.Bar progress={0.3} width={250} height={15} color={'#31AE89'}  />
@@ -71,10 +80,10 @@ if (modifier===false) {
                   />
 
                  </View>
-                    <View style={{flex: 1, flexDirection: 'row', marginBottom:40, marginLeft:15, marginRight:15, marginTop:10}}>
-                    <View style={{flex: 1,width:50, height: 60, backgroundColor: '#31AE89'}}><Text style={styles.titleView}> Budget  {"\n"}12 000€</Text></View>
-                    <Text>       </Text>   
-                    <View style={{flex: 1 , width: 50, height: 60, backgroundColor: '#31AE89'}}><Text style={styles.titleView}> Montant payé {"\n"}      10 000€</Text></View>
+                    <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around', marginBottom:20}}>
+                      <View style={{flex:0.4,height:60, backgroundColor: '#31AE89',justifyContent:'center'}}><Text style={styles.titleView}> Budget  {budgetTotal}€</Text></View>
+                      
+                      <View style={{ flex:0.4,height:60,backgroundColor: '#31AE89',justifyContent:'center'}}><Text style={styles.titleView}> Montant payé {"\n"}      10 000€</Text></View>
                  </View>
            
             <ScrollView  stickyHeaderIndices={[8]} style={{marginBottom: 10, marginTop:30}} >
@@ -85,125 +94,98 @@ if (modifier===false) {
                           {listePrestataire.map((u,i)=>{
                         
                           return(
-                              <TouchableOpacity>
+                              <TouchableOpacity
+                              onPress={ () => {
+                                setModalVisible( true ),
+                                setIndex(i),
+                                console.log(index)     
+                                }} 
+                              
+                              >
                                 <Card key={i} image={{ uri: ("https://weedingplanner.herokuapp.com/" + u.img.slice(2)) }} containerStyle={{ width: 150, height: 220}}  >
-                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service}{"\n"}(1000 €)</Text>
+                                      <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service}</Text>
                                 </Card>
                               </TouchableOpacity>
                             )
                             })}
                 </View>
-                {/* <View style={{flex: 1, flexDirection: 'row', marginTop: 0}}>
-
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/lieuxmariage.jpg')} style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} >Lieux {"\n"}(1000 €) </Text>
-                          </View>
-                        </Card>
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/traiteurmariage.jpg')}style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} > Traîteur  {"\n"} (900 €) </Text>
-                          </View>
-                        </Card>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/photomariage.jpeg')} style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} >Photographe{"\n"} (500€) </Text>
-                          </View>
-                        </Card>
-
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/weddingparty.jpeg')} style={{width: 150, height: 150}}
-                            />
-                          <Text style={{marginBottom: 10}} style={styles.card} >Animation {"\n"}(1000€)</Text>
-                          </View>
-                        </Card>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/robe.jpg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} >Robe {"\n"}(700€) </Text>
-                      </View>
-                    </Card>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/decoration.jpeg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} > Déco {"\n"}(1200€) </Text>
-                      </View>
-                    </Card>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/gateuxmariage.jpg')} style={{width: 150, height: 150}}
-                        />
-                        <Text style={{marginBottom: 10}} style={styles.card} >Patisserie {"\n"}(350€)</Text>
-                      </View>
-                    </Card>
-
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/bijoux.jpg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} >Bijoux {"\n"}(900€)</Text>
-                      </View>
-                    </Card>
-                </View> */}
+                
               </ScrollView>
             </ScrollView>
             
         </View>
 
-                 <View 
-                    style={{
-                      width:'100%', height:50,
-                      padding: 5,
-                      backgroundColor: '#FAEBE4', 
-                      flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
-                    }}>
-                    <TouchableOpacity onPress={ () => props.navigation.navigate('AddBudget') }style={{flex:1, flexDirection:'row', justifyContent:'center'}}   >
-                        <Text style={{ fontFamily:'catamaran-semibold', fontSize:15}}>Ajouter une nouvelle dépense</Text>
-                        <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
-                        {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35}/>} */}
-                    </TouchableOpacity>
-                  </View>
+            
 
+                  <Overlay
+                    isVisible={modalVisible}
+                    onBackdropPress={ () => setModalVisible(false) }
+                    windowBackgroundColor="rgba(0, 0, 0, .4)"
+                    overlayBackgroundColor="#F5F8FB"
+                    width="90%" height="75%"
+                  >
+                    <View style={{flex:1, alignItems:'center', marginTop:40}}>
+                         
+                          <Input
+                            containerStyle={{marginTop:15}}
+                            placeholder='Montant'
+                            label='Montant'
+                            onChangeText={(val) => setMontant(val)}
+                          />  
+                            <View style={{flex:1 ,margin: 10}}>
+                              <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
+                                <DatePicker
+                                style={{width: 200, marginTop: 10}}
+                                date={date}
+                                mode="date"
+                                placeholder="Sélectionner une date"
+                                format="MM-DD-YYYY"
+                                minDate="01-01-1950"
+                                maxDate="01-01-2050"
+                                confirmBtnText="Confirm"
+                                cancelBtnText="Cancel"
+                                customStyles={{
+                                  dateIcon: {
+                                    position: 'absolute',
+                                    left: 0,
+                                    top: 4,
+                                    marginLeft: 0
+                                  },
+                                  dateInput: {
+                                    marginLeft: 36
+                                  }
+                                }}
+                                onDateChange={(date) => setDate(date)}
+                              />
+                          </View>
+
+
+                    <View style={{flexDirection:'row', alignItems:'center', justifyContent:'center'}}>
+                      <Button
+                        title="Ajouter un payement"
+                        buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
+                        titleStyle={{color:"#31AE89"}}
+                        onPress={ () => {
+                            addBudget()
+                            setModalVisible( false );
+                        } }
+                      />
+                      <View style={{padding:10}}/>
+                      <Button
+                        title="Annuler"
+                        buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15, borderColor: 'grey'}}
+                        titleStyle={{color:"#31AE89"}}
+                        onPress={ () => {
+                            setModalVisible( false );
+                        } }
+                      />
+							     </View>
+
+                  </View>
+                  </Overlay>
 
      </View>
+
   )
 
 
@@ -233,7 +215,7 @@ if (modifier===false) {
     fontFamily:'greatvibes',
     fontSize: 21,
     alignSelf:'center',
-    alignItems: 'center',
+    alignItems: 'center'
     
    }
   });
