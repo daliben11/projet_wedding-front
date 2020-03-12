@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { View, Text, Button, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Button, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Icon, Image } from 'react-native-elements';
 
 
@@ -18,28 +18,29 @@ function Accueil ( props ) {
 		return(
 			<View 
 				style={{ 
-					flex:1, alignItems:'center', justifyContent:'center'
+					flex:1, alignItems:'center', justifyContent:'center', backgroundColor:'white'
 				}}>
 			
 				<TouchableOpacity
 					onPress={ () => { 
 						props.navigation.navigate( 'Drawer', { screen: 'DashboardScreen' } );
 					} }
+					style={styles.buttonLinks} 
 					style={{ 
 					flex:1, justifyContent:'space-around'
 					}}>
 					<View
 						style={{ 
-							flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
+							flex:0.5, flexDirection:'row', alignItems:'center', justifyContent:'center',
 							backgroundColor:'#FAEBE4',
 							width: Dimensions.get('window').width*0.9,
-							borderRadius: 5, border:'#000'
+							borderRadius: 5, border:'#000', borderWidth: 0.3 ,
 						}}
 						>
-						<Icon name='flower' type='material-community' color='#31AE89'  size={35}/>
+						{/* <Icon name='flower' type='material-community' color='#31AE89'  size={35}/> */}
 						<Text
-							style={{color:'#000', fontFamily:'catamaran-regular', fontSize:15}}
-							>{`J'ORGANISE MON MARIAGE \u263A`}</Text>
+											style={{color:'#000', fontFamily:'greatvibes', fontSize:45}}
+											>{` J 'organise \n mon mariage \n      \u263A`}</Text>
 				  </View>
 				</TouchableOpacity>
 				  
@@ -55,7 +56,7 @@ function Accueil ( props ) {
 							<View 
 								style={{ 
 									flex:1, alignItems:'center', justifyContent:'center',
-									marginTop:30
+									marginTop:30, marginTop:150
 								}}>
 							
 								<TouchableOpacity
@@ -68,13 +69,13 @@ function Accueil ( props ) {
 											flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
 											backgroundColor:'#FAEBE4',
 											width: Dimensions.get('window').width*0.9,
-											borderRadius: 5, border:'#000'
+											borderRadius: 5, border:'grey',  borderWidth: 0.3,
 										}}
 										>
 										<Icon name='flower' type='material-community' color='#31AE89'  size={35}/>
 										<Text
-											style={{color:'#000', fontFamily:'catamaran-regular', fontSize:15}}
-											>{`J'ORGANISE MON MARIAGE \u263A`}</Text>
+											style={{color:'#000', fontFamily:'greatvibes', fontSize:25}}
+											>{`J 'organise mon mariage \u263A`}</Text>
 									</View>
 								</TouchableOpacity>
 								
@@ -88,17 +89,13 @@ function Accueil ( props ) {
 											flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
 											backgroundColor:'#FAEBE4',
 											width: Dimensions.get('window').width*0.9,
-											borderRadius: 5, border:'#000'
+											borderRadius: 1, border:'#000',  borderWidth: 0.3,
 										}}
 										>
 										<Icon name='flower' type='material-community' color='#31AE89'  size={35}/>
 										<Text
-											style={{
-												color:'#000',
-												fontFamily:'catamaran-regular', fontSize:15
-											}}>
-											{`Je suis invité·e à un mariage`}
-										</Text>
+											style={{color:'#000', fontFamily:'greatvibes', fontSize:25}}
+											>{`Je suis invité à un mariage `}</Text>
 									</View>
 								</TouchableOpacity>
 									
@@ -107,6 +104,16 @@ function Accueil ( props ) {
 						);
 					}
 }
+const styles = StyleSheet.create({
+    buttonContainer: {
+        marginBottom: 40,
+        padding: 40
+     },
+    buttonLinks: {
+        marginBottom: 25,
+        
+    },
+})
 
 function mapStateToProps(state) {
   return { 
