@@ -34,6 +34,9 @@ export default function Budget(props) {
        
         var budget = await dataBudget.json();
         
+        // currentchange
+        // setListePrestataire(budget.wedding.serviceProviders)
+        // console.log("afficher liste presta", listePrestataire)
         setListePrestataire(budget.prestataire)
         setBudgetTotal(budget.budget)
         console.log("YOOOOOOO", listePrestataire)
