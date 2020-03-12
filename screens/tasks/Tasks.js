@@ -24,15 +24,18 @@ function Tasks( props ) {
 	const [dateIn, setDateIn] = useState('');
 	const [dateOut,setDateOut] = useState('');
 	
+	const [count,setCount]=useState(0);
 
-	const [avancementTasks, setAvancementTasks ]= useState('')
+	const [nbStatus,setNbStatus]= useState([]);
+
+	const [avancementTasks, setAvancementTasks ]= useState(0)
 
  
 	useEffect( () => { 
   
 	  async function  etatTasks(){
   
-		var dataTasks = await fetch('http://10.2.5.195:3000/tasks', {
+		var dataTasks = await fetch('https://weedingplanner.herokuapp.com/tasks', {
   
 		  method: 'POST',
 		  headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -40,23 +43,19 @@ function Tasks( props ) {
 		  });
 		 
 		  var tasks = await dataTasks.json();
-		  
-		  
-		  
-		  
+		 
 		  setListTasks(tasks.wedding.tasksPersonal)
+		  setCount(tasks.count)
+		  setAvancementTasks(tasks.avancement)
 		}
-	
-		console.log("YOOOOOOO", listTasks)
-			etatTasks()
-		
-			
-			console.log("carllll", listTasks.length )
-	    // setTasks / tasks
 		
 		
-
-  },[index]);
+		/* console.log("YOOOOOOO", listTasks) */
+		etatTasks()
+		
+		
+		
+	},[index]);
 	
 
 	//5e67be5ac820c000174ee417 id d'un mariage
@@ -75,7 +74,7 @@ function Tasks( props ) {
                       title='Avancement des tâches'
                       subtitle={
                       <View>
-                       <Progress.Bar progress={0.5} width={250} height={15} color={'#31AE89'}  />
+                       <Progress.Bar progress={avancementTasks} width={250} height={15} color={'#31AE89'}  />
                       </View>
                     }
                   />
@@ -85,11 +84,7 @@ function Tasks( props ) {
 					
 					{listTasks.map( (u,i) => {
 					 const newDate= new Date(u.dateOut)
-					 if (u.state==true){
-						var count = 0
-							count=count+1
-							console.log('compteur',count)
-						}
+					 
 							
 						return(
 						<TouchableOpacity onPress={ () => {
@@ -97,7 +92,9 @@ function Tasks( props ) {
 							setDescription(u.description),
 							setDateIn(u.dateIn), 
 							setDateOut(u.dateOut),
-							setModalVisible( true )}} 
+							setModalVisible( true )
+										
+							}} 
 							
 							>
 
@@ -111,8 +108,9 @@ function Tasks( props ) {
 										// let newStateTasks = [...listTasks];
 										// newStateTasks.splice(i , 1);
 										setTasks(!tasks);
-										setIndex(i)
-										console.log(i);
+										setIndex(i);
+										
+										
 									  }
 									 }
 									/>
