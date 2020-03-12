@@ -20,18 +20,15 @@ function AddWedding ( props ) {
 
 	const [brideName, setBrideName] = useState('Janet');
 	const [groomName, setGroomName] = useState('John');
+	
 	const [city, setCity] = useState('');
 	const [descriptif, setDescriptif] = useState('');
 	const [budget , setBudget] = useState('')
-	  
-	const [date, setDate] = useState('')
-	console.log(date)
 	const [dateWedding, setDateWedding] = useState('')
 	
 	const [userToken,setUserToken] = useState('');
 	const [user,setUser] = useState('');
 
-	console.log(dateWedding);
 	
  
 	useEffect( () => {  
@@ -52,26 +49,23 @@ function AddWedding ( props ) {
 			} else {
 				setBrideName(profile.userlastname)
 			}
-			console.log('affiche moi le nom du marié', groomName)
+			//console.log('affiche moi le nom du marié', groomName)
 
 			}
-			detailProfil();
-	
+			detailProfil();	
 	},[]);
 
 	
 	var handleAddWeeding = async () =>{
-        let data = await fetch("https://weedingplanner.herokuapp.com/add-wedding",{  
-              method: 'POST',
-              headers: {'Content-Type':'application/x-www-form-urlencoded'},
-              body: `date=${date}&description=${descriptif}&budget=${budget}&tokenUser=${userToken}`
-            });
-      
-            let dataJson = await data.json();
-			console.log(dataJson,usertoken)
-			
-            
-
+		  let data = await fetch("http://10.2.5.206:3000/add-wedding",{  //https://weedingplanner.herokuapp.com
+	      method: 'POST',
+	      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+	      body: `date=${dateWedding}&description=${descriptif}&budget=${budget}&tokenUser=${userToken}`
+	    });
+		
+      let dataJson = await data.json();
+			//console.log(dataJson,usertoken)
+	
     }
 	
 
@@ -147,7 +141,7 @@ function AddWedding ( props ) {
             <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
               <DatePicker
               style={{width: 200, marginTop: 10}}
-              date={date}
+              date={dateWedding}
               mode="date"
               placeholder="Sélectionner une date"
               format="MM-DD-YYYY"
@@ -166,7 +160,7 @@ function AddWedding ( props ) {
                   marginLeft: 36
                 }
               }}
-              onDateChange={(date) => setDate(date)}
+              onDateChange={(date) => setDateWedding(date)}
             />
       	</View>
 				{/* <Input
@@ -182,7 +176,7 @@ function AddWedding ( props ) {
 						paddingTop: 10}}
 					multiline={true}
 					numberOfLines={4}
-					onChangeText={(text) => setDescriptif({text})}
+					onChangeText={(text) => setDescriptif(text)}
 					placeholder='Veuillez écrire une petite description de votre mariage'
 					/>
 				<Input

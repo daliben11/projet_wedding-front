@@ -12,7 +12,7 @@ export default function ( mariageInfo = {status: false, justCreate: false}, acti
 	*/
 	
 	if ( action.type === 'setMyWedding' ) {
-		console.log('my wedding on reducer ', action.wedding);
+		//console.log('my wedding on reducer ', action.wedding);
 		
 		return action.wedding ;
 		
