@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import { 
 	View,
-	StyleSheet, TouchableOpacity, Text, AsyncStorage, TextInput, ScrollView, KeyboardAvoidingView } from 'react-native';
+	StyleSheet, TouchableOpacity, Text, AsyncStorage, 
+	TextInput, ScrollView, KeyboardAvoidingView } from 'react-native';
 
 import { Icon, Header, Input, Button } from 'react-native-elements';
 

@@ -128,7 +128,6 @@ function NavigationController( props ) {
 		'Invites': Invites,
 		'AddInvite':AddInvite,
 		'Prestations': Prestations,
-		'AddPresta':AddPresta,
 		'PrestaView': PrestaView,
 		'Budget': 	Budget,
 		'AddBudget':AddBudget,

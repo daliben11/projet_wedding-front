@@ -1,15 +1,18 @@
 import React,{useState} from 'react';
+//import {connect} from 'react-redux';
 
-import { StyleSheet, View, Text, TouchableOpacity ,ScrollView } from 'react-native';
-import {Card} from 'react-native-elements';
+import { StyleSheet, Text, View, 
+	TouchableOpacity, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { Card, Icon, Overlay, Header, Input } from 'react-native-elements';
+
 import HeaderNav from '../HeaderNav';
-import {connect} from 'react-redux';
+import AjoutPresta from './AjoutPresta';
 
 
 
 export default function Prestataires(props) {
  
-
+	const [visibleAddPresta, setVisibleAddPresta] = useState(false);
 
   const listePrestataire = [
     { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
@@ -22,8 +25,12 @@ export default function Prestataires(props) {
     { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
 // PRESTATAIRES PAGE ATTENTION
 
-  
 
+
+  
+	const handleClose = () => {
+		setVisibleAddPresta(false);
+	}
   
   
   return (
@@ -39,125 +46,63 @@ export default function Prestataires(props) {
 
             <ScrollView   style={{ marginBottom: 10, marginTop:5}} stickyHeaderIndices={[8]}  >
              
-                <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around'}} >
-                    
-                    {listePrestataire.map((u,i)=>{
-                    return(
-                        <TouchableOpacity
-                        	key={`touch${i}`}
-                        	onPress={ () => { props.navigation.navigate('PrestaView') } }
-                        >
-                          <Card key={`card${i}`} image={u.img} containerStyle={{ width: 150, height: 200}}  >
-                                <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
-                          </Card>
-                        </TouchableOpacity>
-                      )
-                      })}
-
-               {/* <TouchableOpacity>
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/traiteurmariage.jpg')}style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} > Traîteur </Text>
-                          </View>
+              <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around'}} >
+                  
+                  {listePrestataire.map((u,i)=>{
+                  	return(
+                      <TouchableOpacity
+                      	key={`touch${i}`}
+                      	onPress={ () => { props.navigation.navigate('PrestaView') } }
+                      >
+                        <Card key={`card${i}`} image={u.img} containerStyle={{ width: 150, height: 200}}  >
+                              <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
                         </Card>
                       </TouchableOpacity>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                      <TouchableOpacity>
-                        <Card  containerStyle={{padding: 0, marginLeft:13}} >
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/photomariage.jpeg')} style={{width: 150, height: 150}}
-                            />
-                            <Text style={{marginBottom: 10}} style={styles.card} >Photographe </Text>
-                          </View>
-                        </Card>
-                      </TouchableOpacity>
-
-                      <TouchableOpacity>
-                        <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                          <View >
-                            <Image 
-                              resizeMode="cover"
-                              source={require('../../assets/weddingparty.jpeg')} style={{width: 150, height: 150}}
-                            />
-                          <Text style={{marginBottom: 10}} style={styles.card} >Animation </Text>
-                          </View>
-                        </Card>
-                      </TouchableOpacity>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                  <TouchableOpacity>
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/robe.jpg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} >Robe </Text>
-                      </View>
-                    </Card>
-                  </TouchableOpacity>
-                    
-                  <TouchableOpacity>
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/decoration.jpeg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} > Déco </Text>
-                      </View>
-                    </Card>
-                  </TouchableOpacity>
-                </View>
-
-                <View style={{flex: 1, flexDirection: 'row'}}>
-                   <TouchableOpacity>
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/gateuxmariage.jpg')} style={{width: 150, height: 150}}
-                        />
-                        <Text style={{marginBottom: 10}} style={styles.card} >Patisserie</Text>
-                      </View>
-                    </Card>
-                  </TouchableOpacity>
-
-                  <TouchableOpacity>
-                    <Card  containerStyle={{padding: 0, marginLeft:13}}>
-                      <View >
-                        <Image 
-                          resizeMode="cover"
-                          source={require('../../assets/bijoux.jpg')} style={{width: 150, height: 150}}
-                        />
-                      <Text style={{marginBottom: 10}} style={styles.card} >Bijoux </Text>
-                      </View>
-                    </Card>
-                  </TouchableOpacity> */}
-                </View>
-              
+                    )
+                    })}
+							</View>
             </ScrollView>
             
+            <View 
+              style={{
+                width:'100%', height:'auto',
+                padding: 5,
+                backgroundColor: '#FAEBE4', 
+                flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
+              }}>
+              <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
+                onPress={() => { 
+                	setVisibleAddPresta(true);
+                	//props.navigation.navigate( 'AddPresta' );
+                }}>
+                  <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}> Editer mes infos </Text>
+                  <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
+                  {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89' size={35}/>} */}
+              </TouchableOpacity>
+            
+            </View>
             
           </View>
+          
+
+		        <Overlay
+						 isVisible={visibleAddPresta}
+						 onBackdropPress={ () => setVisibleAddPresta(false) }
+						 windowBackgroundColor="rgba(0, 0, 0, .4)"
+						 overlayBackgroundColor="rgba(255, 255, 255, 1)"
+						 width="95%" height="95%"
+						>
+								<AjoutPresta toCloseOverlay={handleClose} /> 
+						</Overlay>
+
             
 
      </View>
   )
 
+     //   
 
-  
-
-  }
+}
   
   
   

@@ -1,16 +1,18 @@
 import React,{useState} from 'react';
+//import {connect} from 'react-redux';
+
 import { StyleSheet, View, Text, ImageBackground,TouchableOpacity , Dimensions, ScrollView } from 'react-native';
 import { Icon, ListItem, Card, Header, Avatar, Input} from 'react-native-elements';
+
 import HeaderNav from '../HeaderNav';
-import {connect} from 'react-redux';
+
 
 
 
 
 export default function PrestaView( props ) {
 
-  const [modifier,setModifier]=useState(false)
-  const [prestataire,setPrestataire]=useState(0)
+  const [prestataire,setPrestataire] = useState(0)
  
   
   
@@ -117,10 +119,7 @@ export default function PrestaView( props ) {
 		              />
                    
              </ScrollView>
-                    
-                    
-
-            
+             
              
             
      </View>
