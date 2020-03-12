@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+
 import { StyleSheet, View, Text, TouchableOpacity ,ScrollView } from 'react-native';
 import {Card} from 'react-native-elements';
 import HeaderNav from '../HeaderNav';
@@ -6,7 +7,7 @@ import {connect} from 'react-redux';
 
 
 
-export default function Prestataires({navigation}) {
+export default function Prestataires(props) {
  
 
 
@@ -42,8 +43,11 @@ export default function Prestataires({navigation}) {
                     
                     {listePrestataire.map((u,i)=>{
                     return(
-                        <TouchableOpacity>
-                          <Card key={i} image={u.img} containerStyle={{ width: 150, height: 200}}  >
+                        <TouchableOpacity
+                        	key={`touch${i}`}
+                        	onPress={ () => { props.navigation.navigate('PrestaView') } }
+                        >
+                          <Card key={`card${i}`} image={u.img} containerStyle={{ width: 150, height: 200}}  >
                                 <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
                           </Card>
                         </TouchableOpacity>
@@ -153,7 +157,10 @@ export default function Prestataires({navigation}) {
 
   
 
-  };
+  }
+  
+  
+  
   const styles = StyleSheet.create({
     titleView: {
       fontFamily:'catamaran-regular', 

@@ -57,7 +57,7 @@ function AddWedding ( props ) {
 
 	
 	var handleAddWeeding = async () =>{
-		  let data = await fetch("http://10.2.5.206:3000/add-wedding",{  //https://weedingplanner.herokuapp.com
+		  let data = await fetch("https://weedingplanner.herokuapp.com/add-wedding",{  //
 	      method: 'POST',
 	      headers: {'Content-Type':'application/x-www-form-urlencoded'},
 	      body: `date=${dateWedding}&description=${descriptif}&budget=${budget}&tokenUser=${userToken}`
@@ -105,7 +105,7 @@ function AddWedding ( props ) {
 									city: city, 
 									description: descriptif
 								} );
-								props.navigation.goBack();
+								props.navigation.navigate('Accueil');
 							} } 
 						/>
 						}

@@ -7,7 +7,7 @@ function Signup ( props ) {
 
 	const handleSignUp = () => {
 		
-		props.navigation.navigate( 'Enter' );
+		props.navigation.navigate( 'Enter',{ screen: 'Accueil' } );
 		//props.setLogin({status: true});	
 	}
 	

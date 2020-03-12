@@ -12,7 +12,7 @@ import MesMariagesScreen from '../screens/mesmariages/MesMariagesScreen'
 
 
 function Dashboard( props ) {
-console.log( "je suis dans mon dashboard ", props.myWedding );
+	//console.log( "je suis dans mon dashboard ", props.myWedding );
 
 	const [wedInfo, setWedInfo]= useState({});
 	const [countDays, setCountDays] = useState(0);
@@ -49,8 +49,7 @@ console.log( "je suis dans mon dashboard ", props.myWedding );
 	
 	
 	var c = ( ()=>{
-		
-	//{countDays} jours {countHr} Heures {countMin} min {countS} s
+	//{countDays} jours {countHr} Heures {countMin} min// {countS} s
 
 		let len = props.myWedding.date.length;
 		
@@ -59,10 +58,9 @@ console.log( "je suis dans mon dashboard ", props.myWedding );
 		let day = Number( props.myWedding.date.slice(3,5) );
 		
 		let date1 = new Date( year , month-1 , day+1 ) ;
-		
 		let date2 = Date.now();
 		
-		console.log('Date du marige dans store redux...', props.myWedding.date,'///', year, month, day );
+		//console.log('Date du marige dans store redux...', props.myWedding.date,'///', year, month, day );
 		
 		let ts =  (Date.parse(date1) - date2)/1000/(3600*24);
 		
@@ -71,9 +69,8 @@ console.log( "je suis dans mon dashboard ", props.myWedding );
 		var countMin = Math.floor( ((ts - countDays)*24-Math.floor( (ts - countDays)*24 ))*60 ) ;
 		
 		return {countDays, countHr, countMin };
+		
 	})();
-	
-	console.log(c)
 
 	
 	

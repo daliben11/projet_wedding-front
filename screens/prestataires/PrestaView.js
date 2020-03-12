@@ -120,21 +120,7 @@ export default function PrestaView( props ) {
                     
                     
 
-            <View 
-              style={{
-                width:'100%', height:'auto',
-                padding: 5,
-                backgroundColor: '#FAEBE4', 
-                flexDirection: 'row', alignItems: 'center', justifyContent:'center', 
-              }}>
-              <TouchableOpacity style={{flex:1, flexDirection:'row', justifyContent:'center'}}  
-                onPress={() => {setModifier(true)}}>
-                  <Text style={{ fontFamily:'catamaran-semibold', fontSize:20}}> Editer mes infos </Text>
-                  <Icon containerStyle={{paddingLeft: 5}} name='add' type='materialIcons' color='grey' />
-                  {/* rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89' size={35}/>} */}
-              </TouchableOpacity>
             
-            </View>
              
             
      </View>

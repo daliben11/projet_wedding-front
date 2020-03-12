@@ -1,15 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { View, Text, Button, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { AsyncStorage, View, Text, Button, 
+	StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Icon, Image } from 'react-native-elements';
 
 
 function Accueil ( props ) {
 	//console.log( "je suis dans l'accueil ", props.myWedding );
-
 	
+	const [iHaveAWed, setiHaveAWed] = useState(false);
+	
+	const weddingsList = [];
+	
+	
+	useEffect( () => {  
+	
+		async function detailMariages(){
+		
+		    var data = await AsyncStorage.getItem("tokenUser");
+		    		    
+		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{ //
+		      method: 'POST',
+		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+		      body: `tokenUser=${data}`
+		    });
+		    var profile = await dataProfile.json();
+		    
+		    console.log('mes mariages ', profile._id);
+				
+				
+				
+				profile.id_wedding.map( async (el,i) => {
+					//console.log( 'id', el );
+					//let myurl = `https://weedingplanner.herokuapp.com/getwedding`;
+					
+					let myurl = `http://10.2.3.25:3000/getwedding`
+					
+					let dataWed = await fetch( myurl, {
+						method: 'POST',
+						headers: {'Content-Type':'application/x-www-form-urlencoded'},
+						body: `id=${el}`
+					});
+					
+					//var data = await fetch( myurl );
+					dataWed = await dataWed.json();
+					//console.log('\n\n\nwed ', dataWed.wedding.wedDescription);
+					
+					weddingsList.push(dataWed.wedding);
+					
+					console.log('compare', dataWed.wedding.ownership, profile._id)
+					
+					if ( dataWed.wedding.ownership === profile._id ){
+						setiHaveAWed(true);
 
+//						props.setMyWedding( 
+//							{ status: true,
+//								justCreate: false, 
+//								date: dataWed.wedding.wedDate, 
+//								bride: dataWed.wedding.brideName, 
+//								groom: dataWed.wedding.groomName, 
+//								city: dataWed.wedding.wedCity,
+//								description: dataWed.wedding.wedDescription }
+//						);
+					}
+					
+					
+				});
+				
+		    
+    }
+    detailMariages();
+    return ()=>{ console.log() }
+	}, []);
+	
+//	useEffect(()=>{
+//		
+//		props.setMyWedding({status: true});
+//		return ()=>{ console.log() }
+//		
+//	},[iHaveAWed]);
+	
+console.log('i have a wed', iHaveAWed )
 
 
 	if ( props.myWedding.justCreate ) {
@@ -50,7 +122,6 @@ function Accueil ( props ) {
 	
 	} else {
 
-
 						return(
 						
 							<View 
@@ -60,7 +131,14 @@ function Accueil ( props ) {
 								}}>
 							
 								<TouchableOpacity
-									onPress={ () => { props.navigation.navigate('CreateWed'); } }
+									onPress={ () => { 
+										if( iHaveAWed ){
+											props.navigation.navigate( 'Drawer', {screen:'DashboardScreen'} ); 
+										} else {
+											props.navigation.navigate( 'CreateWed' ); 
+										} 
+										
+									} }
 									style={{ 
 									flex:1, justifyContent:'space-around'
 									}}>
@@ -124,6 +202,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+  	setMyWedding: function (val) {
+  		dispatch( {type: 'setMyWedding', wedding: val })
+  	},
 		setJustCreateWedding: function ( val ) {
 			 dispatch( {type: 'setJustCreateWedding', justCreate: val } )
 		}
