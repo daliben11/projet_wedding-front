@@ -56,17 +56,17 @@ function MesMariagesScreen( props ) {
 						<ListItem key={ind}
 							onPress={ () => props.navigation.navigate( 'GuestPage' ) }
 							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
-							title='Mariage John & Janet'
+							title='Mariage Angelina & Brad'
 							titleStyle={styles.titleView}
 							subtitle={
 								<View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
 									<View style={styles.subtitleView}>
 										<Icon name='clock' type='evilicon' color='grey' />
-										<Text style={styles.ratingText}>10/02/2020</Text>
+										<Text style={styles.ratingText}>13/03/2021</Text>
 									</View>
 									<View style={styles.subtitleView}>
 										<Icon name='location-on' type='materialIcons' color='grey' />
-										<Text style={styles.ratingText}>Paris</Text>
+										<Text style={styles.ratingText}>Miami</Text>
 								  </View>
 								</View>
 							}

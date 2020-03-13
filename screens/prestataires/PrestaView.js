@@ -29,7 +29,7 @@ export default function PrestaView( props ) {
 
             <View  style={{flex: 0.25, flexDirection: 'row', alignSelf:'center'}} >
 		          <Text style={styles.titleView} >
-		          	Comme chez-soi{/*prestataire.company_name*/}
+		          	Domaine du Morlais{/*prestataire.company_name*/}
 		          </Text>
             </View>
 			 

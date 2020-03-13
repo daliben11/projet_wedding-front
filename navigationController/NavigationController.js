@@ -142,8 +142,8 @@ function NavigationController( props ) {
 	const dashboardBottom = createBottomTabNavigator({
 		'Dashboard': stackDashboard,
 		'Mes tâches': Tasks,
-		'Prestataires': Prestations,
 		'Invités': Invites,
+		'Prestataires': Prestations,
 		'Budget': Budget,
 		},
 		{ defaultNavigationOptions: ({ navigation }) => ({
