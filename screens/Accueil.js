@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { AsyncStorage, View, Text, Button, 
-	StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+	StyleSheet, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import { Icon, Image } from 'react-native-elements';
 
 
@@ -88,11 +88,16 @@ console.log('i have a wed', iHaveAWed )
 		
 		
 		return(
+			
 			<View 
 				style={{ 
-					flex:1, alignItems:'center', justifyContent:'center', backgroundColor:'white'
+					flex:1, alignItems:'center', justifyContent:'center', backgroundColor:'#fff'
 				}}>
+			            <ImageBackground  style={{flex:1}} source={require('../assets/weddingimg2.jpg')} style={styles.container} >
+                  
 			
+	 
+				  
 				<TouchableOpacity
 					onPress={ () => { 
 						props.navigation.navigate( 'Drawer', { screen: 'DashboardScreen' } );
@@ -103,19 +108,19 @@ console.log('i have a wed', iHaveAWed )
 					}}>
 					<View
 						style={{ 
-							flex:0.5, flexDirection:'row', alignItems:'center', justifyContent:'center',
-							backgroundColor:'#FAEBE4',
-							width: Dimensions.get('window').width*0.9,
-							borderRadius: 5, border:'#000', borderWidth: 0.3 ,
+							flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
+							backgroundColor:'#fff',  opacity: .9,
+							width: Dimensions.get('window').width*0.8,
+							borderRadius: 30, border:'grey',  borderWidth: 0.1, marginTop: 15, marginBottom:10
 						}}
 						>
 						{/* <Icon name='flower' type='material-community' color='#31AE89'  size={35}/> */}
 						<Text
-											style={{color:'#000', fontFamily:'greatvibes', fontSize:45}}
-											>{` J 'organise \n mon mariage \n      \u263A`}</Text>
+											style={{color:'#000', fontFamily:'greatvibes', fontSize:40, color: '#31AE89'}}
+											>{` J 'organise \n mon mariage ! `}</Text>
 				  </View>
 				</TouchableOpacity>
-				  
+				</ImageBackground>
 			</View>
 		
 		);
@@ -127,9 +132,9 @@ console.log('i have a wed', iHaveAWed )
 							<View 
 								style={{ 
 									flex:1, alignItems:'center', justifyContent:'center',
-									marginTop:30, marginTop:150
+									
 								}}>
-							
+							<ImageBackground  style={{flex:1}} source={require('../assets/weddingimg2.jpg') } style={styles.container} >
 								<TouchableOpacity
 									onPress={ () => { 
 										if( iHaveAWed ){
@@ -139,43 +144,45 @@ console.log('i have a wed', iHaveAWed )
 										} 
 										
 									} }
-									style={{ 
-									flex:1, justifyContent:'space-around'
-									}}>
+									style={{ flex:0.5 }}>
 									<View
 										style={{ 
-											flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
+											flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center',
 											backgroundColor:'#FAEBE4',
-											width: Dimensions.get('window').width*0.9,
-											borderRadius: 5, border:'grey',  borderWidth: 0.3,
+											backgroundColor:'#fff',  opacity: .9,
+											width: Dimensions.get('window').width*0.7,
+											borderRadius: 30, border:'grey',  borderWidth: 0.2, marginTop: 90, marginBottom:10
 										}}
 										>
-										<Icon name='flower' type='material-community' color='#31AE89'  size={35}/>
+										{/* <Icon name='flower' type='material-community' color='#31AE89'  size={35}/> */}
 										<Text
-											style={{color:'#000', fontFamily:'greatvibes', fontSize:25}}
-											>{`J 'organise mon mariage \u263A`}</Text>
+											style={{color:'#000', fontFamily:'greatvibes', fontSize:35, color: '#31AE89'}}
+											>{` J 'organise mon \n       mariage `}</Text>
 									</View>
+									
 								</TouchableOpacity>
 								
 								
 								<TouchableOpacity 
-									style={{ flex:1 }}
+									style={{ flex:0.5 }}
 									onPress={ () => { props.navigation.navigate('Drawer'); } }
 									>
 									<View
 										style={{ 
-											flex:0.3, flexDirection:'row', alignItems:'center', justifyContent:'center',
+											flex:1, flexDirection:'row', alignItems:'center', justifyContent:'center',
 											backgroundColor:'#FAEBE4',
-											width: Dimensions.get('window').width*0.9,
-											borderRadius: 1, border:'#000',  borderWidth: 0.3,
+											backgroundColor:'#fff',  opacity: .9,
+											width: Dimensions.get('window').width*0.7,
+											borderRadius: 30, border:'#000',  borderWidth: 0.2, marginTop: 100, marginBottom:10
 										}}
 										>
-										<Icon name='flower' type='material-community' color='#31AE89'  size={35}/>
+										{/* <Icon name='flower' type='material-community' color='#31AE89'  size={35}/> */}
 										<Text
-											style={{color:'#000', fontFamily:'greatvibes', fontSize:25}}
-											>{`Je suis invité à un mariage `}</Text>
+											style={{color:'#000', fontFamily:'greatvibes', fontSize:35, color: '#31AE89'}}
+											>{` Je suis invité  `}</Text>
 									</View>
 								</TouchableOpacity>
+								</ImageBackground>
 									
 							</View>
 						
@@ -190,7 +197,13 @@ const styles = StyleSheet.create({
     buttonLinks: {
         marginBottom: 25,
         
-    },
+	},
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		padding: 100,
+	  },
 })
 
 function mapStateToProps(state) {

@@ -30,7 +30,7 @@ function Tasks( props ) {
 
 	const [avancementTasks, setAvancementTasks ]= useState(0)
 
- 
+
 	useEffect( () => { 
   
 	  async function  etatTasks(){
@@ -56,6 +56,14 @@ function Tasks( props ) {
 		
 		
 	},[index]);
+
+	function formaliserDate(date) {
+        const newDate= new Date(date)
+        return(
+
+        newDate.getDate()+"/"+(newDate.getMonth()+1)+"/"+newDate.getFullYear()
+    )
+}
 	
 
 	//5e67be5ac820c000174ee417 id d'un mariage
@@ -133,7 +141,7 @@ function Tasks( props ) {
 								}
 								bottomDivider
 							/>
-						</TouchableOpacity>
+						 </TouchableOpacity>
 						);
 					  })
 					
@@ -143,43 +151,43 @@ function Tasks( props ) {
 						
 					</ScrollView>
 
-
-
-				
-
 							
 						<Overlay
 						    
 							isVisible={modalVisible}
 							onBackdropPress={ () => setModalVisible(false) }
-							windowBackgroundColor="rgba(0, 0, 0, .4)"
+							windowBackgroundColor="rgba(0, 0, 0, .5)"
 							overlayBackgroundColor="rgba(255, 255, 255, 1)"
 							width="90%" height="75%"
 						  >
 							<View style={{flex:1, alignItems:'center', justifyContent:'center'}}>
+
 								<ScrollView > 
-							
-								
-									<Text style={styles.titleView} >
-
-									{title}
-									</Text>
-
-									<Text >
+									  <ListItem 
+				
+	                                titleStyle={styles.titleView}
+									title={title}
+									bottomDivider
+	                                />
+					
+									<Text 
+									style={styles.ratingText}>
 									{description}
 									</Text>
 
-									<Text  style={styles.titleView}>
-										
-									{dateIn}
-									</Text>
-
-									<Text style={styles.titleView} >
-									{dateOut}
-									</Text>
-
+									<ListItem 
+	                                titleStyle={styles.titleView}
+									title={formaliserDate(dateIn)}
+									subtitle='   Début de la tâche'
+									bottomDivider
+									/>
+								    <ListItem 
+									titleStyle={styles.titleView}
+									subtitle='   Fin de la tâche'
+									title={formaliserDate(dateOut)}
 									
-								
+									
+									/>
 								</ScrollView>
 						
 							
@@ -200,11 +208,19 @@ function Tasks( props ) {
 
 const styles = StyleSheet.create({
 	titleView: {
-		fontFamily:'catamaran-regular',
+		alignItems: 'center',
+		justifyContent: 'center',
+		fontFamily:'greatvibes',
 		fontWeight:'bold', 
-		paddingTop: 10
+		paddingTop: 10,
+		fontSize:18,
+		paddingLeft: 10,
+		paddingRight: 10,
 	},
+	
 	subtitleView: {
+		alignItems: 'center',
+		justifyContent: 'center',
 		flexDirection: 'row',
 		alignItems: 'flex-end',
 		paddingLeft: 15,
@@ -213,7 +229,7 @@ const styles = StyleSheet.create({
 	ratingText: {
 		paddingLeft: 10,
 		paddingRight: 10,
-		color: 'grey'
+		color: 'black'
 	},
 	interSpace:{
 		paddingLeft: 30,

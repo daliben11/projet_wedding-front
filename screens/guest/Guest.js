@@ -23,7 +23,7 @@ export default function Guest({navigation}) {
   
 	  async function  etatGuest(){
   
-		var dataGuest = await fetch('http://192.168.43.169:3000/guests', {
+		var dataGuest = await fetch('https://weedingplanner.herokuapp.com/guests', {
   
 		  method: 'POST',
 		  headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -48,7 +48,7 @@ export default function Guest({navigation}) {
 
     var  addGuestFunction = async (a, b, c) => {
 
-      var dataGuest = await fetch('http://192.168.43.169:3000/addGuests',{
+      var dataGuest = await fetch('https://weedingplanner.herokuapp.com/addGuests',{
 
       method: 'POST',
 		  headers: {'Content-Type':'application/x-www-form-urlencoded'},
