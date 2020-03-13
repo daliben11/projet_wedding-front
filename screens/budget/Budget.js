@@ -137,7 +137,7 @@ if (modifier===false) {
                             onChangeText={(val) => setMontant(val)}
                           />  
                             <View style={{flex:1 ,margin: 10}}>
-                              <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du mariage</Text>
+                              <Text style={{marginTop: 10, color: '#636e72', fontWeight: 'bold', fontSize: 16}}>Date du paiement</Text>
                                 <DatePicker
                                 style={{width: 200, marginTop: 10}}
                                 date={date}
