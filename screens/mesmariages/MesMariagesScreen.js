@@ -16,6 +16,9 @@ function MesMariagesScreen( props ) {
 	const [createNewWed, setCreateNewWed] = useState( false );
 	const [modalVisible, setModalVisible] = useState( false );
 	const [codeMariage, setCodeMariage] = useState('');
+	const [arrayToShow, setArrayToShow] = useState([]);
+	
+	//[1,2,3,4]
 	
 //	const changePage = (val) => {
 //		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
@@ -41,17 +44,17 @@ function MesMariagesScreen( props ) {
 					
 				<ScrollView>
 				
-				{	[1,2,3,4].map( (el,ind) => {
-					var nextPage;
-					if( ind === 0 ) {
-						nextPage = 'Dashboard';
-					} else {
-						nextPage = 'GuestPage';
-					}
+				{	arrayToShow.map( (el,ind) => {
+//					var nextPage;
+//					if( ind === 0 ) {
+//						nextPage = 'Dashboard';
+//					} else {
+//						nextPage = 'GuestPage';
+					//}
 					return(
 						
 						<ListItem key={ind}
-							onPress={ () => props.navigation.navigate( nextPage ) }
+							onPress={ () => props.navigation.navigate( 'GuestPage' ) }
 							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
 							title='Mariage John & Janet'
 							titleStyle={styles.titleView}
@@ -134,7 +137,7 @@ function MesMariagesScreen( props ) {
 						 	buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
 						 	titleStyle={{color:"#31AE89"}}
 							onPress={ () => {
-									
+									setArrayToShow([1])
 									setModalVisible( false );
 							} }
 						 />
