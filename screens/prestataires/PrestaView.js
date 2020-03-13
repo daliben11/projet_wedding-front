@@ -29,7 +29,7 @@ export default function PrestaView( props ) {
 
             <View  style={{flex: 0.25, flexDirection: 'row', alignSelf:'center'}} >
 		          <Text style={styles.titleView} >
-		          	{prestataire.company_name} Hellog
+		          	Comme chez-soi{/*prestataire.company_name*/}
 		          </Text>
             </View>
 			 
@@ -37,19 +37,19 @@ export default function PrestaView( props ) {
 
             <ListItem key={1}
 	            leftIcon={ <Icon name='location' type='evilicon' color='#31AE89' size={25}/>}
-	            title={prestataire.address}
-	          />
+	            title="13 rue de la Vie, Paris" 
+	          />{/*prestataire.address*/}
 
 	          <ListItem key={2}
 	               leftIcon={ <Icon name='contact-mail' type='materialcommunityicon' color='#31AE89' size={25}/>}
-	               title={prestataire.phone_number}
-	           />
+	               title="06 12 34 56 78"
+	           />{/*prestataire.phone_number*/}
 
 	          <ListItem key={3}
-	               leftIcon={ <Icon name='user' type='materialIcons'  color='#31AE89' size={25}/>}
-	               title={prestataire.contact_name}
+	               leftIcon={ <Icon name='user' type='font-awesome'  color='#31AE89' size={25}/>}
+	               title="Mme Pinaud"
 	               bottomDivider
-	           />
+	           />{/*prestataire.contact_name*/} 
 
                 
              <ScrollView contentContainerStyle={styles.contentContainer}  style={{flex:1}}  >

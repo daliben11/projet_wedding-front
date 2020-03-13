@@ -30,16 +30,16 @@ export default function Prestataires(props) {
 
 		  const getPresta = async() => {
 
-		    let data = await fetch('https://weedingplanner.herokuapp.com/budget', {
+		    let data = await fetch('https://weedingplanner.herokuapp.com/getwedding', {
 		      method: 'POST',
 		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
-		      body: "id=5e6762c9f5023800170451a7"
+		      body: "id=5e67be5ac820c000174ee417"
 		      });
 		     
 		      var presta = await data.json();
-		      //console.log('liste prestatires ', presta );
+		      //console.log('liste prestatires ', presta.wedding.serviceProviders );
 		      
-		      setListePrestataire(presta.prestataire)
+		      setListePrestataire(presta.wedding.serviceProviders)
 
 		    }
         getPresta();
