@@ -142,8 +142,9 @@ function NavigationController( props ) {
 	const dashboardBottom = createBottomTabNavigator({
 		'Dashboard': stackDashboard,
 		'Mes tâches': Tasks,
+		'Prestataires': Prestations,
 		'Invités': Invites,
-		'Budget': Budget
+		'Budget': Budget,
 		},
 		{ defaultNavigationOptions: ({ navigation }) => ({
 				tabBarIcon: ({ tintColor }) => {
@@ -151,7 +152,12 @@ function NavigationController( props ) {
 					if (navigation.state.routeName == 'Dashboard') {
 						iconName = 'home';
 						iconType = 'entypo';
-					} else if (navigation.state.routeName == 'Mes tâches') {
+					} 
+					else if (navigation.state.routeName == 'Prestataires') {
+						iconName = 'contacts';
+						iconType = 'antdesign';
+					}
+					else if (navigation.state.routeName == 'Mes tâches') {
 						iconName = 'tasks';
 						iconType = 'font-awesome';
 					}
