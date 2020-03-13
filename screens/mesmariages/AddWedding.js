@@ -19,8 +19,8 @@ function AddWedding ( props ) {
 
 
 
-	const [brideName, setBrideName] = useState('Janet');
-	const [groomName, setGroomName] = useState('John');
+	const [brideName, setBrideName] = useState('');
+	const [groomName, setGroomName] = useState('');
 	
 	const [city, setCity] = useState('');
 	const [descriptif, setDescriptif] = useState('');
@@ -66,7 +66,8 @@ function AddWedding ( props ) {
 		
       let dataJson = await data.json();
 			//console.log(dataJson,usertoken)
-	
+			props.navigation.navigate('Accueil');
+
     }
 	
 
@@ -96,7 +97,6 @@ function AddWedding ( props ) {
 					rightComponent={
 						<Icon name='check' type='antdesign' color='#000' 
 							onPress={ () => {
-								handleAddWeeding();
 								props.setMyWedding( {
 									status: true,
 									justCreate: true,
@@ -106,7 +106,7 @@ function AddWedding ( props ) {
 									city: city, 
 									description: descriptif
 								} );
-								props.navigation.navigate('Accueil');
+								handleAddWeeding();
 							} } 
 						/>
 						}
@@ -119,14 +119,14 @@ function AddWedding ( props ) {
 				<Input
 					containerStyle={styles.input}
 					label='PRÉNOM DE LA MARIÉE'
-					placeholder={brideName}
+					placeholder='Janette'
 					value={brideName}
 					onChangeText={ (val) => setBrideName(val) }
 				/>
 				<Input
 					containerStyle={styles.input}
 					label='PRÉNOM DU MARIÉ'
-					placeholder={groomName}
+					placeholder='John'
 					value={groomName}
 					onChangeText={ (val) => setGroomName(val) }
 		      
