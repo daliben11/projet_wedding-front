@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
 import LogupForm from './logupform'
 
 /* SIGN-IN */
@@ -16,17 +16,15 @@ function Signup ( props ) {
 	}
 
     return (
-            <ScrollView>
-                
+           
+                      <ImageBackground  style={{flex:1}} source={require('../../assets/weddingimg2.jpg')} style={styles.container} >
+
                 <KeyboardAvoidingView behavior="padding" style={{flex:1}}>
-                    <View style={{flex:3,alignItems:'center'}}>
+                    <View style={{flex:1,alignItems:'center'}}>
                         <TouchableOpacity 
                             onPress={()=>props.navigation.navigate( 'Home' )}
                         >
-                            <Image 
-                            style={styles.logo}
-                            source={require('../../assets/logo1.png')}
-                            />
+                      
                         </TouchableOpacity>
 
                     </View>
@@ -36,8 +34,9 @@ function Signup ( props ) {
                     </View>
 
                 </KeyboardAvoidingView>
+                </ImageBackground>
 
-            </ScrollView >
+    
     )
 }
 

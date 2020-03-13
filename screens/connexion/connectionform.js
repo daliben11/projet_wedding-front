@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, SocialIcon } from 'react-native-elements';
-import { View, Image, StyleSheet , Dimensions} from 'react-native';
+import { View, Image, StyleSheet , Dimensions, ImageBackground} from 'react-native';
 import * as Facebook from 'expo-facebook';
 
 /* CONNECTIONFORM */
@@ -26,6 +26,8 @@ function Connectionform( props ) {
 
 
     return (
+       
+        
         <View style={styles.buttonContainer}>
 
             <SocialIcon  
@@ -61,6 +63,7 @@ function Connectionform( props ) {
 											borderRadius: 1, border:'#000',  borderWidth: 0.3,
 										}} */}
         </View>
+        
     )
 }
 

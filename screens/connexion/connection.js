@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { StyleSheet, View, Image, 
-	KeyboardAvoidingView,  TouchableOpacity } from 'react-native';
+	KeyboardAvoidingView,  TouchableOpacity , ImageBackground} from 'react-native';
 import ConnectionForm from './connectionform'
 
 /* CONNECTION */
@@ -18,8 +18,8 @@ function Connection( props ) {
 
 
     return (
-
-            <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <ImageBackground  style={{flex:1}} source={require('../../assets/weddingimg2.jpg')} style={styles.container} >
+            
 
                 <TouchableOpacity style={styles.logoContainer}
 				        	onPress={ ()=>{
@@ -27,18 +27,15 @@ function Connection( props ) {
 				        		props.navigation.navigate('Enter');
 				        		props.setLogin({status: true, userToken: ''});
 				        	} }>
-				           <Image 
-						         style={styles.logo}
-						         source={require('../../assets/logo1.png')}
-						         
-				           />
+				         
 				        </TouchableOpacity>
 
                 <View>
                     <ConnectionForm toSignIn={toSignIn} toSignUp={toSignUp}/>
                 </View>
                 
-            </KeyboardAvoidingView>
+            
+            </ImageBackground>
 
     )
 }

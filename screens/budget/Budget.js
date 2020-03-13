@@ -83,7 +83,7 @@ if (modifier===false) {
                   />
 
                  </View>
-                    <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around', marginBottom:20}}>
+                    <View style={{flex:1,flexWrap: 'wrap', flexDirection: 'row',justifyContent: 'space-around', marginBottom:40}}>
                       <View style={{flex:0.4,height:60, backgroundColor: '#31AE89',justifyContent:'center'}}><Text style={styles.titleView}> Budget  {budgetTotal}€</Text></View>
                       
                       <View style={{ flex:0.4,height:60,backgroundColor: '#31AE89',justifyContent:'center'}}><Text style={styles.titleView}> Montant payé {"\n"}      10 000€</Text></View>

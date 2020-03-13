@@ -145,12 +145,13 @@ function Logupform( props ) {
                         center
                         title='Homme'
                         checked={sexeM}
+                        style={{opacity: 0.01}}
                         onPress={() => setSexeM( !sexeM ) & setSexeF(!sexeF) }/>    
 
                 </View>
 
                 <Button title="Inscription" 
-                    buttonStyle={{backgroundColor:'#f4c6c1'}}
+                    buttonStyle={{marginTop:50,backgroundColor:'#f4c6c1'}}
                     onPress={ ()=>handleSignUp() }
                 />
                 {/* <TouchableOpacity style={styles.buttonInscription}
@@ -161,7 +162,7 @@ function Logupform( props ) {
 
                 <Button title="VOUS AVEZ DEJA UN COMPTE" 
 		              type="clear"
-		              titleStyle={{ color: 'grey', fontSize: 12, marginTop: 10}}
+		              titleStyle={{ color: 'white', fontSize: 12, marginTop: 10}}
 		              onPress={ ()=>props.signin() }
                 />
 
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         backgroundColor: 'rgba(255,255,255,0.7)',
-        marginBottom: 10,
+        marginBottom: 20,
         color: 'black',
         paddingHorizontal: 10,
         fontSize: 10
