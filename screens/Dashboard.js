@@ -120,11 +120,11 @@ function Dashboard( props ) {
                 	<ListItem  style={{flex:1}}
                 		onPress={ ()=>{ props.navigation.navigate('Tasks') } }
                     rightAvatar={ <Icon name='list' type='materialIcons' color='#31AE89'  size={35} />}
-                    title='Avancement des tâches (20 sur10)'
+                    title='Avancement des tâches '
                     titleStyle={styles.titleView}
                     subtitle={
                       <View style={styles.subtitleView}>
-                        <Progress.Bar progress={0.1} width={200} color={'#31AE89'}  /> 
+                        <Progress.Bar progress={0.0} width={200} color={'#31AE89'}  /> 
                       </View>
                     }
                     bottomDivider
@@ -133,11 +133,11 @@ function Dashboard( props ) {
                   <ListItem style={{flex:1}} 
                   	onPress={ ()=>{ props.navigation.navigate('Prestations') } }
 			              rightAvatar={ <Icon name='playlist-add' type='materialIcons' color='#31AE89' size={35}  />}
-			              title='Choix des prestataires (3 sur10)'
+			              title='Choix des prestataires '
 			              titleStyle={styles.titleView}
 			              subtitle={
 			                <View style={styles.subtitleView}>
-			                  <Progress.Bar progress={0.3} width={200} color={'#31AE89'}  /> 
+			                  <Progress.Bar progress={0.2} width={200} color={'#31AE89'}  /> 
 			                </View>
 			              }
                  		bottomDivider
@@ -147,7 +147,7 @@ function Dashboard( props ) {
                   <ListItem  style={{flex:1}} 
                   	onPress={ ()=>{ props.navigation.navigate('Invites') } }
 		                rightAvatar={ <Icon name='group-add' type='materialIcons' color='#31AE89'  size={35} />}
-		                title='Listes des invités (30 sur 150)'
+		                title='Listes des invités'
 		                titleStyle={styles.titleView}
 		                subtitle={
 		                  <View style={styles.subtitleView}>
@@ -162,7 +162,7 @@ function Dashboard( props ) {
 									<ListItem  style={{flex:1}}
 										onPress={ ()=>{ props.navigation.navigate('Budget') } }
 										rightAvatar={ <Icon name='euro-symbol' type='materialIcons' color='#31AE89'  size={35} />}
-										title='Budget(1000€ sur 30000€)'
+										title='Budget'
 										titleStyle={styles.titleView}
 										subtitle={
 											<View style={styles.subtitleView}>
