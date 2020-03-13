@@ -37,12 +37,13 @@ export default function Prestataires(props) {
 		      });
 		     
 		      var presta = await data.json();
+		      //console.log('liste prestatires ', presta );
 		      
-		      setListePrestataire(budget.wedding.serviceProviders)
-		      console.log("YOOOOOOO", listePrestataire)
+		      setListePrestataire(presta.prestataire)
+
 		    }
         getPresta();
-
+		    //console.log("YOOOOOOO", listePrestataire)
 	},[]);
 
   
@@ -70,10 +71,12 @@ export default function Prestataires(props) {
                   	return(
                       <TouchableOpacity
                       	key={`touch${i}`}
-                      	onPress={ () => { props.navigation.navigate('PrestaView') } }
+                      	onPress={ () => { props.navigation.navigate( 'PrestaView', { params: { presta: u } } ) } }
                       >
-                        <Card key={`card${i}`} image={u.img} containerStyle={{ width: 150, height: 200}}  >
-                              <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
+                        <Card key={`card${i}`} 
+		                      image={{ uri: ("https://weedingplanner.herokuapp.com/" + u.img.slice(2)) }}
+		                      containerStyle={{ width: 150, height: 200}} >
+                              <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service} </Text>
                         </Card>
                       </TouchableOpacity>
                     )

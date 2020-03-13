@@ -41,7 +41,7 @@ function AddWedding ( props ) {
 			var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
 			  method: 'POST',
 			  headers: {'Content-Type':'application/x-www-form-urlencoded'},
-			  body: `tokenUser=${data}`
+			  body: `id_wedding=${data}`
 			});
 			var profile = await dataProfile.json();
 			 setUser(profile)

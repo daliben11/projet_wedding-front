@@ -30,23 +30,24 @@ function Dashboard( props ) {
 //	
 //		async function detailMariage(){
 //		
-//		    var data = await AsyncStorage.getItem("tokenUser");  
+//		    //var data = await AsyncStorage.getItem("tokenUser");  
 //		    
-//		    var dataProfile = await fetch("https://weedingplanner.herokuapp.com/profile",{
-//		      method: 'GET',
+//		    var dataWed = await fetch("https://weedingplanner.herokuapp.com/getwedding",{
+//		      method: 'POST',
 //		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
-//		      body: `tokenUser=${data}`
+//		      body: `id=5e67be5ac820c000174ee417`
 //		    });
-//		    var profile = await dataProfile.json();
+//		    dataWed = await dataWed.json();
 //		    
 //		    //console.log('get json')
-//		    setUser(profile);
+//		    setWedInfo( {...wedInfo, ...dataWed} );
 //		    
 //    }
 //    detailMariage();
 //    return ()=>{console.log()}
 	}, []);
 	
+	console.log(wedInfo)
 	
 	var c = ( ()=>{
 	//{countDays} jours {countHr} Heures {countMin} min// {countS} s

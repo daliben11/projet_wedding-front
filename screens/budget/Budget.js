@@ -105,7 +105,8 @@ if (modifier===false) {
                                 }} 
                               
                               >
-                                <Card key={i} image={{ uri: ("https://weedingplanner.herokuapp.com/" + u.img.slice(2)) }} containerStyle={{ width: 150, height: 220}}  >
+                                <Card key={i} image={{ uri: ("https://weedingplanner.herokuapp.com/" + u.img.slice(2)) }}
+                                	containerStyle={{ width: 150, height: 220}}  >
                                       <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service}</Text>
                                 </Card>
                               </TouchableOpacity>
