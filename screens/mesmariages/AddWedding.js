@@ -89,9 +89,9 @@ function AddWedding ( props ) {
 							onPress={ () => props.navigation.goBack() }
 						/> 
 					}
-					centerComponent={{ 
-						text: 'Créer mon mariage', 
-						style: { fontFamily:'catamaran-regular', color: '#000', fontSize:20} 
+					centerComponent={{  
+						text: 'Créer mon mariage   ', 
+						style: { fontFamily:'greatvibes', color: '#000', fontSize:28} 
 					}} // ajout de la police greatvibes avec la bonne taille
 					rightComponent={
 						<Icon name='check' type='antdesign' color='#000' 
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
 		alignSelf:'flex-start',
 		marginTop: 10,
 		height: 40,
-		marginBottom: 20
+		marginBottom: 20,
 	}
 });
 
