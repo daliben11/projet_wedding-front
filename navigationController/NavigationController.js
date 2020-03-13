@@ -143,7 +143,8 @@ function NavigationController( props ) {
 		'Dashboard': stackDashboard,
 		'Mes tâches': Tasks,
 		'Invités': Invites,
-		'Budget': Budget
+		'Prestataires': Prestations,
+		'Budget': Budget,
 		},
 		{ defaultNavigationOptions: ({ navigation }) => ({
 				tabBarIcon: ({ tintColor }) => {
@@ -151,7 +152,12 @@ function NavigationController( props ) {
 					if (navigation.state.routeName == 'Dashboard') {
 						iconName = 'home';
 						iconType = 'entypo';
-					} else if (navigation.state.routeName == 'Mes tâches') {
+					} 
+					else if (navigation.state.routeName == 'Prestataires') {
+						iconName = 'contacts';
+						iconType = 'antdesign';
+					}
+					else if (navigation.state.routeName == 'Mes tâches') {
 						iconName = 'tasks';
 						iconType = 'font-awesome';
 					}

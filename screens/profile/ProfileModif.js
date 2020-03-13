@@ -28,7 +28,7 @@ function ProfileModif( props ) {
 			
 			( async () => {
 				var data = await AsyncStorage.getItem("tokenUser");
-				setUserToken(data);
+					setUserToken(data);
 				})();
 			//console.log( 'state token profil modif ', userToken );
 	}, []);

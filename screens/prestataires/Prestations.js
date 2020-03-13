@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useEffect, useState } from 'react';
 //import {connect} from 'react-redux';
 
 import { StyleSheet, Text, View, 
@@ -13,37 +13,38 @@ import AjoutPresta from './AjoutPresta';
 export default function Prestataires(props) {
  
 	const [visibleAddPresta, setVisibleAddPresta] = useState(false);
+	const [listePrestataire, setListePrestataire] = useState([]);
+  
+//  const listePrestataire = [
+//    { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
+//    { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
+//    { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
+//    { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
+//    { name:'Robe',img:require('../../assets/robe.jpg')},
+//    { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
+//    { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
+//    { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
+//// PRESTATAIRES PAGE ATTENTION
 
-  const listePrestataire = [
-    { name:'Lieux',img:require('../../assets/lieuxmariage.jpg')},
-    { name:'Traiteur',img: require('../../assets/traiteurmariage.jpg') },
-    { name:'Photographe',img: require('../../assets/photomariage.jpeg') },
-    { name:'Animation',img: require('../../assets/weddingparty.jpeg' )},
-    { name:'Robe',img:require('../../assets/robe.jpg')},
-    { name:'Décorateur',img: require('../../assets/decoration.jpeg' )},
-    { name:'Patisserie',img: require('../../assets/gateuxmariage.jpg') },
-    { name:'Bijoux',img: require('../../assets/bijoux.jpg' )}];
-// PRESTATAIRES PAGE ATTENTION
+	  useEffect( () => { 
 
-//	  useEffect( () => { 
+		  const getPresta = async() => {
 
-//		  async function  etatBudget(){
+		    let data = await fetch('https://weedingplanner.herokuapp.com/getwedding', {
+		      method: 'POST',
+		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+		      body: "id=5e67be5ac820c000174ee417"
+		      });
+		     
+		      var presta = await data.json();
+		      //console.log('liste prestatires ', presta.wedding.serviceProviders );
+		      
+		      setListePrestataire(presta.wedding.serviceProviders)
 
-//		    var dataBudget = await fetch('https://weedingplanner.herokuapp.com/budget', {
-
-//		      method: 'POST',
-//		      headers: {'Content-Type':'application/x-www-form-urlencoded'},
-//		      body: "id=5e6762c9f5023800170451a7"
-//		      });
-//		     
-//		      var budget = await dataBudget.json();
-//		      
-//		      setListePrestataire(budget.wedding.serviceProviders)
-//		      console.log("YOOOOOOO", listePrestataire)
-//		    }
-//        etatBudget();
-
-//	},[]);
+		    }
+        getPresta();
+		    //console.log("YOOOOOOO", listePrestataire)
+	},[]);
 
   
 	const handleClose = () => {
@@ -70,10 +71,12 @@ export default function Prestataires(props) {
                   	return(
                       <TouchableOpacity
                       	key={`touch${i}`}
-                      	onPress={ () => { props.navigation.navigate('PrestaView') } }
+                      	onPress={ () => { props.navigation.navigate( 'PrestaView', { params: { presta: u } } ) } }
                       >
-                        <Card key={`card${i}`} image={u.img} containerStyle={{ width: 150, height: 200}}  >
-                              <Text style={{marginBottom: 10}} style={styles.card} > {u.name} </Text>
+                        <Card key={`card${i}`} 
+		                      image={{ uri: ("https://weedingplanner.herokuapp.com/" + u.img.slice(2)) }}
+		                      containerStyle={{ width: 150, height: 200}} >
+                              <Text style={{marginBottom: 10}} style={styles.card} > {u.type_service} </Text>
                         </Card>
                       </TouchableOpacity>
                     )

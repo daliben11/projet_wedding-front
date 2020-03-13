@@ -12,9 +12,11 @@ import HeaderNav from '../HeaderNav';
 
 export default function PrestaView( props ) {
 
-  const [prestataire,setPrestataire] = useState(0)
- 
+  const prestataire =  props.navigation.state.params.params.presta;
   
+
+	//setPrestataire( props.navigation.state.params );
+  console.log('presta ici ', prestataire);
   
   return (
     
@@ -22,30 +24,32 @@ export default function PrestaView( props ) {
 
        <HeaderNav nom='Prestataires'/> 
 
-        <ImageBackground style={{flex:1}}
-        source={{uri:'https://3.bp.blogspot.com/-kXEFQ6-TE-o/TcpOet-2JrI/AAAAAAAAABI/_My0t2hQ7PU/s1600/huf+house.jpg'}} /> 
+						<ImageBackground style={{flex:0.9}}
+							source={{ uri: ("https://weedingplanner.herokuapp.com/" + prestataire.img.slice(2)) }} /> 
 
-            <View  style={{flex: 0.4, flexDirection: 'row',  alignSelf:'center', alignItems: 'center',}} >
-            <Text style={styles.titleView} >Passion Events</Text>
+            <View  style={{flex: 0.25, flexDirection: 'row', alignSelf:'center'}} >
+		          <Text style={styles.titleView} >
+		          	Domaine du Morlais{/*prestataire.company_name*/}
+		          </Text>
             </View>
-
+			 
              
 
             <ListItem key={1}
 	            leftIcon={ <Icon name='location' type='evilicon' color='#31AE89' size={25}/>}
-	            title='24, av. de la Marne Paris 12e'
-	          />
+	            title="13 rue de la Vie, Paris" 
+	          />{/*prestataire.address*/}
 
 	          <ListItem key={2}
 	               leftIcon={ <Icon name='contact-mail' type='materialcommunityicon' color='#31AE89' size={25}/>}
-	               title='01 43 24 05 84'
-	           />
+	               title="06 12 34 56 78"
+	           />{/*prestataire.phone_number*/}
 
 	          <ListItem key={3}
-	               leftIcon={ <Icon name='euro-symbol' type='materialIcons'  color='#31AE89' size={25}/>}
-	               title='Brad & Angelina'
+	               leftIcon={ <Icon name='user' type='font-awesome'  color='#31AE89' size={25}/>}
+	               title="Mme Pinaud"
 	               bottomDivider
-	           />
+	           />{/*prestataire.contact_name*/} 
 
                 
              <ScrollView contentContainerStyle={styles.contentContainer}  style={{flex:1}}  >
@@ -141,8 +145,8 @@ export default function PrestaView( props ) {
      fontFamily:'catamaran-regular', 
      fontWeight:'500',
      fontSize: 25,
-     alignSelf:'flex-start', 
-  
+     alignSelf:'flex-start',
+  	 
   },
   ratingText: {
 		paddingLeft: 10,

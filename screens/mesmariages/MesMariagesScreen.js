@@ -16,6 +16,9 @@ function MesMariagesScreen( props ) {
 	const [createNewWed, setCreateNewWed] = useState( false );
 	const [modalVisible, setModalVisible] = useState( false );
 	const [codeMariage, setCodeMariage] = useState('');
+	const [arrayToShow, setArrayToShow] = useState([]);
+	
+	//[1,2,3,4]
 	
 //	const changePage = (val) => {
 //		console.log('create new wedding (appear the screen AddWedding)  ', createNewWed );
@@ -41,29 +44,29 @@ function MesMariagesScreen( props ) {
 					
 				<ScrollView>
 				
-				{	[1,2,3,4].map( (el,ind) => {
-					var nextPage;
-					if( ind === 0 ) {
-						nextPage = 'Dashboard';
-					} else {
-						nextPage = 'GuestPage';
-					}
+				{	arrayToShow.map( (el,ind) => {
+//					var nextPage;
+//					if( ind === 0 ) {
+//						nextPage = 'Dashboard';
+//					} else {
+//						nextPage = 'GuestPage';
+					//}
 					return(
 						
 						<ListItem key={ind}
-							onPress={ () => props.navigation.navigate( nextPage ) }
+							onPress={ () => props.navigation.navigate( 'GuestPage' ) }
 							rightAvatar={{ source: require('../../assets/picture-1.jpg') }}
-							title='Mariage John & Janet'
+							title='Mariage Angelina & Brad'
 							titleStyle={styles.titleView}
 							subtitle={
 								<View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
 									<View style={styles.subtitleView}>
 										<Icon name='clock' type='evilicon' color='grey' />
-										<Text style={styles.ratingText}>10/02/2020</Text>
+										<Text style={styles.ratingText}>13/03/2021</Text>
 									</View>
 									<View style={styles.subtitleView}>
 										<Icon name='location-on' type='materialIcons' color='grey' />
-										<Text style={styles.ratingText}>Paris</Text>
+										<Text style={styles.ratingText}>Miami</Text>
 								  </View>
 								</View>
 							}
@@ -134,7 +137,7 @@ function MesMariagesScreen( props ) {
 						 	buttonStyle={{backgroundColor:'#FAEBE4', marginTop: 15}}
 						 	titleStyle={{color:"#31AE89"}}
 							onPress={ () => {
-									
+									setArrayToShow([1])
 									setModalVisible( false );
 							} }
 						 />
