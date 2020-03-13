@@ -100,7 +100,7 @@ export default function Guest({navigation}) {
                       
                         rightAvatar={ <Icon name='trash-2' type='feather' color='#31AE89' size={25} onPress={()=> { 
                           console.log(i);
-                          let deleteGuest = [...guest];
+                          let deleteGuest = [...listGuest];
                           deleteGuest.splice(i , 1);
                           setListGuest(deleteGuest);
                         } }
